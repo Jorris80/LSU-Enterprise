@@ -3,7 +3,7 @@
  * - Tile peta yang PERNAH dilihat: cache-first, dibatasi 3.000 tile (tanpa prefetch massal — patuh kebijakan tile OSM)
  * - Panggilan API (POST ke script.google.com) TIDAK di-cache; antrean offline ditangani aplikasi (IndexedDB)
  */
-var VERSION = 'lsu-v2.0.0';
+var VERSION = 'lsu-v2.1.0';
 var STATIC = VERSION + '-static';
 var TILES = 'lsu-tiles';
 var MAX_TILES = 3000;
@@ -27,7 +27,7 @@ self.addEventListener('install', function (e) {
 
 self.addEventListener('activate', function (e) {
   e.waitUntil(caches.keys().then(function (keys) {
-    return Promise.all(keys.filter(function (k) { return k !== STATIC && k !== TILES; }).map(function (k) { return caches.delete(k); }));
+    return Promise.all(keys.filter(function (k) { return k !== STATIC && k !== TILES && k !== 'lsu-photos'; }).map(function (k) { return caches.delete(k); }));
   }).then(function () { return self.clients.claim(); }));
 });
 
@@ -42,6 +42,12 @@ self.addEventListener('fetch', function (e) {
   var url = new URL(req.url);
   if (/script\.google(usercontent)?\.com$/.test(url.hostname)) return;
 
+  if (url.hostname === 'lh3.googleusercontent.com') {   // foto Drive (thumbnail) → tersedia offline setelah pernah dilihat
+    e.respondWith(caches.open('lsu-photos').then(function (c) {
+      return c.match(req).then(function (hit) { return hit || fetch(req).then(function (res) { if (res && (res.ok || res.type === 'opaque')) c.put(req, res.clone()); return res; }).catch(function () { return new Response('', { status: 504 }); }); });
+    }));
+    return;
+  }
   if (TILE_HOSTS.test(url.hostname)) {
     e.respondWith(caches.open(TILES).then(function (c) {
       return c.match(req).then(function (hit) {
