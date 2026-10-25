@@ -1,0 +1,37 @@
+{
+  "id": "./",
+  "name": "LSU Enterprise Platform",
+  "short_name": "LSU Mobile",
+  "description": "Digitalisasi Leaf Sampling Unit kelapa sawit: GIS, survei offline, sampel, lab & rekomendasi pupuk",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#064e3b",
+  "theme_color": "#064e3b",
+  "lang": "id",
+  "categories": [
+    "productivity",
+    "business"
+  ],
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
