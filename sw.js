@@ -3,7 +3,7 @@
  * - Tile peta yang PERNAH dilihat: cache-first, dibatasi 3.000 tile (tanpa prefetch massal — patuh kebijakan tile OSM)
  * - Panggilan API (POST ke script.google.com) TIDAK di-cache; antrean offline ditangani aplikasi (IndexedDB)
  */
-var VERSION = 'lsu-v2.3.0';
+var VERSION = 'lsu-v2.4.0';
 var STATIC = VERSION + '-static';
 var TILES = 'lsu-tiles';
 var MAX_TILES = 3000;
@@ -15,7 +15,8 @@ var PRECACHE = [
   'https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/images/layers-2x.png',
   'https://cdn.jsdelivr.net/npm/pmtiles@4.3.0/dist/pmtiles.js',
   'https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js',
-  'https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js'
+  'https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js',
+  'https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js'
 ];
 var TILE_HOSTS = /(^|\.)tile\.openstreetmap\.org$|(^|\.)server\.arcgisonline\.com$|(^|\.)tile\.opentopomap\.org$/;
 

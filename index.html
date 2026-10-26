@@ -278,6 +278,62 @@ table.t tr.sel td{background:#f0fdf4}
 .login-legal{text-align:center;font-size:12px;margin-top:10px}.login-legal a{color:var(--mut)}
 .side-ver{font-size:11px;color:var(--mut);padding:14px 12px 4px;border-top:1px solid var(--line);margin-top:10px}.side-ver a{color:var(--mut)}
 .ab-logo{width:64px!important;height:64px!important;border-radius:16px!important;background:var(--pri3)!important}
+/* ===== v2.4 Kinerja Agronomi (D3) & peringatan tren hara ===== */
+.agro{margin-bottom:14px}
+.agro-h{display:flex;align-items:center;gap:8px;margin-bottom:10px}.agro-h h3{margin:0}
+.agro-yr{display:flex;align-items:center;gap:6px}.agro-yr .i{width:auto;padding:5px 8px;min-height:0}
+.agro-chips{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:14px}
+.agro-chip{display:flex;align-items:center;gap:8px;padding:9px 11px;border:1px solid var(--line);border-left:4px solid var(--mut);border-radius:10px;background:#fff;text-align:left;font:inherit;color:inherit;min-width:0}
+button.agro-chip{cursor:pointer}button.agro-chip:hover{background:#f8fafc}
+.agro-chip .ic{font-size:18px}.agro-chip .tx{display:flex;flex-direction:column;min-width:0;flex:1}
+.agro-chip .l{font-size:11.5px;color:var(--mut)}.agro-chip .s{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.agro-chip b{font-size:19px}
+.agro-chip.ok{border-left-color:var(--ok)}.agro-chip.ok b{color:var(--ok)}.agro-chip.warn{border-left-color:#d97706}.agro-chip.warn b{color:var(--warn)}
+.agro-chip.bad{border-left-color:var(--bad)}.agro-chip.bad b{color:var(--bad)}.agro-chip.info{border-left-color:var(--info)}.agro-chip.info b{color:var(--info)}
+.agro-g{gap:18px;margin-bottom:6px}
+.agro-sec h4{margin:4px 0 8px;font-size:13.5px}
+.agro-chart{position:relative}.agro-chart svg{display:block;overflow:visible}
+.agro-ph{display:flex;align-items:center;justify-content:center;gap:8px;min-height:160px;color:var(--mut);font-size:13px;text-align:center;padding:10px}
+.agro-leg{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:11.5px;color:var(--mut);margin:6px 0 2px}
+.agro-leg span{display:inline-flex;align-items:center;gap:5px}.agro-leg i{display:inline-block;width:14px;height:8px;border-radius:2px}
+.agro-leg i.dash{height:0;border-top:2px dashed;border-radius:0}.agro-leg i.dia{width:8px;height:8px;background:#0f172a;transform:rotate(45deg);border-radius:1px}
+.agro-list{margin-top:8px;border-top:1px solid #f1f5f9}
+.agro-li{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;padding:6px 0;border-bottom:1px solid #f1f5f9;font-size:12.5px}
+.agro-li .when{font-weight:600;white-space:nowrap}.agro-li .what{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.agro-li.late .when{color:var(--bad)}
+.agro-sm{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.ag-cell{border:1px solid var(--line);border-radius:10px;padding:8px 10px 6px;min-width:0}
+.ag-ct{display:flex;align-items:baseline;gap:6px}.ag-ct b{font-size:15px}.ag-v{font-weight:600}.ag-v small{color:var(--mut);font-weight:400}
+.ag-dot{width:10px;height:10px;border-radius:50%;margin-left:auto;align-self:center}
+.ag-d{font-size:11.5px;font-weight:700;white-space:nowrap}.ag-d.bad{color:var(--bad)}.ag-d.ok{color:var(--ok)}
+.ag-spark{min-height:58px}.ag-cf{margin-top:2px}
+.ag-grid line{stroke:#e2e8f0}.ag-grid text,.ag-ax text{fill:#64748b;font-size:10.5px}.ag-ax .domain,.ag-ax line{stroke:#cbd5e1}
+.ag-target{stroke:#0f172a;stroke-width:1.3;stroke-dasharray:5 4}.ag-plan{fill:none;stroke:#d97706;stroke-width:2;stroke-dasharray:6 4}
+.ag-area{fill:rgba(22,163,74,.14)}.ag-act{fill:none;stroke:#16a34a;stroke-width:2.4}.ag-actdot{fill:#16a34a;stroke:#fff;stroke-width:2}
+.ag-today{stroke:#b91c1c;stroke-width:1.2;stroke-dasharray:2 3}.ag-rule{stroke:#334155;stroke-width:1}
+.ag-lbl{font-size:10.5px;fill:#334155}.ag-lbl.plan{fill:#b45309}.ag-lbl.act{fill:#15803d;font-weight:700}.ag-lbl.today{fill:#b91c1c}
+.ag-empty{font-size:12px;fill:#94a3b8}.ag-rl{font-size:11px;fill:#0f172a;font-weight:600}
+.ag-bar.proj{stroke-dasharray:4 3;stroke-width:1.2}.ag-bar.plan.late{stroke:#7f1d1d}.ag-dia{fill:#0f172a}.ag-row:hover .ag-band{fill:#ecfdf5}
+.ag-opt{stroke:#16a34a;stroke-width:.8;stroke-dasharray:3 3}.ag-tl{fill:none;stroke:#0f172a;stroke-width:1.6}.ag-yl{font-size:9.5px;fill:#64748b}
+.ag-tip{position:fixed;z-index:9999;pointer-events:none;background:#0f172a;color:#f8fafc;font-size:12px;line-height:1.45;padding:7px 9px;border-radius:8px;max-width:260px;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.agro-badge{display:flex;align-items:center;gap:10px;width:100%;margin:0 0 12px;padding:10px 14px;border-radius:12px;border:1px solid;font:inherit;font-size:14px;text-align:left;cursor:pointer}
+.agro-badge .ag-bt{flex:1}.agro-badge .chev{font-size:13px;opacity:.7}
+.agro-badge.crit{background:#fef2f2;border-color:#fecaca;color:#991b1b}.agro-badge.warn{background:#fffbeb;border-color:#fde68a;color:#92400e}
+.agro-badge.watch{background:#eff6ff;border-color:#bfdbfe;color:#1e40af}.agro-badge.ok{background:var(--okbg);border-color:#bbf7d0;color:#166534;cursor:default}
+.agro-badge .pulse{width:11px;height:11px;border-radius:50%;background:currentColor;flex:none;position:relative}
+.agro-badge.crit .pulse::after{content:'';position:absolute;inset:-5px;border-radius:50%;border:2px solid currentColor;animation:agp 1.6s ease-out infinite}
+@keyframes agp{0%{transform:scale(.6);opacity:.9}100%{transform:scale(1.6);opacity:0}}
+@media (prefers-reduced-motion:reduce){.agro-badge.crit .pulse::after{animation:none}}
+.agro-alerts{margin:-4px 0 14px;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.aa-head{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;justify-content:space-between;margin-bottom:10px}
+.aa-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,310px),1fr));gap:10px}
+.aa-card{border:1px solid var(--line);border-left:4px solid var(--mut);border-radius:10px;padding:10px 12px;min-width:0}
+.aa-card.sev-crit{border-left-color:var(--bad)}.aa-card.sev-warn{border-left-color:#d97706}.aa-card.sev-watch{border-left-color:var(--info)}
+.aa-top{display:flex;gap:9px;align-items:flex-start}.aa-top .sp{min-width:0}
+.aa-nut{flex:none;width:34px;height:34px;border-radius:9px;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px}
+.aa-val{margin:8px 0 2px;font-size:13px}.aa-val .v{font-size:20px;font-weight:800}
+@media (max-width:1024px){.agro-chips,.agro-sm{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.agro-chip b{font-size:16px}.agro-chip .ic{display:none}.agro-li{grid-template-columns:1fr auto}.agro-li .what{grid-column:1/-1;grid-row:2}.agro-badge{font-size:13px}}
+@media (max-width:520px){.ag-ct{flex-wrap:wrap;gap:2px 6px}.ag-v small{display:none}.ag-cell{padding:7px 8px 5px}}
 
 </style>
 </head>
@@ -956,11 +1012,12 @@ VIEWS.dash = function () {
     kpi('Rencana LSU', fmtN(plans.length), plans.filter(function (p) { return p.status === 'COMPLETED'; }).length + ' selesai') +
     kpi('Hasil lab disetujui', fmtN(results.filter(function (r) { return r.status === 'APPROVED'; }).length), results.length + ' total hasil') +
     kpi('Rekomendasi dirilis', fmtN(released.length), fmtRp(released.reduce(function (a, r) { return a + (r.totalCostEstimatedIdr || 0); }, 0))) +
-    (role() === 'SUPER_ADMIN' ? kpi('Lisensi', esc(lic.tier || '-'), lic.valid ? 'Aktif s/d ' + esc(lic.expiresAt || '-') : 'Tidak aktif') : kpi('Foto dokumentasi', fmtN(estOf(d.photos).length), estOf(d.photos).filter(function (p) { return Date.now() - new Date(p.createdAt).getTime() < 30 * 864e5; }).length + ' dalam 30 hari')) + '</div>' +
+    (role() === 'SUPER_ADMIN' ? kpi('Lisensi', esc(lic.tier || '-'), lic.valid ? 'Aktif s/d ' + esc(lic.expiresAt || '-') : 'Tidak aktif') : kpi('Foto dokumentasi', fmtN(estOf(d.photos).length), estOf(d.photos).filter(function (p) { return Date.now() - new Date(p.createdAt).getTime() < 30 * 864e5; }).length + ' dalam 30 hari')) + '</div>' + agroPanelHtml() +
     '<div class="grid g2"><div class="card"><h3>📥 Tugas saya</h3>' + (tasks.length ? tasks.map(function (t) { return '<div class="row" style="padding:8px 0;border-bottom:1px solid #f1f5f9"><span class="sp">' + esc(t.txt) + '</span><button class="btn s" data-nav="' + t.tab + '">Buka</button></div>'; }).join('') : '<div class="empty">Tidak ada tugas tertunda. ✅</div>') + '</div>' +
     '<div class="card"><h3>🧪 Status sampel</h3>' + (samples.length ? hbars(st.map(function (s) { return [lbl(s), samples.filter(function (x) { return x.status === s; }).length, s === 'REJECTED_LAB' ? 'var(--bad)' : null]; })) : '<div class="empty">Belum ada sampel.</div>') + '</div>' +
     '<div class="card"><h3>🌿 Status hara (hasil disetujui)</h3>' + (Object.keys(nutCls).length ? (d.nutrients || []).map(function (n) { var c = nutCls[n.k] || {}; var tot = Object.keys(c).reduce(function (a, k) { return a + c[k]; }, 0) || 1; return '<div class="row" style="gap:8px;margin:5px 0"><b style="width:28px">' + n.k + '</b><div class="bar sp" style="display:flex">' + ['ACUTE_DEFICIENT', 'DEFICIENT', 'OPTIMAL', 'HIGH', 'EXCESS'].map(function (k) { return c[k] ? '<i title="' + lbl(k) + ': ' + c[k] + '" style="width:' + (c[k] / tot * 100) + '%;background:' + NUT_COL[k] + '"></i>' : ''; }).join('') + '</div></div>'; }).join('') + '<div class="chips small" style="margin-top:8px">' + ['ACUTE_DEFICIENT', 'DEFICIENT', 'OPTIMAL', 'HIGH', 'EXCESS'].map(function (k) { return '<span><i style="display:inline-block;width:10px;height:10px;border-radius:2px;background:' + NUT_COL[k] + '"></i> ' + lbl(k) + '</span>'; }).join('') + '</div>' : '<div class="empty">Belum ada hasil lab disetujui.</div>') + '</div>' +
     '<div class="card"><h3>🛡️ Aktivitas terbaru</h3>' + ((d.audit || []).slice(0, 8).map(function (a) { return '<div class="small" style="padding:6px 0;border-bottom:1px solid #f1f5f9"><b>' + esc(a.action) + '</b> · ' + esc(a.actorName) + '<div class="muted">' + fmtD(a.createdAt, true) + '</div></div>'; }).join('') || '<div class="empty">Tidak ada akses audit.</div>') + '</div></div>';
+  agroDraw();
 };
 var NUT_COL = { ACUTE_DEFICIENT: '#b91c1c', DEFICIENT: '#f59e0b', OPTIMAL: '#16a34a', HIGH: '#0ea5e9', EXCESS: '#7c3aed' };
 function kpi(l, v, s) { return '<div class="card kpi"><span class="l">' + esc(l) + '</span><span class="v">' + v + '</span><span class="s">' + s + '</span></div>'; }
@@ -1165,7 +1222,10 @@ Object.assign(ACT, {
   planForm: function (el) {
     var p0 = byId(D().plans, el.getAttribute('data-id')) || {};
     var y = curYear();
-    modal(p0.id ? 'Edit Rencana ' + p0.code : 'Rencana Sampling LSU', '<div class="fg"><label class="f full">Unit LSU<select class="i" name="lsuUnitId"' + (p0.id ? ' disabled' : '') + '>' + opts(estOf(D().units), p0.lsuUnitId, function (u) { return u.code + ' · ' + u.name; }) + '</select></label><label class="f">Mulai sampling<input class="i" type="date" name="samplingWindowStart" value="' + esc(p0.samplingWindowStart || y + '-06-01') + '"></label><label class="f">Selesai sampling<input class="i" type="date" name="samplingWindowEnd" value="' + esc(p0.samplingWindowEnd || y + '-07-31') + '"></label><label class="f full">Catatan<textarea class="i" name="notes">' + esc(p0.notes || '') + '</textarea></label><div class="full small muted">Tips SOP: sampling 1x/tahun pada musim kering, sebelum aplikasi pupuk semester II.</div></div>',
+    // v2.4: hanya unit yang belum punya rencana aktif, tahun terbaru dulu (unit riwayat tidak lagi terpilih otomatis)
+    var units = p0.id ? estOf(D().units) : estOf(D().units).filter(function (u) { return !D().plans.some(function (x) { return x.lsuUnitId === u.id && x.status !== 'CANCELLED'; }); }).sort(function (a, b) { return b.targetYear - a.targetYear || String(a.code).localeCompare(String(b.code)); });
+    if (!units.length) return toast('Semua unit LSU sudah memiliki rencana. Buat unit LSU baru terlebih dahulu (tab Unit LSU).', 'bad');
+    modal(p0.id ? 'Edit Rencana ' + p0.code : 'Rencana Sampling LSU', '<div class="fg"><label class="f full">Unit LSU<select class="i" name="lsuUnitId"' + (p0.id ? ' disabled' : '') + '>' + opts(units, p0.lsuUnitId, function (u) { return u.code + ' · ' + u.name; }) + '</select></label><label class="f">Mulai sampling<input class="i" type="date" name="samplingWindowStart" value="' + esc(p0.samplingWindowStart || y + '-06-01') + '"></label><label class="f">Selesai sampling<input class="i" type="date" name="samplingWindowEnd" value="' + esc(p0.samplingWindowEnd || y + '-07-31') + '"></label><label class="f full">Catatan<textarea class="i" name="notes">' + esc(p0.notes || '') + '</textarea></label><div class="full small muted">Tips SOP: sampling 1x/tahun pada musim kering, sebelum aplikasi pupuk semester II.</div></div>',
       [{ label: 'Batal' }, { label: 'Simpan', cls: 'p', onClick: function (b, close) { var v = formVals(b); v.id = p0.id; if (p0.id) v.lsuUnitId = p0.lsuUnitId; saveThen('plan.save', v, 'Rencana tersimpan.', close); return false; } }]);
   },
   planAct: function (el) {
@@ -1342,9 +1402,13 @@ function selectedSamples() { return $$('[data-smp]:checked').map(function (c) { 
 function sampleStatus(id, status, extra, msg) { return saveThen('sample.status', Object.assign({ id: id, status: status }, extra || {}), msg || 'Status sampel diperbarui.'); }
 Object.assign(ACT, {
   genSamples: function () {
-    var units = estOf(D().units);
+    // v2.4: hitung hanya observasi pada TAHUN unit (sama seperti server) & dahulukan unit yang punya observasi tertunda
+    var used = {}; D().sampleMembers.forEach(function (m) { used[m.treeObservationId] = 1; });
+    var pend = {};
+    var units = estOf(D().units).map(function (u) { pend[u.id] = D().observations.filter(function (o) { return u.blockIds.indexOf(o.blockId) >= 0 && !used[o.id] && new Date(o.sampledAt).getFullYear() === u.targetYear; }).length; return u; })
+      .sort(function (a, b) { return (pend[b.id] > 0) - (pend[a.id] > 0) || b.targetYear - a.targetYear; });
     var pr = protoActive();
-    modal('Bentuk Sampel Komposit', '<p class="small muted">Observasi pohon tahun berjalan di unit terpilih dikelompokkan ke kantong komposit ' + (pr.minTreesPerComposite || 20) + '-' + (pr.maxTreesPerComposite || 30) + ' pohon (target ' + (pr.treesPerCompositeSample || 25) + ').</p><label class="f">Unit LSU<select class="i" name="lsuUnitId">' + opts(units, '', function (u) { var n = D().observations.filter(function (o) { return u.blockIds.indexOf(o.blockId) >= 0 && !D().sampleMembers.some(function (m) { return m.treeObservationId === o.id; }); }).length; return u.code + ' · ' + n + ' observasi belum dikelompokkan'; }) + '</select></label>',
+    modal('Bentuk Sampel Komposit', '<p class="small muted">Observasi pohon tahun berjalan di unit terpilih dikelompokkan ke kantong komposit ' + (pr.minTreesPerComposite || 20) + '-' + (pr.maxTreesPerComposite || 30) + ' pohon (target ' + (pr.treesPerCompositeSample || 25) + ').</p><label class="f">Unit LSU<select class="i" name="lsuUnitId">' + opts(units, '', function (u) { return u.code + ' · ' + pend[u.id] + ' observasi belum dikelompokkan'; }) + '</select></label>',
       [{ label: 'Batal' }, { label: 'Bentuk', cls: 'p', onClick: function (b, close) { api('sample.generate', formVals(b)).then(function (r) { toast(r.length + ' sampel komposit dibuat: ' + r.map(function (s) { return s.code; }).join(', '), 'ok'); close(); loadData(true); }).catch(fail); return false; } }]);
   },
   packSample: function (el) {
@@ -1391,7 +1455,7 @@ var NUT_FIELDS = [['nitrogenPercent', 'N (%)'], ['phosphorusPercent', 'P (%)'], 
 VIEWS.lab = function () {
   var d = D(), sub = S.sub.lab || 'results';
   var tabs = [['orders', 'Penerimaan & Order'], ['results', 'Hasil Uji'], ['qc', 'QA/QC']];
-  var h = '<h2 class="pg">Laboratorium & Analisis Hara</h2><p class="pg-sub">Input → Verifikasi QC (CRM + Blanko wajib) → Persetujuan Lab Manager (prinsip 4 mata) → Revisi tercatat permanen.</p><div class="tabs">' + tabs.map(function (t) { return '<button data-sub="' + t[0] + '" class="' + (sub === t[0] ? 'on' : '') + '">' + t[1] + '</button>'; }).join('') + '</div>';
+  var h = '<h2 class="pg">Laboratorium & Analisis Hara</h2><p class="pg-sub">Input → Verifikasi QC (CRM + Blanko wajib) → Persetujuan Lab Manager (prinsip 4 mata) → Revisi tercatat permanen.</p>' + agroBadgeHtml() + '<div class="tabs">' + tabs.map(function (t) { return '<button data-sub="' + t[0] + '" class="' + (sub === t[0] ? 'on' : '') + '">' + t[1] + '</button>'; }).join('') + '</div>';
   var lab = can('LAB_MANAGER', 'LAB_ANALYST');
   if (sub === 'orders') {
     var recv = estOf(d.samples).filter(function (s) { return s.status === 'RECEIVED_LAB'; });
@@ -1417,6 +1481,7 @@ VIEWS.lab = function () {
     h += '<div class="tbl-wrap"><table class="t rsp"><thead><tr><th>Batch</th><th>Jenis</th><th>Parameter</th><th>Acuan</th><th>Terukur</th><th>Deviasi</th><th>Hasil</th><th>Oleh</th></tr></thead><tbody>' + qc.map(function (q) { return '<tr><td data-l="Batch" class="mono">' + esc(q.batchNumber) + '</td><td data-l="Jenis">' + esc(q.qcSampleType.replace(/_/g, ' ')) + '</td><td data-l="Parameter">' + esc(q.parameterName) + '</td><td data-l="Acuan">' + fmtN(q.expectedValue, 4) + '</td><td data-l="Terukur">' + fmtN(q.measuredValue, 4) + '</td><td data-l="Deviasi">' + fmtN(q.relativeDeviationPercent, 2) + (q.qcSampleType === 'BLANK' ? '' : '%') + '</td><td data-l="Hasil">' + (q.isWithinTolerance ? pill('OPTIMAL').replace('Optimum', 'Lulus') : pill('REJECTED').replace('Ditolak', 'Gagal')) + '</td><td data-l="Oleh" class="small">' + esc(q.recordedBy) + '</td></tr>'; }).join('') + '</tbody></table>' + (qc.length ? '' : '<div class="empty">Belum ada data QC.</div>') + '</div>';
   }
   $('#main').innerHTML = h;
+  agroLabDraw();
 };
 function nutForm(vals) { vals = vals || {}; return NUT_FIELDS.map(function (f) { return '<label class="f">' + f[1] + '<input class="i" type="number" step="0.0001" inputmode="decimal" name="' + f[0] + '" value="' + esc(vals[f[0]] === undefined ? '' : vals[f[0]]) + '"></label>'; }).join(''); }
 function readNut(b) { var v = {}; NUT_FIELDS.forEach(function (f) { v[f[0]] = Number($('[name=' + f[0] + ']', b).value); }); return v; }
@@ -2222,19 +2287,400 @@ function entityName(et, id) {
   return id;
 }
 
+/* =================== Kinerja Agronomi (D3) & Peringatan Tren Hara — v2.4 ===================
+ * - Ringkasan: progres sampling kumulatif vs target, tren status hara daun, jadwal sampling blok mendatang
+ * - Laboratorium: badge peringatan tren hara di luar ambang optimum (RULE-AGRO-2026.01)
+ * Perhitungan memakai data yang sudah dimuat (D()) + filter PT/Estate/AFD (estOf) → bekerja offline.
+ * D3 dimuat malas dari CDN dan di-cache service worker; tanpa D3 tetap tampil ringkasan teks.
+ */
+var D3_SRC = 'https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js';
+function loadD3() { return window.d3 ? Promise.resolve(window.d3) : loadScript(D3_SRC).then(function () { return window.d3; }); }
+
+var NUT_NAME = { N: 'Nitrogen', P: 'Fosfor', K: 'Kalium', Mg: 'Magnesium', Ca: 'Kalsium', B: 'Boron', Cu: 'Tembaga', Zn: 'Seng' };
+var NUT_ZONE = { ACUTE_DEFICIENT: '#fee2e2', DEFICIENT: '#fef3c7', OPTIMAL: '#dcfce7', HIGH: '#e0f2fe', EXCESS: '#ede9fe' };
+var PLAN_COL = { DRAFT: '#94a3b8', SUBMITTED: '#f59e0b', REVIEWED: '#d97706', APPROVED: '#2563eb', ASSIGNED: '#1d4ed8', IN_PROGRESS: '#16a34a' };
+var SEV = { crit: { t: 'Kritis', c: 'bad', r: 0 }, warn: { t: 'Di luar optimum', c: 'warn', r: 1 }, watch: { t: 'Waspada tren', c: 'info', r: 2 } };
+var DAY = 864e5;
+
+function nutClass(n, v) { return v < n.acute ? 'ACUTE_DEFICIENT' : v < n.low ? 'DEFICIENT' : v <= n.optHi ? 'OPTIMAL' : v <= n.hiHi ? 'HIGH' : 'EXCESS'; }
+/** jarak relatif ke rentang optimum (0 = di dalam rentang) */
+function nutDist(n, v) { return v < n.low ? (n.low - v) / n.low : v > n.optHi ? (v - n.optHi) / n.optHi : 0; }
+function dOnly(s) { if (!s) return null; var d = s.length <= 10 ? new Date(s + 'T00:00:00') : new Date(s); return isNaN(d) ? null : d; }
+function sod(d) { var x = new Date(d.getTime()); x.setHours(0, 0, 0, 0); return x; }
+function fmtDs(d) { return d ? d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }) : '-'; }
+function fmtDm(d) { return d ? d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short' }) : '-'; }
+function nutDec(n) { return n.unit === 'ppm' ? 1 : (n.low < 0.5 ? 3 : 2); }
+
+function agroIndex() {
+  var d = D(), smp = {}, unit = {};
+  (d.samples || []).forEach(function (s) { smp[s.id] = s; });
+  (d.units || []).forEach(function (u) { unit[u.id] = u; });
+  return { smp: smp, unit: unit };
+}
+function resultYear(r, ix) { var s = ix.smp[r.sampleId], u = s && ix.unit[s.lsuUnitId]; return u ? u.targetYear : new Date(r.testedAt || r.createdAt).getFullYear(); }
+function approvedResults() { return estOf(D().labResults).filter(function (r) { return r.status === 'APPROVED' && r.values; }); }
+function meanVals(list) { var o = {}; (D().nutrients || []).forEach(function (n) { o[n.f] = list.reduce(function (a, r) { return a + Number(r.values[n.f]); }, 0) / list.length; }); return o; }
+
+/* ---------- 1) Progres sampling kumulatif vs target ---------- */
+function agroYears() {
+  var d = D(), ys = {}; ys[curYear()] = 1;
+  estOf(d.units).forEach(function (u) { ys[u.targetYear] = 1; });
+  estOf(d.observations).forEach(function (o) { var y = new Date(o.sampledAt).getFullYear(); if (y) ys[y] = 1; });
+  return Object.keys(ys).map(Number).sort(function (a, b) { return b - a; });
+}
+function agroDefaultYear() {
+  var ys = agroYears(), cur = curYear();
+  if (S.agroYear && ys.indexOf(S.agroYear) >= 0) return S.agroYear;
+  var has = function (y) { var p = agroProgress(y); return p.count || p.planned.length; };
+  if (has(cur)) return cur;
+  for (var i = 0; i < ys.length; i++) if (has(ys[i])) return ys[i];
+  return cur;
+}
+function agroProgress(Y) {
+  var d = D();
+  var trees = estOf(d.trees).filter(function (t) { return t.isActive !== false && t.isStandardSampleTree !== false; });
+  var tset = {}; trees.forEach(function (t) { tset[t.id] = t; });
+  var first = {};
+  estOf(d.observations).forEach(function (o) {
+    var at = new Date(o.sampledAt); if (at.getFullYear() !== Y || !tset[o.treeId]) return;
+    if (!first[o.treeId] || at < first[o.treeId]) first[o.treeId] = at;
+  });
+  var dates = Object.keys(first).map(function (k) { return first[k]; }).sort(function (a, b) { return a - b; });
+  var actual = dates.map(function (t, i) { return { t: t, c: i + 1 }; });
+  var plans = [];
+  estOf(d.plans).forEach(function (p) {
+    if (p.targetYear !== Y || p.status === 'CANCELLED') return;
+    var u = byId(d.units, p.lsuUnitId); if (!u) return;
+    var n = trees.filter(function (t) { return u.blockIds.indexOf(t.blockId) >= 0; }).length;
+    var s = dOnly(p.samplingWindowStart), e = dOnly(p.samplingWindowEnd); if (!s || !e || !n) return;
+    plans.push({ s: s, e: new Date(e.getTime() + DAY), n: n });
+  });
+  function plannedAt(t) { return plans.reduce(function (a, p) { return a + (t <= p.s ? 0 : t >= p.e ? p.n : p.n * (t - p.s) / (p.e - p.s)); }, 0); }
+  var y0 = new Date(Y, 0, 1), y1 = new Date(Y, 11, 31, 23, 59);
+  var bps = [y0, y1]; plans.forEach(function (p) { bps.push(p.s, p.e); });
+  bps = bps.filter(function (t) { return t >= y0 && t <= y1; }).sort(function (a, b) { return a - b; });
+  var planned = plans.length ? bps.map(function (t) { return { t: t, c: plannedAt(t) }; }) : [];
+  var now = new Date(), ref = now < y0 ? y0 : now > y1 ? y1 : now;
+  var plannedTotal = plans.reduce(function (a, p) { return a + p.n; }, 0);
+  return { Y: Y, target: trees.length, actual: actual, count: actual.length, planned: planned, plannedTotal: plannedTotal, planToDate: Math.round(plannedAt(ref)), ref: ref, y0: y0, y1: y1, isCur: Y === curYear() };
+}
+
+/* ---------- 2) Tren status hara (rata-rata hasil disetujui per tahun) ---------- */
+function agroTrends() {
+  var ix = agroIndex(), by = {};
+  approvedResults().forEach(function (r) { var y = resultYear(r, ix); (by[y] = by[y] || []).push(r); });
+  var years = Object.keys(by).map(Number).sort(function (a, b) { return a - b; });
+  return (D().nutrients || []).map(function (n) {
+    var pts = years.map(function (y) { var v = by[y].reduce(function (a, r) { return a + Number(r.values[n.f]); }, 0) / by[y].length; return { y: y, v: v, n: by[y].length, cls: nutClass(n, v) }; });
+    var last = pts[pts.length - 1], prev = pts[pts.length - 2];
+    return { n: n, pts: pts, last: last, prev: prev, delta: last && prev ? (last.v - prev.v) / prev.v * 100 : null };
+  });
+}
+
+/* ---------- 3) Peringatan tren hara per kelompok blok (lintas tahun) ---------- */
+function agroAlerts() {
+  var d = D(), ix = agroIndex(), groups = {};
+  approvedResults().forEach(function (r) {
+    var s = ix.smp[r.sampleId], u = s && ix.unit[s.lsuUnitId]; if (!u) return;
+    var key = u.estateId + '|' + u.blockIds.slice().sort().join(',');
+    var g = groups[key] = groups[key] || { key: key, estateId: u.estateId, blockIds: u.blockIds, years: {} };
+    var y = g.years[u.targetYear] = g.years[u.targetYear] || { y: u.targetYear, unit: u, res: [] };
+    y.res.push(r);
+  });
+  var out = [];
+  Object.keys(groups).forEach(function (k) {
+    var g = groups[k];
+    var ser = Object.keys(g.years).map(Number).sort(function (a, b) { return a - b; }).map(function (y) {
+      var e = g.years[y]; e.vals = meanVals(e.res);
+      e.latest = e.res.slice().sort(function (a, b) { return String(b.testedAt || b.createdAt).localeCompare(String(a.testedAt || a.createdAt)); })[0];
+      return e;
+    });
+    var last = ser[ser.length - 1], prev = ser[ser.length - 2];
+    var est = byId(d.estates, g.estateId) || {};
+    var blkCodes = g.blockIds.map(function (b) { return (byId(d.blocks, b) || {}).code || b; });
+    (d.nutrients || []).forEach(function (n) {
+      var v = last.vals[n.f], cls = nutClass(n, v), pv = prev ? prev.vals[n.f] : null;
+      var delta = pv ? (v - pv) / pv * 100 : null, worse = pv !== null && nutDist(n, v) > nutDist(n, pv) + 1e-9;
+      var sev = null, why = '';
+      if (cls === 'ACUTE_DEFICIENT') { sev = 'crit'; why = 'Defisiensi akut — di bawah ' + fmtN(n.acute, nutDec(n)) + ' ' + n.unit; }
+      else if (cls === 'EXCESS') { sev = 'crit'; why = 'Berlebih — di atas ' + fmtN(n.hiHi, nutDec(n)) + ' ' + n.unit; }
+      else if (cls === 'DEFICIENT') { sev = 'warn'; why = 'Di bawah optimum'; }
+      else if (cls === 'HIGH') { sev = 'warn'; why = 'Di atas optimum'; }
+      else if (pv !== null) {
+        var pos = (v - n.low) / (n.optHi - n.low);
+        if (delta <= -8 && pos < 0.2) { sev = 'watch'; why = 'Menurun mendekati batas bawah optimum'; }
+        else if (delta >= 8 && pos > 0.8) { sev = 'watch'; why = 'Naik mendekati batas atas optimum'; }
+      }
+      if (!sev) return;
+      out.push({ sev: sev, why: why, n: n, v: v, cls: cls, pv: pv, py: prev ? prev.y : null, y: last.y, delta: delta, worse: worse,
+        unitCode: last.unit.code, estCode: est.code || '', estName: est.name || '', blockIds: g.blockIds, blocks: blkCodes,
+        sampleId: last.latest ? last.latest.sampleId : '', series: ser.map(function (e) { return { y: e.y, v: e.vals[n.f], cls: nutClass(n, e.vals[n.f]) }; }) });
+    });
+  });
+  out.sort(function (a, b) { return SEV[a.sev].r - SEV[b.sev].r || (b.worse - a.worse) || nutDist(b.n, b.v) - nutDist(a.n, a.v); });
+  return out;
+}
+
+/* ---------- 4) Jadwal sampling blok mendatang ---------- */
+function agroSchedule() {
+  var d = D(), Y = curYear(), today = sod(new Date());
+  var hs = new Date(today.getTime() - 21 * DAY), he = new Date(today.getTime() + 180 * DAY);
+  var open = ['DRAFT', 'SUBMITTED', 'REVIEWED', 'APPROVED', 'ASSIGNED', 'IN_PROGRESS'];
+  var covered = {}, rows = [], never = [];
+  estOf(d.plans).forEach(function (p) {
+    if (p.status === 'CANCELLED') return;
+    var u = byId(d.units, p.lsuUnitId); if (!u) return;
+    if (p.targetYear >= Y) u.blockIds.forEach(function (b) { covered[b] = 1; });
+    if (open.indexOf(p.status) < 0) return;
+    var s = dOnly(p.samplingWindowStart), e = dOnly(p.samplingWindowEnd); if (!s || !e) return;
+    if (e < new Date(today.getTime() - 60 * DAY) || s > he) return;
+    var due = estOf(d.assignments).filter(function (a) { return a.lsuPlanId === p.id && a.status !== 'VERIFIED'; }).map(function (a) { return dOnly(a.dueDate); }).filter(Boolean);
+    rows.push({ kind: 'plan', id: p.id, label: u.code.replace(/^LSU-\d{4}-/, ''), title: u.code + ' · ' + p.code, blocks: u.blockIds.map(function (b) { return (byId(d.blocks, b) || {}).code || b; }), est: (byId(d.estates, p.estateId) || {}).code || '', start: s, end: e, status: p.status, due: due, late: e < today });
+  });
+  var lastObs = {};
+  (d.observations || []).forEach(function (o) { var t = new Date(o.sampledAt); if (!lastObs[o.blockId] || t > lastObs[o.blockId]) lastObs[o.blockId] = t; });
+  estOf(d.blocks).filter(function (b) { return b.isActive !== false; }).forEach(function (b) {
+    if (covered[b.id]) return;
+    var last = lastObs[b.id];
+    if (!last) { never.push(b); return; }
+    var due = sod(last); due.setFullYear(due.getFullYear() + 1);
+    if (due > he) return;
+    rows.push({ kind: 'proj', id: b.id, label: b.code, title: 'Blok ' + b.code + ' · siklus tahunan', blocks: [b.code], est: (byId(d.estates, b.estateId) || {}).code || '', start: new Date(due.getTime() - 14 * DAY), end: new Date(due.getTime() + 14 * DAY), dueDate: due, last: last, late: due < today, soon: due >= today && due - today <= 30 * DAY });
+  });
+  rows.sort(function (a, b) { return a.start - b.start; });
+  return { rows: rows, never: never, hs: hs, he: he, today: today };
+}
+
+/* ---------- Panel Ringkasan ---------- */
+function agroPanelHtml() {
+  var Y = agroDefaultYear(), years = agroYears();
+  var pr = agroProgress(Y), al = agroAlerts(), sc = agroSchedule();
+  var out = al.filter(function (a) { return a.sev !== 'watch'; }).length;
+  var next30 = sc.rows.filter(function (r) { return r.start - sc.today <= 30 * DAY && r.end >= sc.today; }).length;
+  var pct = pr.target ? Math.round(pr.count / pr.target * 100) : 0;
+  var gap = pr.count - pr.planToDate;
+  var chips = [
+    ['🌴', 'Progres ' + Y, fmtN(pr.count) + ' / ' + fmtN(pr.target) + ' pohon', pct + '%', pct >= 90 ? 'ok' : pct >= 50 ? 'info' : 'warn'],
+    ['🗓️', pr.isCur ? 'Vs rencana s/d hari ini' : 'Vs rencana tahun ' + Y, pr.plannedTotal ? fmtN(pr.planToDate) + ' rencana' : 'Belum ada rencana', pr.plannedTotal ? (gap >= 0 ? '+' : '') + fmtN(gap) : '–', !pr.plannedTotal ? '' : gap >= 0 ? 'ok' : 'warn'],
+    ['🧪', 'Tren hara di luar optimum', al.length ? al.filter(function (a) { return a.sev === 'crit'; }).length + ' kritis · ' + al.filter(function (a) { return a.sev === 'watch'; }).length + ' waspada' : 'Semua dalam rentang', String(out), out ? 'bad' : 'ok', 'lab'],
+    ['📍', 'Jadwal 30 hari ke depan', sc.rows.filter(function (r) { return r.late; }).length + ' terlambat · ' + sc.never.length + ' belum pernah', String(next30), sc.rows.some(function (r) { return r.late; }) ? 'warn' : 'info', 'plan']
+  ];
+  return '<div class="card agro" id="agroPerf"><div class="agro-h"><h3>📈 Kinerja Agronomi</h3><span class="sp"></span><label class="small agro-yr">Tahun <select class="i" id="agroYear">' + years.map(function (y) { return '<option' + (y === Y ? ' selected' : '') + '>' + y + '</option>'; }).join('') + '</select></label></div>' +
+    '<div class="agro-chips">' + chips.map(function (c) { return '<' + (c[5] ? 'button data-nav="' + c[5] + '"' : 'div') + ' class="agro-chip ' + c[4] + '"><span class="ic">' + c[0] + '</span><span class="tx"><span class="l">' + esc(c[1]) + '</span><span class="s">' + esc(c[2]) + '</span></span><b>' + esc(c[3]) + '</b></' + (c[5] ? 'button' : 'div') + '>'; }).join('') + '</div>' +
+    '<div class="grid g2 agro-g"><div class="agro-sec"><h4>Progres sampling kumulatif vs target <span class="muted small">(' + Y + ')</span></h4><div class="agro-chart" id="agProg" role="img" aria-label="Grafik progres sampling kumulatif ' + Y + ': ' + pr.count + ' dari ' + pr.target + ' pohon"><div class="agro-ph"><span class="spin dk"></span> Memuat grafik…</div></div>' +
+    '<div class="agro-leg"><span><i style="background:#16a34a"></i>Aktual</span><span><i class="dash" style="border-color:#d97706"></i>Rencana (jendela sampling)</span><span><i class="dash" style="border-color:#0f172a"></i>Target pohon sampel aktif</span></div></div>' +
+    '<div class="agro-sec"><h4>Jadwal sampling blok mendatang <span class="muted small">(180 hari)</span></h4><div class="agro-chart" id="agSched" role="img" aria-label="Linimasa jadwal sampling blok"><div class="agro-ph"><span class="spin dk"></span> Memuat grafik…</div></div>' +
+    '<div class="agro-leg"><span><i style="background:#2563eb"></i>Rencana LSU</span><span><i class="dash" style="border-color:#64748b"></i>Proyeksi siklus tahunan</span><span><i style="background:#b91c1c"></i>Terlambat</span><span><i class="dia"></i>Batas tugas</span></div>' + agroSchedList(sc) + '</div></div>' +
+    '<div class="agro-sec"><h4>Tren status hara daun <span class="muted small">(rata-rata hasil lab disetujui per tahun · pita hijau = optimum)</span></h4><div class="agro-sm" id="agTrend">' + agroTrendCells() + '</div></div></div>';
+}
+function agroSchedList(sc) {
+  var up = sc.rows.filter(function (r) { return r.end >= sc.today || r.late; }).slice(0, 5);
+  var h = '<div class="agro-list">' + (up.length ? up.map(function (r) {
+    var when = r.kind === 'plan' ? fmtDm(r.start) + ' – ' + fmtDs(r.end) : 'perkiraan ' + fmtDs(r.dueDate);
+    var tag = r.kind === 'plan' ? pill(r.status) : '<span class="pill ' + (r.late ? 'bad' : r.soon ? 'warn' : '') + '">' + (r.late ? 'Terlambat' : 'Proyeksi') + '</span>';
+    return '<div class="agro-li' + (r.late ? ' late' : '') + '"><span class="when">' + when + '</span><span class="what"><b>' + esc(r.label) + '</b> · ' + esc(r.est) + ' · Blok ' + esc(r.blocks.join(', ')) + '</span>' + tag + '</div>';
+  }).join('') : '<div class="small muted">Tidak ada sampling terjadwal dalam 180 hari.</div>');
+  if (sc.never.length) h += '<div class="small muted" style="margin-top:6px">Belum pernah disampling: ' + sc.never.map(function (b) { return '<a href="#" data-act="agroJump" data-blk="' + b.id + '">' + esc(b.code) + '</a>'; }).join(', ') + '</div>';
+  return h + '</div>';
+}
+function agroTrendCells() {
+  var tr = agroTrends();
+  if (!tr.length || !tr[0].pts.length) return '<div class="empty" style="grid-column:1/-1">Belum ada hasil lab disetujui untuk cakupan filter ini.</div>';
+  return tr.map(function (t, i) {
+    var n = t.n, l = t.last, dl = t.delta;
+    var arrow = dl === null ? '' : '<span class="ag-d ' + (nutDist(n, l.v) > nutDist(n, t.prev.v) ? 'bad' : 'ok') + '">' + (dl >= 0 ? '▲' : '▼') + ' ' + fmtN(Math.abs(dl), 1) + '%</span>';
+    return '<div class="ag-cell"><div class="ag-ct"><b>' + n.k + '</b><span class="ag-v">' + fmtN(l.v, nutDec(n)) + ' <small>' + n.unit + '</small></span>' + arrow + '<span class="ag-dot" title="' + lbl(l.cls) + '" style="background:' + NUT_COL[l.cls] + '"></span></div><div class="ag-spark" data-trend="' + i + '"></div><div class="ag-cf small muted">' + esc(NUT_NAME[n.k] || n.k) + ' (' + n.unit + ') · optimum ' + fmtN(n.low, nutDec(n)) + '–' + fmtN(n.optHi, nutDec(n)) + '</div></div>';
+  }).join('');
+}
+
+/* ---------- Gambar (D3) ---------- */
+var AG_LOCALE = null;
+function agFmt(d3) {
+  if (!AG_LOCALE) AG_LOCALE = d3.timeFormatLocale({ dateTime: '%A, %e %B %Y %X', date: '%d/%m/%Y', time: '%H.%M.%S', periods: ['AM', 'PM'], days: ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'], shortDays: ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'], months: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'], shortMonths: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'] });
+  return AG_LOCALE;
+}
+function agTip() { var t = document.getElementById('agTip'); if (!t) { t = document.createElement('div'); t.id = 'agTip'; t.className = 'ag-tip hide'; document.body.appendChild(t); } return t; }
+function tipShow(ev, html) {
+  var t = agTip(); t.innerHTML = html; t.classList.remove('hide');
+  var x = ev.clientX + 14, y = ev.clientY + 14, w = t.offsetWidth, h = t.offsetHeight;
+  if (x + w > innerWidth - 8) x = ev.clientX - w - 14; if (y + h > innerHeight - 8) y = ev.clientY - h - 14;
+  t.style.left = Math.max(4, x) + 'px'; t.style.top = Math.max(4, y) + 'px';
+}
+function tipHide() { var t = document.getElementById('agTip'); if (t) t.classList.add('hide'); }
+
+function agroDraw() {
+  var root = document.getElementById('agroPerf'); if (!root) return;
+  var ys = document.getElementById('agroYear'); if (ys) ys.onchange = function () { S.agroYear = Number(ys.value); render(); };
+  loadD3().then(function (d3) {
+    if (!document.getElementById('agroPerf')) return;
+    drawProgress(d3); drawSchedule(d3); drawTrends(d3);
+  }).catch(function () {
+    $$('#agroPerf .agro-ph').forEach(function (p) { p.innerHTML = '📴 Grafik memerlukan koneksi saat pertama kali dibuka. Ringkasan teks tetap tersedia.'; });
+  });
+}
+
+function drawProgress(d3) {
+  var el = document.getElementById('agProg'); if (!el) return;
+  var Y = agroDefaultYear();
+  var pr = agroProgress(Y), loc = agFmt(d3);
+  var W = Math.max(280, el.clientWidth), H = 240, m = { t: 14, r: 56, b: 26, l: 40 };
+  el.innerHTML = '';
+  var svg = d3.select(el).append('svg').attr('viewBox', '0 0 ' + W + ' ' + H).attr('width', '100%').attr('height', H);
+  var x = d3.scaleTime().domain([pr.y0, pr.y1]).range([m.l, W - m.r]);
+  var ymax = Math.max(pr.target, pr.plannedTotal, pr.count, 5) * 1.1;
+  var y = d3.scaleLinear().domain([0, ymax]).nice().range([H - m.b, m.t]);
+  svg.append('g').attr('class', 'ag-grid').attr('transform', 'translate(' + m.l + ',0)').call(d3.axisLeft(y).ticks(5).tickSize(-(W - m.l - m.r)).tickFormat(d3.format('~s'))).call(function (g) { g.select('.domain').remove(); });
+  svg.append('g').attr('class', 'ag-ax').attr('transform', 'translate(0,' + (H - m.b) + ')').call(d3.axisBottom(x).ticks(d3.timeMonth.every(W < 460 ? 2 : 1)).tickFormat(loc.format('%b')));
+  // target
+  svg.append('line').attr('class', 'ag-target').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y(pr.target)).attr('y2', y(pr.target));
+  svg.append('text').attr('class', 'ag-lbl').attr('x', W - m.r + 4).attr('y', y(pr.target) + 4).text('Target ' + fmtN(pr.target));
+  // rencana
+  if (pr.planned.length) {
+    svg.append('path').datum(pr.planned).attr('class', 'ag-plan').attr('d', d3.line().x(function (p) { return x(p.t); }).y(function (p) { return y(p.c); }));
+    if (pr.plannedTotal !== pr.target) svg.append('text').attr('class', 'ag-lbl plan').attr('x', W - m.r + 4).attr('y', y(pr.plannedTotal) + 4).text('Rencana ' + fmtN(pr.plannedTotal));
+  }
+  // aktual (langkah)
+  var act = [{ t: pr.y0, c: 0 }].concat(pr.actual);
+  if (pr.count) act.push({ t: pr.isCur ? pr.ref : pr.actual[pr.actual.length - 1].t, c: pr.count });
+  svg.append('path').datum(act).attr('class', 'ag-area').attr('d', d3.area().curve(d3.curveStepAfter).x(function (p) { return x(p.t); }).y0(y(0)).y1(function (p) { return y(p.c); }));
+  svg.append('path').datum(act).attr('class', 'ag-act').attr('d', d3.line().curve(d3.curveStepAfter).x(function (p) { return x(p.t); }).y(function (p) { return y(p.c); }));
+  if (pr.count) {
+    var lp = act[act.length - 1];
+    svg.append('circle').attr('class', 'ag-actdot').attr('cx', x(lp.t)).attr('cy', y(lp.c)).attr('r', 4);
+    var right = x(lp.t) > m.l + (W - m.l - m.r) * 0.7;
+    svg.append('text').attr('class', 'ag-lbl act').attr('text-anchor', right ? 'end' : 'start').attr('x', x(lp.t) + (right ? -8 : 6)).attr('y', y(lp.c) - 7).text(fmtN(pr.count) + ' (' + (pr.target ? Math.round(pr.count / pr.target * 100) : 0) + '%)');
+  }
+  if (pr.isCur) {
+    svg.append('line').attr('class', 'ag-today').attr('x1', x(pr.ref)).attr('x2', x(pr.ref)).attr('y1', m.t).attr('y2', H - m.b);
+    svg.append('text').attr('class', 'ag-lbl today').attr('x', x(pr.ref)).attr('y', m.t - 3).attr('text-anchor', 'middle').text('Hari ini');
+  }
+  if (!pr.count && !pr.planned.length) svg.append('text').attr('class', 'ag-empty').attr('x', (W + m.l - m.r) / 2).attr('y', H / 2).attr('text-anchor', 'middle').text('Belum ada observasi atau rencana untuk ' + Y);
+  // interaksi
+  var rule = svg.append('line').attr('class', 'ag-rule').attr('y1', m.t).attr('y2', H - m.b).style('opacity', 0);
+  svg.append('rect').attr('x', m.l).attr('y', m.t).attr('width', W - m.l - m.r).attr('height', H - m.t - m.b).attr('fill', 'transparent')
+    .on('pointermove', function (ev) {
+      var t = x.invert(d3.pointer(ev)[0]); rule.attr('x1', x(t)).attr('x2', x(t)).style('opacity', 1);
+      var c = 0; pr.actual.forEach(function (p) { if (p.t <= t) c = p.c; });
+      var pl = 0; pr.planned.forEach(function (p, i) { var q = pr.planned[i + 1]; if (p.t <= t) pl = q && q.t > t ? p.c + (q.c - p.c) * (t - p.t) / (q.t - p.t) : p.c; });
+      tipShow(ev, '<b>' + fmtDs(t) + '</b><br>Aktual kumulatif: <b>' + fmtN(c) + '</b> pohon' + (pr.planned.length ? '<br>Rencana: ' + fmtN(Math.round(pl)) : '') + '<br>Target: ' + fmtN(pr.target));
+    }).on('pointerleave', function () { rule.style('opacity', 0); tipHide(); });
+}
+
+function drawSchedule(d3) {
+  var el = document.getElementById('agSched'); if (!el) return;
+  var sc = agroSchedule(), loc = agFmt(d3);
+  var rows = sc.rows.slice(0, 10), more = sc.rows.length - rows.length;
+  var W = Math.max(280, el.clientWidth), rh = 24, m = { t: 22, r: 10, b: 18, l: W < 420 ? 74 : 104 };
+  var H = m.t + Math.max(1, rows.length) * rh + m.b + (more > 0 ? 16 : 0);
+  el.innerHTML = '';
+  var svg = d3.select(el).append('svg').attr('viewBox', '0 0 ' + W + ' ' + H).attr('width', '100%').attr('height', H);
+  var x = d3.scaleTime().domain([sc.hs, sc.he]).range([m.l, W - m.r]);
+  svg.append('g').attr('class', 'ag-grid').attr('transform', 'translate(0,' + m.t + ')').call(d3.axisTop(x).ticks(d3.timeMonth.every(1)).tickSize(-(H - m.t - m.b)).tickFormat(loc.format('%b'))).call(function (g) { g.select('.domain').remove(); g.selectAll('text').attr('dy', '-2'); });
+  if (!rows.length) { svg.append('text').attr('class', 'ag-empty').attr('x', (W + m.l) / 2).attr('y', m.t + 16).attr('text-anchor', 'middle').text('Tidak ada jadwal'); }
+  var cl = function (t) { return Math.max(m.l, Math.min(W - m.r, x(t))); };
+  var g = svg.selectAll('g.ag-row').data(rows).enter().append('g').attr('class', 'ag-row').attr('transform', function (r, i) { return 'translate(0,' + (m.t + i * rh) + ')'; });
+  g.append('rect').attr('class', 'ag-band').attr('x', 0).attr('width', W).attr('height', rh).attr('fill', function (r, i) { return i % 2 ? '#f8fafc' : 'transparent'; });
+  g.append('text').attr('class', 'ag-rl').attr('x', 4).attr('y', rh / 2 + 4).text(function (r) { var t = (r.kind === 'proj' ? '◌ ' : '') + r.label + ' ' + r.est; return t.length > (W < 420 ? 11 : 16) ? t.slice(0, W < 420 ? 10 : 15) + '…' : t; });
+  g.append('rect').attr('class', function (r) { return 'ag-bar ' + r.kind + (r.late ? ' late' : ''); })
+    .attr('x', function (r) { return cl(r.start); }).attr('y', 5).attr('height', rh - 10).attr('rx', 4)
+    .attr('width', function (r) { return Math.max(4, cl(r.end) - cl(r.start)); })
+    .attr('fill', function (r) { return r.kind === 'plan' ? (r.late ? '#b91c1c' : PLAN_COL[r.status] || '#2563eb') : (r.late ? '#fee2e2' : r.soon ? '#fef3c7' : '#f1f5f9'); })
+    .attr('stroke', function (r) { return r.kind === 'proj' ? (r.late ? '#b91c1c' : '#64748b') : 'none'; });
+  g.filter(function (r) { return r.kind === 'proj'; }).append('circle').attr('cx', function (r) { return cl(r.dueDate); }).attr('cy', rh / 2).attr('r', 3).attr('fill', function (r) { return r.late ? '#b91c1c' : '#334155'; });
+  g.each(function (r) { var gg = d3.select(this); (r.due || []).forEach(function (dd) { if (dd >= sc.hs && dd <= sc.he) gg.append('path').attr('class', 'ag-dia').attr('d', d3.symbol(d3.symbolDiamond, 46)()).attr('transform', 'translate(' + x(dd) + ',' + rh / 2 + ')'); }); });
+  g.on('pointermove', function (ev, r) {
+    tipShow(ev, '<b>' + esc(r.title) + '</b><br>' + esc(r.est) + ' · Blok ' + esc(r.blocks.join(', ')) + '<br>' + (r.kind === 'plan' ? 'Jendela: ' + fmtDs(r.start) + ' – ' + fmtDs(r.end) + '<br>Status: ' + esc(lbl(r.status)) + (r.due.length ? '<br>Batas tugas: ' + r.due.map(fmtDs).join(', ') : '') : 'Sampling terakhir: ' + fmtDs(r.last) + '<br>Perkiraan berikutnya: <b>' + fmtDs(r.dueDate) + '</b> (±14 hari)') + (r.late ? '<br><b style="color:#fca5a5">Terlambat</b>' : ''));
+  }).on('pointerleave', tipHide).on('click', function (ev, r) { tipHide(); if (r.kind === 'plan') go('plan'); else jumpTo('blk', r.id); }).style('cursor', 'pointer');
+  svg.append('line').attr('class', 'ag-today').attr('x1', x(sc.today)).attr('x2', x(sc.today)).attr('y1', m.t).attr('y2', m.t + Math.max(1, rows.length) * rh);
+  var bot = m.t + Math.max(1, rows.length) * rh;
+  svg.append('text').attr('class', 'ag-lbl today').attr('x', x(sc.today)).attr('y', bot + 12).attr('text-anchor', 'middle').text('Hari ini');
+  if (more > 0) svg.append('text').attr('class', 'ag-lbl').attr('x', 4).attr('y', bot + 12).text('+' + more + ' lainnya');
+}
+
+function sparkline(d3, el, n, pts, opt) {
+  opt = opt || {};
+  var W = Math.max(120, el.clientWidth || 160), H = opt.h || 70, m = { t: 6, r: 10, b: 14, l: 10 };
+  el.innerHTML = '';
+  var svg = d3.select(el).append('svg').attr('viewBox', '0 0 ' + W + ' ' + H).attr('width', '100%').attr('height', H).attr('role', 'img').attr('aria-label', n.k + ' tren: ' + pts.map(function (p) { return p.y + ' ' + fmtN(p.v, nutDec(n)); }).join(', '));
+  var vs = pts.map(function (p) { return p.v; });
+  var span = n.optHi - n.low, lo = Math.min(d3.min(vs), n.low) - span * 0.45, hi = Math.max(d3.max(vs), n.optHi) + span * 0.45;
+  var y = d3.scaleLinear().domain([lo, hi]).range([H - m.b, m.t]);
+  var x = d3.scalePoint().domain(pts.map(function (p) { return p.y; })).range([m.l, W - m.r]).padding(pts.length === 1 ? 0.5 : 0.15);
+  [[lo, n.acute, 'ACUTE_DEFICIENT'], [n.acute, n.low, 'DEFICIENT'], [n.low, n.optHi, 'OPTIMAL'], [n.optHi, n.hiHi, 'HIGH'], [n.hiHi, hi, 'EXCESS']].forEach(function (z) {
+    var a = Math.max(z[0], lo), b = Math.min(z[1], hi); if (b <= a) return;
+    svg.append('rect').attr('x', 0).attr('width', W).attr('y', y(b)).attr('height', y(a) - y(b)).attr('fill', NUT_ZONE[z[2]]);
+  });
+  svg.append('line').attr('class', 'ag-opt').attr('x1', 0).attr('x2', W).attr('y1', y(n.low)).attr('y2', y(n.low));
+  if (pts.length > 1) svg.append('path').datum(pts).attr('class', 'ag-tl').attr('d', d3.line().x(function (p) { return x(p.y); }).y(function (p) { return y(p.v); }));
+  svg.selectAll('circle').data(pts).enter().append('circle').attr('cx', function (p) { return x(p.y); }).attr('cy', function (p) { return y(p.v); }).attr('r', 4).attr('fill', function (p) { return NUT_COL[p.cls]; }).attr('stroke', '#fff').attr('stroke-width', 1.5)
+    .on('pointermove', function (ev, p) { tipShow(ev, '<b>' + n.k + ' ' + p.y + '</b>: ' + fmtN(p.v, nutDec(n)) + ' ' + n.unit + '<br>' + lbl(p.cls) + (p.n ? ' · ' + p.n + ' sampel' : '') + '<br>Optimum ' + fmtN(n.low, nutDec(n)) + '–' + fmtN(n.optHi, nutDec(n))); }).on('pointerleave', tipHide);
+  svg.selectAll('text.yl').data(pts).enter().append('text').attr('class', 'ag-yl').attr('x', function (p) { return x(p.y); }).attr('y', H - 2).attr('text-anchor', 'middle').text(function (p) { return p.y; });
+}
+function drawTrends(d3) {
+  var tr = agroTrends();
+  $$('#agTrend [data-trend]').forEach(function (el) { var t = tr[Number(el.getAttribute('data-trend'))]; if (t) sparkline(d3, el, t.n, t.pts); });
+}
+
+/* ---------- Badge & panel peringatan di Laboratorium ---------- */
+function agroBadgeHtml() {
+  var al = agroAlerts(); S.agroAl = al;
+  var crit = al.filter(function (a) { return a.sev === 'crit'; }).length, warn = al.filter(function (a) { return a.sev === 'warn'; }).length, watch = al.length - crit - warn;
+  if (!approvedResults().length) return '';
+  if (!al.length) return '<div class="agro-badge ok" id="agroBadge">✅ Semua tren hara (hasil disetujui) berada dalam rentang optimum</div>';
+  var cls = crit ? 'crit' : warn ? 'warn' : 'watch';
+  var txt = (crit + warn) ? '<b>' + (crit + warn) + '</b> tren hara di luar ambang optimum' + (crit ? ' · ' + crit + ' kritis' : '') + (watch ? ' · ' + watch + ' waspada' : '') : '<b>' + watch + '</b> tren hara perlu diwaspadai';
+  var open = S.agroOpen !== false;
+  return '<button class="agro-badge ' + cls + '" id="agroBadge" data-act="agroToggle" aria-expanded="' + open + '" aria-controls="agroAlerts"><span class="pulse"></span><span class="ag-bt">⚠ ' + txt + '</span><span class="chev">' + (open ? '▴' : '▾') + '</span></button>' + (open ? agroAlertsHtml(al) : '');
+}
+function agroAlertsHtml(al) {
+  var f = S.agroSev || 'all';
+  var list = al.filter(function (a) { return f === 'all' || a.sev === f; });
+  return '<div class="agro-alerts" id="agroAlerts"><div class="aa-head"><div class="chips">' + [['all', 'Semua', al.length]].concat(Object.keys(SEV).map(function (k) { return [k, SEV[k].t, al.filter(function (a) { return a.sev === k; }).length]; })).map(function (c) { return '<button class="btn s' + (f === c[0] ? ' p' : '') + '" data-act="agroSev" data-sev="' + c[0] + '">' + c[1] + ' (' + c[2] + ')</button>'; }).join('') + '</div><span class="small muted">Rata-rata hasil disetujui per kelompok blok, tahun terbaru vs tahun sebelumnya · RULE-AGRO-2026.01</span></div>' +
+    '<div class="aa-grid">' + list.map(function (a, i) {
+      var n = a.n, dec = nutDec(n);
+      var trend = a.delta === null ? '<span class="muted small">baru 1 tahun data</span>' : '<span class="ag-d ' + (a.worse ? 'bad' : 'ok') + '">' + (a.delta >= 0 ? '▲' : '▼') + ' ' + fmtN(Math.abs(a.delta), 1) + '%</span> <span class="small muted">vs ' + a.py + ' (' + fmtN(a.pv, dec) + ')' + (a.worse ? ' · memburuk' : ' · membaik') + '</span>';
+      return '<div class="aa-card sev-' + a.sev + '" data-alert="' + al.indexOf(a) + '"><div class="aa-top"><span class="aa-nut" style="background:' + NUT_COL[a.cls] + '">' + n.k + '</span><div class="sp"><b>' + esc(NUT_NAME[n.k] || n.k) + '</b> <span class="small muted">' + a.y + '</span><div class="small muted">' + esc(a.estCode) + ' · Blok ' + esc(a.blocks.join(', ')) + ' · ' + esc(a.unitCode) + '</div></div><span class="pill ' + SEV[a.sev].c + '">' + SEV[a.sev].t + '</span></div>' +
+        '<div class="aa-val"><span class="v">' + fmtN(a.v, dec) + '</span> ' + n.unit + ' ' + trend + '</div><div class="ag-spark" data-aspark="' + al.indexOf(a) + '"></div>' +
+        '<div class="small"><b>' + esc(a.why) + '</b> · ' + lbl(a.cls) + ' · optimum ' + fmtN(n.low, dec) + '–' + fmtN(n.optHi, dec) + ' ' + n.unit + '</div>' +
+        '<div class="row" style="gap:6px;margin-top:8px">' + (a.sampleId ? '<button class="btn s" data-act="diagnose" data-id="' + a.sampleId + '">Diagnosis</button>' : '') + '<button class="btn s" data-act="agroJump" data-blk="' + a.blockIds[0] + '">📍 Peta</button>' + (can('AGRONOMIST', 'HEAD_AGRONOMY') ? '<button class="btn s" data-nav="reco">Rekomendasi</button>' : '') + '</div></div>';
+    }).join('') + (list.length ? '' : '<div class="empty">Tidak ada peringatan pada kategori ini.</div>') + '</div></div>';
+}
+function agroLabDraw() {
+  if (!document.getElementById('agroAlerts')) return;
+  loadD3().then(function (d3) {
+    var al = S.agroAl || [];
+    $$('#agroAlerts [data-aspark]').forEach(function (el) { var a = al[Number(el.getAttribute('data-aspark'))]; if (a) sparkline(d3, el, a.n, a.series, { h: 58 }); });
+  }).catch(function () { $$('#agroAlerts [data-aspark]').forEach(function (el) { var a = (S.agroAl || [])[Number(el.getAttribute('data-aspark'))]; if (a) el.innerHTML = '<div class="small muted">' + a.series.map(function (p) { return p.y + ': ' + fmtN(p.v, nutDec(a.n)); }).join(' → ') + '</div>'; }); });
+}
+
+Object.assign(ACT, {
+  agroToggle: function () { S.agroOpen = S.agroOpen === false; render(); },
+  agroSev: function (el) { S.agroSev = el.getAttribute('data-sev'); render(); },
+  agroJump: function (el, e) { if (e) e.preventDefault(); jumpTo('blk', el.getAttribute('data-blk')); }
+});
+window.addEventListener('resize', function () {
+  clearTimeout(S._agRs); S._agRs = setTimeout(function () {
+    if (!window.d3) return;
+    if (document.getElementById('agroPerf')) { drawProgress(d3); drawSchedule(d3); drawTrends(d3); }
+    if (document.getElementById('agroAlerts')) agroLabDraw();
+  }, 200);
+});
+window.addEventListener('scroll', tipHide, { passive: true });
+
 /* =================== Versi aplikasi, Syarat & Ketentuan, Pemberitahuan Privasi ===================
  * Mengacu UU No. 27 Tahun 2022 tentang Pelindungan Data Pribadi (UU PDP) & PP No. 33 Tahun 2026.
  * Pengendali data = perusahaan pengguna (pemilik spreadsheet). Teks diisi otomatis dari Administrasi → Privasi & Legal.
  */
-var FE_VERSION = '2.3.0';
+var FE_VERSION = '2.4.0';
 var FE_BUILD = '2026-10-26';
 var RELEASE_NOTES = [
+  ['2.4.0', '26 Okt 2026', ['Panel Kinerja Agronomi (D3) di Ringkasan: progres sampling kumulatif vs target, tren status hara, jadwal sampling blok', 'Badge peringatan tren hara di luar ambang optimum di Laboratorium', 'Data demo kini berisi riwayat 2 tahun']],
   ['2.3.0', '26 Okt 2026', ['Informasi versi aplikasi (menu Tentang Aplikasi)', 'Syarat & Ketentuan dan Pemberitahuan Privasi (UU PDP) dengan bukti persetujuan per versi', 'Persetujuan WhatsApp terpisah & dapat ditarik', 'Unduh data pribadi & permohonan hak subjek data']],
   ['2.2.0', '26 Okt 2026', ['Tab Perusahaan (PT) di Master Kebun', 'Peta di HP tidak lagi tertutup nav bar bawah']],
   ['2.1.0', '25 Okt 2026', ['Login lebih cepat', 'Filter PT / Estate / AFD di semua modul', 'Loncat ke PT/Estate/AFD/Blok', 'Cetak peta A4/A3 layout ArcGIS', 'Foto dokumentasi di Google Drive']],
   ['2.0.0', '25 Okt 2026', ['Konversi ke Google Apps Script + Sheets + PWA', 'Login, peta Leaflet + PMTiles, mode offline, lisensi']]
 ];
-var COMPONENTS = [['Leaflet', '1.9.4', 'BSD-2-Clause'], ['PMTiles JS', '4.3.0', 'BSD-3-Clause'], ['qrcode-generator', '1.4.4', 'MIT'], ['jsQR', '1.4.0', 'Apache-2.0'], ['Data peta © OpenStreetMap contributors', '-', 'ODbL'], ['Citra satelit © Esri & mitra', '-', 'Esri Terms of Use'], ['OpenTopoMap', '-', 'CC-BY-SA']];
+var COMPONENTS = [['Leaflet', '1.9.4', 'BSD-2-Clause'], ['PMTiles JS', '4.3.0', 'BSD-3-Clause'], ['qrcode-generator', '1.4.4', 'MIT'], ['jsQR', '1.4.0', 'Apache-2.0'], ['D3.js', '7.9.0', 'ISC'], ['Data peta © OpenStreetMap contributors', '-', 'ODbL'], ['Citra satelit © Esri & mitra', '-', 'Esri Terms of Use'], ['OpenTopoMap', '-', 'CC-BY-SA']];
 
 function legalCtx() {
   var li = S.legal || LS.get('legal', null) || {};
