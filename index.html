@@ -271,6 +271,14 @@ table.t tr.sel td{background:#f0fdf4}
 }
 .sheet.land.a4 #pmOv{height:27mm}.sheet.a4 .pm-lg{margin:.35mm 0;font-size:7pt}.sheet.a4 .pm-info td{padding:.3mm 1mm}.sheet.a4 .pm-box{padding:2mm}
 
+/* ---------- Legal & tentang ---------- */
+.legal{font-size:13.5px;line-height:1.6}.legal h2{font-size:18px;margin:0 0 2px;color:var(--pri)}.legal h3{font-size:14px;margin:16px 0 6px;color:var(--pri)}
+.legal ul{padding-left:20px;margin:4px 0}.legal li{margin:3px 0}.lg-meta{color:var(--mut);font-size:12px;margin:0 0 10px}
+.lg-t{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0}.lg-t th{background:#f1f5f9;text-align:left;padding:6px}.lg-t td{border-bottom:1px solid var(--line);padding:6px;vertical-align:top}
+.login-legal{text-align:center;font-size:12px;margin-top:10px}.login-legal a{color:var(--mut)}
+.side-ver{font-size:11px;color:var(--mut);padding:14px 12px 4px;border-top:1px solid var(--line);margin-top:10px}.side-ver a{color:var(--mut)}
+.ab-logo{width:64px!important;height:64px!important;border-radius:16px!important;background:var(--pri3)!important}
+
 </style>
 </head>
 <body>
@@ -456,6 +464,7 @@ function api(action, payload, opt) {
       var err = (r && r.error) || { code: 'UNKNOWN', message: 'Respons tidak valid' };
       if (err.code === 'UNAUTHORIZED' && action !== 'auth.login') { logoutLocal(); toast(err.message, 'bad'); }
       if (err.code === 'PASSWORD_CHANGE_REQUIRED') forcePasswordChange();
+      if (err.code === 'LEGAL_ACCEPT_REQUIRED') legalGate(function () { loadData(); });
       throw err;
     }
     return r.data;
@@ -558,7 +567,8 @@ var NAV = [
   { id: 'audit', ico: '🛡️', t: 'Audit Trail', roles: ['ESTATE_MANAGER', 'AGRONOMIST', 'HEAD_AGRONOMY', 'LAB_MANAGER'] },
   { id: 'admin', ico: '⚙️', t: 'Administrasi', roles: [] },
   { id: 'docs', ico: '📷', t: 'Foto Dokumentasi', roles: '*' },
-  { id: 'profile', ico: '👤', t: 'Profil Saya', roles: '*' }
+  { id: 'profile', ico: '👤', t: 'Profil Saya', roles: '*' },
+  { id: 'about', ico: 'ℹ️', t: 'Tentang Aplikasi', roles: '*' }
 ];
 var MOBILE_PRI = {
   SURVEYOR: ['dash', 'survey', 'map', 'samples'], FIELD_SUPERVISOR: ['dash', 'survey', 'plan', 'samples'], ESTATE_MANAGER: ['dash', 'plan', 'map', 'samples'],
@@ -591,7 +601,7 @@ function renderLogin(msg) {
     '<label class="f">Password<div style="position:relative"><input class="i" name="password" type="password" autocomplete="current-password" required><button type="button" class="btn s" style="position:absolute;right:4px;top:5px" data-act="togglePw">👁</button></div></label>' +
     '<button class="btn p blk" type="submit" id="loginBtn">Masuk</button></form>' +
     (S.token && S.user ? '<button class="btn blk" style="margin-top:8px" data-act="offlineEnter">Lanjut offline sebagai ' + esc(S.user.fullName) + '</button>' : '') +
-    '<div class="login-foot"><span>' + (navigator.onLine ? '🟢 Online' : '🟠 Offline') + ' · v2.0</span>' + (IS_GAS ? '' : '<button class="btn s" data-act="setApi">⚙ Server</button>') + '</div></div>';
+    '<div class="login-foot"><span>' + (navigator.onLine ? '🟢 Online' : '🟠 Offline') + ' · v' + FE_VERSION + '</span>' + (IS_GAS ? '' : '<button class="btn s" data-act="setApi">⚙ Server</button>') + '</div><div class="login-legal"><a href="#" data-act="legalTerms">Syarat & Ketentuan</a> · <a href="#" data-act="legalPrivacy">Pemberitahuan Privasi</a></div></div>';
   $('#loginForm').onsubmit = function (e) {
     e.preventDefault();
     var v = formVals(e.target), btn = $('#loginBtn');
@@ -599,6 +609,7 @@ function renderLogin(msg) {
     api('auth.login', { username: v.username, password: v.password }).then(function (r) {
       S.token = r.token; S.user = r.user; LS.set('token', r.token); LS.set('user', r.user);
       if (r.mustChangePw) { forcePasswordChange(); return; }
+      if (r.needLegal) { legalGate(function () { startApp(false, true); }); return; }
       startApp(false, true);
     }).catch(function (e) { btn.disabled = false; btn.textContent = 'Masuk'; renderLoginError(e.message); });
   };
@@ -633,7 +644,7 @@ function startApp(offline, fresh) {
     if (!offline) loadData(!!S.data); else if (!S.data) $('#main').innerHTML = '<div class="empty">Belum ada data tersimpan offline. Sambungkan internet untuk sinkron pertama kali.</div>';
   });
   refreshOutbox();
-  if (!offline && !fresh) api('auth.me', {}, { silent: true }).then(function (r) { S.user = r.user; LS.set('user', r.user); renderHeader(); }).catch(function () { });
+  if (!offline && !fresh) api('auth.me', {}, { silent: true }).then(function (r) { S.user = r.user; LS.set('user', r.user); renderHeader(); if (r.needLegal) legalGate(function () { loadData(); }); }).catch(function () { });
 }
 function skeleton() {
   var c = '<div class="card sk"><i></i><i style="width:60%"></i><i style="width:40%"></i></div>';
@@ -676,7 +687,7 @@ function renderNet() {
 function renderNav() {
   var items = NAV.filter(navAllowed);
   if (!items.some(function (n) { return n.id === S.tab; })) S.tab = 'dash';
-  $('#side').innerHTML = items.map(function (n) { return n.sep ? '<div class="sep"></div>' : '<button data-nav="' + n.id + '" class="' + (S.tab === n.id ? 'on' : '') + '"><span class="ico">' + n.ico + '</span>' + esc(n.t) + (n.id === 'survey' ? '<span class="badge-dot hide" id="navOutbox"></span>' : '') + '</button>'; }).join('');
+  $('#side').innerHTML = items.map(function (n) { return n.sep ? '<div class="sep"></div>' : '<button data-nav="' + n.id + '" class="' + (S.tab === n.id ? 'on' : '') + '"><span class="ico">' + n.ico + '</span>' + esc(n.t) + (n.id === 'survey' ? '<span class="badge-dot hide" id="navOutbox"></span>' : '') + '</button>'; }).join('') + '<div class="side-ver"><a href="#" data-nav="about">v' + FE_VERSION + '</a> · <a href="#" data-act="legalTerms">S&K</a> · <a href="#" data-act="legalPrivacy">Privasi</a></div>';
   var pri = (MOBILE_PRI[role()] || MOBILE_PRI.SUPER_ADMIN).filter(function (id) { return items.some(function (n) { return n.id === id; }); });
   $('#bnav').innerHTML = pri.map(function (id) { var n = NAV.filter(function (x) { return x.id === id; })[0]; return '<button data-nav="' + id + '" class="' + (S.tab === id ? 'on' : '') + '"><span class="ico">' + n.ico + '</span><span>' + esc(n.t.split(' ')[0]) + '</span></button>'; }).join('') +
     '<button data-act="moreNav" class="' + (pri.indexOf(S.tab) < 0 ? 'on' : '') + '"><span class="ico">☰</span><span>Lainnya</span></button>';
@@ -740,7 +751,7 @@ function boot() {
   applyTheme();
   if ('serviceWorker' in navigator && !IS_GAS && (location.protocol === 'https:' || location.hostname === 'localhost')) navigator.serviceWorker.register('sw.js').catch(function () { });
   if (S.token && S.user) startApp(!navigator.onLine); else renderLogin();
-  if (navigator.onLine) fetchBranding();
+  if (navigator.onLine) { fetchBranding(); fetchLegal(); }
 }
 
 /* =================== Filter global PT → Estate → AFD (dipakai SEMUA modul) =================== */
@@ -1554,7 +1565,7 @@ ACT.auditCsv = function () { downloadText('audit-trail.csv', toCsv([['waktu', 'a
 /* =================== Administrasi =================== */
 VIEWS.admin = function () {
   var d = D(), sub = S.sub.admin || 'users', b = S.branding, lic = d.license || {};
-  var h = '<h2 class="pg">Administrasi</h2><p class="pg-sub">Pengguna, branding, lisensi, dan pengaturan sistem.</p><div class="tabs">' + [['users', 'Pengguna'], ['brand', 'Branding'], ['license', 'Lisensi'], ['settings', 'Pengaturan & Backup']].map(function (t) { return '<button data-sub="' + t[0] + '" class="' + (sub === t[0] ? 'on' : '') + '">' + t[1] + '</button>'; }).join('') + '</div>';
+  var h = '<h2 class="pg">Administrasi</h2><p class="pg-sub">Pengguna, branding, lisensi, dan pengaturan sistem.</p><div class="tabs">' + [['users', 'Pengguna'], ['brand', 'Branding'], ['license', 'Lisensi'], ['settings', 'Pengaturan & Backup'], ['privacy', 'Privasi & Legal']].map(function (t) { return '<button data-sub="' + t[0] + '" class="' + (sub === t[0] ? 'on' : '') + '">' + t[1] + '</button>'; }).join('') + '</div>';
   if (sub === 'users') {
     h += '<div class="row" style="margin-bottom:10px"><span class="sp small muted">' + d.users.filter(function (u) { return u.isActive; }).length + ' / ' + (lic.maxUsers || '-') + ' pengguna aktif (paket ' + esc(lic.tier) + ')</span><button class="btn p" data-act="userForm">+ Pengguna</button></div>';
     h += '<div class="tbl-wrap"><table class="t rsp"><thead><tr><th>Nama</th><th>Username</th><th>Peran</th><th>Scope estate</th><th>Login terakhir</th><th>Status</th><th></th></tr></thead><tbody>' + d.users.map(function (u) { return '<tr><td data-l="Nama">' + esc(u.fullName) + '</td><td data-l="Username" class="mono">' + esc(u.username) + '</td><td data-l="Peran">' + esc(u.roleLabel) + '</td><td data-l="Scope" class="small">' + ((u.estateIds || []).length ? u.estateIds.map(function (id) { return esc((byId(d.estates, id) || {}).code || id); }).join(', ') : '<i>Global</i>') + '</td><td data-l="Login" class="small">' + fmtD(u.lastLoginAt, true) + '</td><td data-l="Status">' + (u.isActive ? pill('APPROVED').replace('Disetujui', 'Aktif') : pill('CANCELLED').replace('Batal', 'Nonaktif')) + (u.lockedUntil && new Date(u.lockedUntil) > new Date() ? ' <span class="pill bad">Terkunci</span>' : '') + (u.mustChangePw ? ' <span class="pill warn">Wajib ganti pw</span>' : '') + '</td><td class="act"><div class="row" style="gap:4px;justify-content:flex-end"><button class="btn s" data-act="userForm" data-id="' + u.id + '">Edit</button><button class="btn s w" data-act="resetPw" data-id="' + u.id + '">Reset pw</button></div></td></tr>'; }).join('') + '</tbody></table></div>';
@@ -1564,6 +1575,8 @@ VIEWS.admin = function () {
   } else if (sub === 'license') {
     h += '<div class="grid g2"><div class="card"><h3>Status lisensi</h3><div class="grid g2">' + kpi('Paket', esc(lic.tier), lic.valid ? 'Aktif' : 'Tidak aktif') + kpi('Berlaku s/d', esc(lic.expiresAt || '-'), (lic.daysLeft !== undefined ? lic.daysLeft + ' hari lagi' : '')) + kpi('Maks pengguna', fmtN(lic.maxUsers), '') + kpi('Maks estate', fmtN(lic.maxEstates), '') + '</div><p class="small">Fitur: ' + (lic.features || []).map(function (f) { return '<span class="pill ok">' + esc(f) + '</span>'; }).join(' ') + '</p>' + (lic.reason ? '<div class="alert bad small">' + esc(lic.reason) + '</div>' : '') + '<p class="small">Klien: <b>' + esc(lic.client || '-') + '</b></p><label class="f">ID Spreadsheet (kirim ke penyedia)<div class="row"><input class="i mono sp" readonly value="' + esc(lic.spreadsheetId || '') + '" id="ssId"><button class="btn s" data-act="copySs">Salin</button></div></label></div>' +
       '<div class="card"><h3>Aktivasi kunci lisensi</h3><textarea class="i mono" id="licKey" style="min-height:140px" placeholder="Tempel kunci lisensi dari penyedia…"></textarea><button class="btn p" style="margin-top:10px" data-act="activateLic">Aktifkan</button><p class="small muted">Kunci ditandatangani secara kriptografis (RSA-2048) dan terikat ke ID spreadsheet ini.</p></div></div>';
+  } else if (sub === 'privacy') {
+    h += adminPrivacyHtml();
   } else {
     h += '<div class="grid g2"><div class="card"><h3>Pengaturan</h3><div class="grid"><label class="f">Laboratorium default<input class="i" name="defaultLab" value="' + esc(b.defaultLab || '') + '" placeholder="Laboratorium Sentral Agronomi"></label><div class="alert info small">📷 Semua foto dikompres di perangkat lalu disimpan di Google Drive (folder <b>LSU Enterprise - Foto Dokumentasi</b>). Spreadsheet hanya menyimpan URL & ID file.</div><label class="chk"><input type="checkbox" name="waEnabled"' + (b.waEnabled ? ' checked' : '') + '> Notifikasi WhatsApp (Fonnte)</label><label class="f">Token Fonnte (disimpan di Script Properties)<input class="i" type="password" name="fonnteToken" placeholder="kosongkan bila tidak diubah"></label><button class="btn p" data-act="saveSettings">Simpan pengaturan</button></div></div>' +
       '<div class="card"><h3>Backup & data</h3><p class="small muted">Unduh seluruh tabel (tanpa hash password & media) dalam format JSON.</p><button class="btn" data-act="backup">⬇ Unduh backup JSON</button>' + (!d.estates.length ? '<hr><p class="small">Database masih kosong.</p><button class="btn" data-act="seedDemo">Isi data demo</button>' : '') + '<hr><p class="small muted">Versi aplikasi 2.0.0 · Mode ' + (IS_GAS ? 'Apps Script' : 'PWA') + '</p></div></div>';
@@ -2208,6 +2221,199 @@ function entityName(et, id) {
   if (et === 'TREE') { x = byId(d.trees, id); return x ? x.tagCode : id; }
   return id;
 }
+
+/* =================== Versi aplikasi, Syarat & Ketentuan, Pemberitahuan Privasi ===================
+ * Mengacu UU No. 27 Tahun 2022 tentang Pelindungan Data Pribadi (UU PDP) & PP No. 33 Tahun 2026.
+ * Pengendali data = perusahaan pengguna (pemilik spreadsheet). Teks diisi otomatis dari Administrasi → Privasi & Legal.
+ */
+var FE_VERSION = '2.3.0';
+var FE_BUILD = '2026-10-26';
+var RELEASE_NOTES = [
+  ['2.3.0', '26 Okt 2026', ['Informasi versi aplikasi (menu Tentang Aplikasi)', 'Syarat & Ketentuan dan Pemberitahuan Privasi (UU PDP) dengan bukti persetujuan per versi', 'Persetujuan WhatsApp terpisah & dapat ditarik', 'Unduh data pribadi & permohonan hak subjek data']],
+  ['2.2.0', '26 Okt 2026', ['Tab Perusahaan (PT) di Master Kebun', 'Peta di HP tidak lagi tertutup nav bar bawah']],
+  ['2.1.0', '25 Okt 2026', ['Login lebih cepat', 'Filter PT / Estate / AFD di semua modul', 'Loncat ke PT/Estate/AFD/Blok', 'Cetak peta A4/A3 layout ArcGIS', 'Foto dokumentasi di Google Drive']],
+  ['2.0.0', '25 Okt 2026', ['Konversi ke Google Apps Script + Sheets + PWA', 'Login, peta Leaflet + PMTiles, mode offline, lisensi']]
+];
+var COMPONENTS = [['Leaflet', '1.9.4', 'BSD-2-Clause'], ['PMTiles JS', '4.3.0', 'BSD-3-Clause'], ['qrcode-generator', '1.4.4', 'MIT'], ['jsQR', '1.4.0', 'Apache-2.0'], ['Data peta © OpenStreetMap contributors', '-', 'ODbL'], ['Citra satelit © Esri & mitra', '-', 'Esri Terms of Use'], ['OpenTopoMap', '-', 'CC-BY-SA']];
+
+function legalCtx() {
+  var li = S.legal || LS.get('legal', null) || {};
+  var b = S.branding || {};
+  return {
+    app: li.appTitle || b.appTitle || 'LSU Enterprise Platform', ctrl: li.controllerName || b.companyName || 'Perusahaan pengguna',
+    addr: li.controllerAddress || '', email: li.privacyEmail || '', phone: li.privacyPhone || '', dpo: li.dpoName || '',
+    ret: li.retentionYears || 5, ver: li.legalVersion || '2026.10', eff: li.legalEffective || '2026-10-26', prov: li.providerName || 'Penyedia perangkat lunak',
+    appVer: li.appVersion || FE_VERSION, wa: !!li.waAvailable, types: li.requestTypes || {}
+  };
+}
+function contactHtml(c) {
+  var p = [];
+  if (c.dpo) p.push('Pejabat Pelindungan Data Pribadi (PPDP): <b>' + esc(c.dpo) + '</b>');
+  if (c.email) p.push('Email: <b>' + esc(c.email) + '</b>');
+  if (c.phone) p.push('Telepon/WA: <b>' + esc(c.phone) + '</b>');
+  if (c.addr) p.push('Alamat: ' + esc(c.addr));
+  return p.length ? p.join('<br>') : 'Hubungi administrator aplikasi di perusahaan Anda, atau gunakan menu <b>Profil Saya → Privasi & persetujuan → Ajukan permohonan</b>.';
+}
+
+function termsHtml() {
+  var c = legalCtx();
+  return '<div class="legal"><h2>Syarat & Ketentuan Penggunaan</h2><p class="lg-meta">' + esc(c.app) + ' · Versi ketentuan ' + esc(c.ver) + ' · Berlaku sejak ' + fmtD(c.eff) + '</p>' +
+    '<h3>1. Para pihak & penerimaan</h3><p>Aplikasi ini dioperasikan oleh <b>' + esc(c.ctrl) + '</b> (“Perusahaan”) untuk digitalisasi pengambilan sampel daun kelapa sawit (Leaf Sampling Unit/LSU). Perangkat lunak disediakan oleh ' + esc(c.prov) + ' (“Penyedia”) berdasarkan perjanjian lisensi (EULA) dengan Perusahaan. Dengan mencentang persetujuan dan menggunakan aplikasi, Anda (“Pengguna”) menyetujui ketentuan ini. Jika tidak setuju, jangan gunakan aplikasi dan hubungi atasan Anda.</p>' +
+    '<h3>2. Akun & keamanan</h3><ul><li>Akun diberikan oleh administrator Perusahaan sesuai peran dan wilayah kerja (PT/estate/AFD). Satu akun hanya untuk satu orang.</li><li>Jaga kerahasiaan password, jangan bagikan kepada siapa pun, dan segera ganti password bila diduga diketahui orang lain.</li><li>Akun terkunci sementara setelah 5 kali gagal masuk. Sesi berakhir otomatis setelah 12 jam.</li><li>Laporkan kepada administrator bila Anda menduga ada akses tidak sah atau kehilangan perangkat yang berisi data aplikasi.</li></ul>' +
+    '<h3>3. Penggunaan yang diizinkan</h3><p>Aplikasi hanya boleh digunakan untuk pekerjaan Perusahaan: master kebun & GIS, perencanaan LSU, survei lapangan, pengelolaan sampel & rantai kustodi, laboratorium, rekomendasi pupuk, serta dokumentasi terkait.</p>' +
+    '<h3>4. Larangan</h3><ul><li>Memasukkan data palsu atau menyesatkan, termasuk hasil lab, data QA/QC, nomor pelepah, jumlah anak daun, berat sampel, atau kondisi pohon.</li><li>Memanipulasi lokasi GPS (aplikasi <i>fake GPS</i>/mock location) atau mencatat observasi tanpa berada di pohon sampel.</li><li>Mencoba mengakses data di luar wilayah/peran Anda, menembus keamanan, merekayasa ulang, atau mengakali mekanisme lisensi.</li><li>Mengunggah foto atau konten yang tidak terkait pekerjaan, melanggar kesusilaan, atau memuat data pribadi orang lain tanpa dasar yang sah.</li><li>Mengunduh tile peta secara massal atau menggunakan layanan peta pihak ketiga di luar ketentuannya.</li></ul>' +
+    '<h3>5. Kebenaran data & SOP</h3><p>Pengguna bertanggung jawab atas kebenaran data yang dimasukkan. Sistem mencatat deviasi SOP (pelepah, anak daun, jarak GPS, pohon pengganti) dan seluruh aksi penting dalam <b>audit trail</b> yang tidak dapat diubah. Hasil lab yang sudah disetujui hanya dapat diubah melalui revisi tercatat.</p>' +
+    '<h3>6. Mode offline & perangkat</h3><ul><li>Data survei dan foto yang dibuat tanpa sinyal disimpan sementara di perangkat (antrean) sampai berhasil tersinkron.</li><li>Jangan menghapus data browser/aplikasi atau keluar dari akun sebelum antrean (ikon ⏳) kosong, karena data yang belum terkirim dapat hilang.</li><li>Gunakan kunci layar pada perangkat yang dipakai untuk aplikasi ini.</li></ul>' +
+    '<h3>7. Foto & dokumentasi</h3><p>Foto disimpan di Google Drive Perusahaan dan dapat dilihat oleh pengguna lain yang berwenang. Ambil foto yang relevan dengan pekerjaan. Sedapat mungkin hindari wajah orang, pelat kendaraan, atau dokumen pribadi. Foto bukti observasi SOP tidak dapat dihapus karena menjadi bagian dari rantai bukti.</p>' +
+    '<h3>8. Keputusan agronomi</h3><p>Diagnosis hara, deteksi anomali, dan rekomendasi pupuk adalah <b>alat bantu keputusan</b>. Keputusan final ditetapkan oleh agronomis dan pejabat berwenang melalui alur persetujuan bertingkat. Pengguna tidak boleh menyajikan draf rekomendasi sebagai keputusan final.</p>' +
+    '<h3>9. Ketersediaan layanan</h3><p>Aplikasi berjalan di atas layanan Google (Apps Script, Sheets, Drive) dan jaringan seluler/internet. Layanan dapat terganggu karena gangguan pihak ketiga, kuota harian Google, pemeliharaan, atau masa lisensi yang berakhir. Saat lisensi berakhir, aplikasi masuk mode baca-saja.</p>' +
+    '<h3>10. Kekayaan intelektual</h3><p>Perangkat lunak, desain, dan dokumentasi adalah milik Penyedia dan dilisensikan kepada Perusahaan. Data yang dimasukkan adalah milik Perusahaan. Komponen sumber terbuka tunduk pada lisensinya masing-masing (lihat menu Tentang Aplikasi).</p>' +
+    '<h3>11. Layanan pihak ketiga</h3><p>Aplikasi menggunakan Google, penyedia peta (OpenStreetMap, Esri, OpenTopoMap), CDN jsDelivr, GitHub Pages, dan bila diaktifkan Fonnte (WhatsApp). Penggunaannya tunduk pada ketentuan masing-masing pihak tersebut.</p>' +
+    '<h3>12. Penangguhan akun</h3><p>Administrator dapat menonaktifkan, mengunci, atau mencabut akses Pengguna yang melanggar ketentuan ini, kebijakan Perusahaan, atau peraturan perundang-undangan, tanpa mengurangi sanksi lain sesuai peraturan perusahaan.</p>' +
+    '<h3>13. Batasan tanggung jawab</h3><p>Sepanjang diizinkan hukum, Penyedia tidak bertanggung jawab atas kerugian akibat kesalahan input, keputusan agronomi, gangguan layanan pihak ketiga, atau penggunaan yang melanggar ketentuan ini. Tanggung jawab Penyedia kepada Perusahaan diatur dalam EULA.</p>' +
+    '<h3>14. Perubahan ketentuan</h3><p>Ketentuan ini dapat diperbarui. Setiap versi baru akan ditampilkan saat Anda masuk dan memerlukan persetujuan ulang. Riwayat persetujuan Anda (versi & waktu) tercatat.</p>' +
+    '<h3>15. Hukum yang berlaku</h3><p>Ketentuan ini tunduk pada hukum Negara Republik Indonesia. Perselisihan diselesaikan secara musyawarah. Jika tidak tercapai kesepakatan, perselisihan diselesaikan sesuai peraturan perusahaan dan ketentuan hukum yang berlaku.</p>' +
+    '<h3>16. Kontak</h3><p>' + contactHtml(c) + '</p></div>';
+}
+
+function privacyHtml() {
+  var c = legalCtx();
+  function tr(a) { return '<tr>' + a.map(function (x) { return '<td>' + x + '</td>'; }).join('') + '</tr>'; }
+  return '<div class="legal"><h2>Pemberitahuan Privasi</h2><p class="lg-meta">' + esc(c.app) + ' · Versi ' + esc(c.ver) + ' · Berlaku sejak ' + fmtD(c.eff) + '</p>' +
+    '<p>Pemberitahuan ini menjelaskan bagaimana data pribadi Anda diproses di aplikasi ini sesuai <b>Undang-Undang Nomor 27 Tahun 2022 tentang Pelindungan Data Pribadi</b> beserta peraturan pelaksananya (PP Nomor 33 Tahun 2026).</p>' +
+    '<h3>1. Pengendali data pribadi</h3><p><b>' + esc(c.ctrl) + '</b> adalah Pengendali Data Pribadi yang menentukan tujuan dan cara pemrosesan. Data disimpan di akun Google Workspace/Drive milik Perusahaan. ' + esc(c.prov) + ' selaku penyedia perangkat lunak <b>tidak</b> mengakses data Anda, kecuali atas instruksi tertulis Perusahaan untuk keperluan dukungan teknis (sebagai Prosesor).</p>' +
+    '<h3>2. Data yang kami proses</h3><table class="lg-t"><tr><th>Kategori</th><th>Contoh</th><th>Sumber</th></tr>' +
+    tr(['Identitas & akun kerja', 'Nama, username, email, nomor WhatsApp, peran, wilayah kerja (PT/estate/AFD), foto profil (opsional)', 'Administrator & Anda']) +
+    tr(['Kredensial', 'Password disimpan sebagai <i>hash</i> bergaram (password asli tidak disimpan)', 'Anda']) +
+    tr(['Keamanan & audit', 'Waktu masuk/keluar, percobaan gagal, token sesi, jenis browser/perangkat (user agent), catatan audit aksi', 'Sistem']) +
+    tr(['Lokasi', 'Koordinat GPS & akurasi <b>hanya saat</b> Anda mencatat observasi, mengunggah foto bergeotag, menggambar batas, atau menyalakan tombol 📍 GPS. Tidak ada pelacakan di latar belakang.', 'Perangkat Anda']) +
+    tr(['Foto', 'Foto bukti pohon sampel, dokumentasi lapangan/lab, foto profil', 'Anda']) +
+    tr(['Data pekerjaan', 'Observasi, sampel, rantai kustodi (nama pengirim/penerima & token tanda tangan), hasil lab, persetujuan, rekomendasi', 'Anda & rekan kerja']) +
+    tr(['Bukti persetujuan', 'Versi & waktu persetujuan ketentuan ini, persetujuan WhatsApp', 'Anda']) +
+    tr(['Data di perangkat', 'Cache data (IndexedDB), antrean offline, pengaturan tampilan (localStorage), cache tile peta & foto', 'Perangkat Anda']) + '</table>' +
+    '<p>Aplikasi tidak dirancang untuk memproses data pribadi yang bersifat spesifik (kesehatan, biometrik, genetika, keuangan pribadi, catatan kejahatan, data anak).</p>' +
+    '<h3>3. Tujuan & dasar pemrosesan</h3><table class="lg-t"><tr><th>Tujuan</th><th>Dasar pemrosesan</th></tr>' +
+    tr(['Menjalankan pekerjaan LSU: penugasan, survei, sampel, lab, rekomendasi', 'Pemenuhan kewajiban perjanjian (hubungan kerja/kemitraan dengan Perusahaan)']) +
+    tr(['Keamanan akun, pencegahan penyalahgunaan, audit trail, ketertelusuran mutu & rantai bukti sampel', 'Kepentingan sah Perusahaan dan pemenuhan kewajiban hukum/standar mutu']) +
+    tr(['Validasi lokasi observasi terhadap pohon sampel (deviasi SOP)', 'Pemenuhan kewajiban perjanjian & kepentingan sah (mutu data agronomi)']) +
+    tr(['Notifikasi WhatsApp (penugasan, persetujuan, status sampel)', '<b>Persetujuan</b> Anda yang terpisah. Bersifat opsional dan dapat ditarik kapan saja tanpa mengurangi layanan aplikasi.']) +
+    tr(['Foto profil', 'Pilihan Anda sendiri; dapat dihapus kapan saja di menu Profil']) + '</table>' +
+    '<p>Data tidak dijual, tidak dipakai untuk iklan, dan tidak dipakai untuk pengambilan keputusan otomatis yang berdampak hukum terhadap Anda. Deteksi deviasi SOP hanya menjadi penanda untuk ditinjau oleh manusia.</p>' +
+    '<h3>4. Penerima data & pihak ketiga</h3><ul><li><b>Pengguna berwenang di Perusahaan</b> sesuai peran dan wilayah kerja.</li><li><b>Google LLC</b> (Apps Script, Sheets, Drive) sebagai penyedia infrastruktur penyimpanan dan komputasi.</li><li><b>Fonnte</b>, hanya bila notifikasi WhatsApp diaktifkan Perusahaan <i>dan</i> Anda memberikan persetujuan. Pihak ini menerima nomor WhatsApp dan isi pesan.</li><li><b>Penyedia peta</b> (OpenStreetMap, Esri, OpenTopoMap), <b>CDN jsDelivr</b>, dan <b>GitHub Pages</b> menerima alamat IP serta permintaan teknis (misalnya area peta yang dilihat), tanpa identitas akun Anda.</li><li>Instansi berwenang, bila diwajibkan oleh peraturan perundang-undangan.</li></ul>' +
+    '<h3>5. Transfer ke luar wilayah Indonesia</h3><p>Server Google, CDN, dan penyedia peta dapat berlokasi di luar Indonesia. Perusahaan menilai tingkat pelindungan negara/penerima tujuan dan memastikan adanya pelindungan yang memadai dan mengikat sebagaimana diatur dalam UU PDP dan PP 33/2026.</p>' +
+    '<h3>6. Lama penyimpanan (retensi)</h3><ul><li>Data pekerjaan, foto, dan audit trail disimpan paling lama <b>' + esc(c.ret) + ' tahun</b> setelah tahun sampling terkait, atau lebih lama bila diwajibkan peraturan atau sedang ada sengketa/audit.</li><li>Akun yang dinonaktifkan disimpan secukupnya untuk keperluan audit, lalu dihapus atau dianonimkan.</li><li>Sesi masuk kedaluwarsa dalam 12 jam dan dibersihkan otomatis.</li><li>Data di perangkat tersimpan sampai Anda menekan <i>Bersihkan cache lokal</i>, menghapus data browser, atau mencopot aplikasi.</li></ul>' +
+    '<h3>7. Keamanan</h3><p>Langkah pengamanan meliputi: password ber-<i>hash</i>, token sesi acak, penguncian akun, pembatasan akses berbasis peran & wilayah (<i>default-deny</i>), audit trail yang tidak dapat diubah, koneksi HTTPS, lisensi bertanda tangan digital, dan foto di Drive yang dibagikan melalui tautan acak yang sulit ditebak. Perusahaan dapat mewajibkan foto hanya dibuka oleh akun internal melalui kebijakan Google Workspace; aplikasi akan otomatis memuat foto melalui server.</p>' +
+    '<h3>8. Hak Anda sebagai subjek data</h3><ul><li><b>Informasi & akses</b>: mendapatkan salinan data pribadi Anda. Gunakan <i>Profil Saya → Unduh data saya</i> (format JSON).</li><li><b>Perbaikan</b>: memperbarui nama, email, dan nomor di menu Profil, atau mengajukan perbaikan data lain.</li><li><b>Penghapusan / pemusnahan</b> data yang tidak lagi diperlukan.</li><li><b>Penarikan persetujuan</b> (misalnya WhatsApp). Pemrosesan dihentikan paling lambat 3×24 jam setelah permohonan terverifikasi; persetujuan WhatsApp yang dicabut dari menu Profil langsung berlaku.</li><li><b>Keberatan / pembatasan</b> pemrosesan, serta pengajuan ganti rugi dan pengaduan kepada lembaga penyelenggara pelindungan data pribadi.</li></ul><p>Permohonan diajukan melalui <i>Profil Saya → Privasi & persetujuan → Ajukan permohonan</i> dan tercatat. Sebagian data dapat tetap disimpan bila diperlukan untuk kewajiban hukum, audit mutu, atau rantai bukti (misalnya foto bukti SOP dan audit trail).</p>' +
+    '<h3>9. Kegagalan pelindungan data</h3><p>Bila terjadi kegagalan pelindungan data pribadi, Perusahaan akan menyampaikan pemberitahuan tertulis kepada subjek data dan lembaga terkait paling lambat <b>3×24 jam</b> sejak kegagalan diketahui, sesuai peraturan.</p>' +
+    '<h3>10. Anak</h3><p>Aplikasi ini ditujukan untuk tenaga kerja dewasa dan tidak ditujukan untuk anak di bawah 18 tahun.</p>' +
+    '<h3>11. Perubahan pemberitahuan</h3><p>Pemberitahuan ini dapat diperbarui. Versi baru akan ditampilkan saat Anda masuk dan perlu Anda baca kembali.</p>' +
+    '<h3>12. Kontak privasi</h3><p>' + contactHtml(c) + '</p></div>';
+}
+
+function showLegal(kind) {
+  var m = modal(kind === 'privacy' ? 'Pemberitahuan Privasi' : 'Syarat & Ketentuan', '<div class="tabs" style="margin-top:-6px"><button data-lk="terms" class="' + (kind !== 'privacy' ? 'on' : '') + '">Syarat & Ketentuan</button><button data-lk="privacy" class="' + (kind === 'privacy' ? 'on' : '') + '">Pemberitahuan Privasi</button></div><div id="lgBody">' + (kind === 'privacy' ? privacyHtml() : termsHtml()) + '</div>',
+    [{ label: '🖨 Cetak', onClick: function (b) { printHtml(docHeader(kind === 'privacy' ? 'Pemberitahuan Privasi' : 'Syarat & Ketentuan', 'Versi ' + legalCtx().ver) + $('#lgBody', b).innerHTML); return false; } }, { label: 'Tutup' }], { wide: true });
+  m.body.addEventListener('click', function (e) { var t = e.target.closest('[data-lk]'); if (!t) return; kind = t.getAttribute('data-lk'); $$('[data-lk]', m.body).forEach(function (x) { x.classList.toggle('on', x === t); }); $('#lgBody', m.body).innerHTML = kind === 'privacy' ? privacyHtml() : termsHtml(); m.body.scrollTop = 0; });
+}
+
+function fetchLegal() { return api('legal.info', {}, { silent: true }).then(function (li) { S.legal = li; LS.set('legal', li); return li; }).catch(function () { return S.legal; }); }
+
+/** Gerbang persetujuan (per versi). Persetujuan WA dipisah & opsional (tidak digabung dengan S&K). */
+function legalGate(onDone) {
+  if ($('#lgGate') || S.gateOpen) return;
+  S.gateOpen = true;
+  fetchLegal().then(function () {
+    var c = legalCtx();
+    var m = modal('Sebelum melanjutkan', '<div id="lgGate"><p>Selamat datang di <b>' + esc(c.app) + '</b> v' + esc(FE_VERSION) + '. Mohon baca dokumen berikut (versi ' + esc(c.ver) + ').</p>' +
+      '<div class="alert info small" style="margin-bottom:10px"><b>Ringkasan privasi:</b> ' + esc(c.ctrl) + ' memproses data akun, aktivitas, lokasi GPS (hanya saat mencatat/mengunggah), dan foto kerja Anda untuk pekerjaan LSU, keamanan, dan audit mutu. Data disimpan di Google Workspace perusahaan, tidak dijual, dan Anda dapat mengunduh data Anda serta mengajukan permohonan hak subjek data di menu Profil.</div>' +
+      '<div class="row" style="margin-bottom:12px"><button class="btn s" type="button" data-lshow="terms">📄 Baca Syarat & Ketentuan</button><button class="btn s" type="button" data-lshow="privacy">🔒 Baca Pemberitahuan Privasi</button></div>' +
+      '<label class="chk" style="align-items:flex-start;margin-bottom:8px"><input type="checkbox" id="lgT"> <span>Saya telah membaca dan <b>menyetujui Syarat & Ketentuan</b> penggunaan aplikasi.</span></label>' +
+      '<label class="chk" style="align-items:flex-start;margin-bottom:8px"><input type="checkbox" id="lgP"> <span>Saya telah <b>membaca dan memahami Pemberitahuan Privasi</b>.</span></label>' +
+      (c.wa ? '<div class="card" style="padding:10px;margin-top:6px"><label class="chk" style="align-items:flex-start"><input type="checkbox" id="lgW"> <span><b>Opsional:</b> Saya bersedia menerima notifikasi pekerjaan melalui WhatsApp ke nomor saya (diproses melalui Fonnte). Persetujuan ini dapat ditarik kapan saja di menu Profil.</span></label></div>' : '') + '</div>',
+      [{ label: 'Keluar', onClick: function () { S.gateOpen = false; logout(); } }, { label: 'Setuju & lanjutkan', cls: 'p', onClick: function (b, close) {
+        if (!$('#lgT', b).checked || !$('#lgP', b).checked) { toast('Centang kedua pernyataan untuk melanjutkan.', 'bad'); return false; }
+        var w = $('#lgW', b);
+        api('legal.accept', { terms: true, privacy: true, waConsent: w ? w.checked : undefined, ua: navigator.userAgent }).then(function (u) { S.gateOpen = false; S.user = Object.assign(S.user || {}, u); LS.set('user', S.user); close(); toast('Terima kasih. Persetujuan versi ' + c.ver + ' tercatat.', 'ok'); if (onDone) onDone(); }).catch(fail);
+        return false;
+      } }], { sticky: true });
+    m.el.querySelector('[data-x]').style.display = 'none';
+    m.body.addEventListener('click', function (e) { var t = e.target.closest('[data-lshow]'); if (t) showLegal(t.getAttribute('data-lshow')); });
+  });
+}
+
+/* =================== Tentang Aplikasi =================== */
+VIEWS.about = function () {
+  var d = D(), lic = d.license || {}, c = legalCtx(), u = S.user || {};
+  var srv = d.appVersion || '-', mismatch = d.appVersion && d.appVersion !== FE_VERSION;
+  $('#main').innerHTML = '<h2 class="pg">Tentang Aplikasi</h2><p class="pg-sub">Informasi versi, lisensi, dan dokumen legal.</p>' +
+    (mismatch ? '<div class="alert warn" style="margin-bottom:12px">Versi aplikasi di perangkat (v' + FE_VERSION + ') berbeda dengan server (v' + esc(srv) + '). <button class="btn s" data-act="appUpdate">Perbarui sekarang</button></div>' : '') +
+    '<div class="grid g2"><div class="card"><div class="row" style="gap:14px">' + logoHtml('ab-logo') + '<div><h3 style="margin:0">' + esc(c.app) + '</h3><div class="muted small">' + esc(S.branding.appSubtitle || '') + '</div></div></div>' +
+    '<table class="t" style="margin-top:12px"><tr><td>Versi aplikasi</td><td><b>v' + FE_VERSION + '</b> <span class="small muted">(build ' + esc(FE_BUILD) + ')</span></td></tr><tr><td>Versi server</td><td>v' + esc(srv) + (d.appBuild ? ' <span class="small muted">(build ' + esc(d.appBuild) + ')</span>' : '') + '</td></tr>' +
+    '<tr><td>Versi ketentuan & privasi</td><td>' + esc(c.ver) + ' (berlaku ' + fmtD(c.eff) + ')</td></tr><tr><td>Persetujuan Anda</td><td>' + (u.termsAcceptedAt ? '✅ ' + fmtD(u.termsAcceptedAt, true) + ' (v' + esc(u.termsVersion) + ')' : '-') + '</td></tr>' +
+    '<tr><td>Mode</td><td>' + (IS_GAS ? 'Apps Script Web App' : (matchMedia('(display-mode: standalone)').matches ? 'PWA terpasang' : 'PWA (browser)')) + '</td></tr><tr><td>Lisensi</td><td>' + esc(lic.tier || '-') + (lic.expiresAt ? ' · s/d ' + esc(lic.expiresAt) : '') + (lic.client ? ' · ' + esc(lic.client) : '') + '</td></tr>' +
+    '<tr><td>Pengendali data</td><td>' + esc(c.ctrl) + '</td></tr><tr><td>Penyedia perangkat lunak</td><td>' + esc(c.prov) + '</td></tr><tr><td>Penyimpanan perangkat</td><td id="abStore">…</td></tr></table>' +
+    '<div class="row" style="margin-top:12px"><button class="btn" data-act="legalTerms">📄 Syarat & Ketentuan</button><button class="btn" data-act="legalPrivacy">🔒 Pemberitahuan Privasi</button>' + (IS_GAS ? '' : '<button class="btn" data-act="appUpdate">⟳ Periksa pembaruan</button>') + '</div></div>' +
+    '<div class="card"><h3>Catatan rilis</h3>' + RELEASE_NOTES.map(function (r) { return '<div style="margin-bottom:10px"><b>v' + r[0] + '</b> <span class="small muted">' + r[1] + '</span><ul class="small" style="margin:4px 0;padding-left:18px">' + r[2].map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>'; }).join('') + '</div>' +
+    '<div class="card"><h3>Komponen pihak ketiga</h3><table class="t">' + COMPONENTS.map(function (x) { return '<tr><td>' + esc(x[0]) + '</td><td>' + esc(x[1]) + '</td><td class="small">' + esc(x[2]) + '</td></tr>'; }).join('') + '</table><p class="small muted">Teks lisensi lengkap ada di berkas THIRD-PARTY-NOTICES yang diserahkan bersama aplikasi.</p></div></div>';
+  if (navigator.storage && navigator.storage.estimate) navigator.storage.estimate().then(function (e) { var el = $('#abStore'); if (el) el.textContent = fmtN((e.usage || 0) / 1048576, 1) + ' MB terpakai dari ±' + fmtN((e.quota || 0) / 1048576, 0) + ' MB · antrean ' + (S.outbox || 0); });
+  else $('#abStore').textContent = 'antrean ' + (S.outbox || 0);
+};
+
+Object.assign(ACT, {
+  legalTerms: function () { showLegal('terms'); },
+  legalPrivacy: function () { showLegal('privacy'); },
+  appUpdate: function () {
+    if (S.outbox) { toast('Masih ada ' + S.outbox + ' data di antrean. Sinkronkan dulu sebelum memperbarui.', 'bad'); return; }
+    if (!('serviceWorker' in navigator)) return location.reload();
+    navigator.serviceWorker.getRegistration().then(function (r) {
+      if (!r) return location.reload();
+      return r.update().then(function () { if (r.waiting) r.waiting.postMessage('skipWaiting'); toast('Memuat versi terbaru…'); setTimeout(function () { location.reload(); }, 800); });
+    }).catch(function () { location.reload(); });
+  },
+  /* ---- Privasi di Profil ---- */
+  waConsent: function (el) { api('consent.wa', { consent: el.checked }).then(function (u) { S.user = Object.assign(S.user, u); LS.set('user', S.user); toast(el.checked ? 'Persetujuan WhatsApp diberikan.' : 'Persetujuan WhatsApp ditarik — notifikasi WA dihentikan.', 'ok'); }).catch(function (e) { el.checked = !el.checked; fail(e); }); },
+  exportMyData: function () { api('privacy.export', {}).then(function (d) { downloadText('data-pribadi-' + S.user.username + '-' + today() + '.json', JSON.stringify(d, null, 1), 'application/json'); toast('Salinan data pribadi diunduh.', 'ok'); }).catch(fail); },
+  dataRequest: function () {
+    var c = legalCtx(), types = c.types && Object.keys(c.types).length ? c.types : { AKSES: 'Akses & salinan data', PERBAIKAN: 'Perbaikan data', PENGHAPUSAN: 'Penghapusan data', PENARIKAN: 'Penarikan persetujuan', KEBERATAN: 'Keberatan / pembatasan', LAINNYA: 'Lainnya' };
+    modal('Ajukan Permohonan Data Pribadi', '<div class="grid"><label class="f">Jenis permohonan<select class="i" name="type">' + Object.keys(types).map(function (k) { return '<option value="' + k + '">' + esc(types[k]) + '</option>'; }).join('') + '</select></label><label class="f">Penjelasan<textarea class="i" name="detail" placeholder="Jelaskan data yang dimaksud dan permohonan Anda"></textarea></label><p class="small muted">Permohonan diteruskan ke administrator/PPDP ' + esc(c.ctrl) + ' dan tercatat. Penarikan persetujuan WhatsApp langsung berlaku.</p></div>',
+      [{ label: 'Batal' }, { label: 'Kirim', cls: 'p', onClick: function (b, close) { api('privacy.request', formVals(b)).then(function () { close(); toast('Permohonan terkirim.', 'ok'); if (S.tab === 'profile') VIEWS.profile(); }).catch(fail); return false; } }]);
+  },
+  /* ---- Admin: tindak lanjut ---- */
+  dsrResolve: function (el) {
+    var id = el.getAttribute('data-id');
+    modal('Tindak Lanjut Permohonan', '<div class="grid"><label class="f">Status<select class="i" name="status"><option value="DIPROSES">Diproses</option><option value="SELESAI">Selesai</option><option value="DITOLAK">Ditolak (sertakan alasan hukum)</option></select></label><label class="f">Tanggapan kepada pemohon<textarea class="i" name="response"></textarea></label><p class="small muted">Catatan: penarikan persetujuan wajib dihentikan pemrosesannya paling lambat 3×24 jam setelah terverifikasi (PP 33/2026). Data yang wajib disimpan untuk audit/rantai bukti dapat dikecualikan dari penghapusan.</p></div>',
+      [{ label: 'Batal' }, { label: 'Simpan', cls: 'p', onClick: function (b, close) { var v = formVals(b); v.id = id; api('privacy.resolve', v).then(function () { close(); toast('Permohonan diperbarui.', 'ok'); VIEWS.admin(); }).catch(fail); return false; } }]);
+  },
+  savePrivacySettings: function () { var v = formVals($('#privSet')); api('settings.branding', v).then(function (b) { S.branding = b; LS.set('branding', b); fetchLegal(); toast('Pengaturan privasi disimpan.', 'ok'); }).catch(fail); }
+});
+
+/** Bagian Privasi di halaman Profil */
+function profilePrivacyHtml() {
+  var u = S.user || {}, c = legalCtx();
+  return '<div class="card" style="margin-top:14px"><h3>🔒 Privasi & persetujuan</h3><table class="t"><tr><td>Syarat & Ketentuan</td><td>' + (u.termsAcceptedAt ? '✅ v' + esc(u.termsVersion) + ' · ' + fmtD(u.termsAcceptedAt, true) : '—') + '</td></tr><tr><td>Pemberitahuan Privasi</td><td>' + (u.privacyAckAt ? '✅ v' + esc(u.privacyVersion) + ' · ' + fmtD(u.privacyAckAt, true) : '—') + '</td></tr></table>' +
+    '<label class="chk" style="margin:12px 0"><input type="checkbox" data-act="waConsent"' + (u.waConsent ? ' checked' : '') + '> Terima notifikasi pekerjaan via WhatsApp' + (c.wa ? '' : ' <span class="small muted">(fitur WA belum diaktifkan perusahaan)</span>') + '</label>' +
+    '<div class="row"><button class="btn" data-act="exportMyData">⬇ Unduh data saya</button><button class="btn" data-act="dataRequest">✉ Ajukan permohonan</button><button class="btn" data-act="legalPrivacy">Baca Pemberitahuan Privasi</button><button class="btn" data-act="legalTerms">Baca S&K</button></div><div id="myDsr" class="small" style="margin-top:10px"></div></div>';
+}
+function loadMyRequests() {
+  var el = $('#myDsr'); if (!el) return;
+  api('privacy.requests', {}, { silent: true }).then(function (l) { el = $('#myDsr'); if (!el) return; var mine = l.filter(function (r) { return r.userId === S.user.id; }); el.innerHTML = mine.length ? '<b>Riwayat permohonan</b>' + mine.map(function (r) { return '<div style="padding:6px 0;border-bottom:1px solid #f1f5f9">' + fmtD(r.createdAt, true) + ' · ' + esc(r.type) + ' · <span class="pill ' + (r.status === 'SELESAI' ? 'ok' : r.status === 'DITOLAK' ? 'bad' : 'warn') + '">' + esc(r.status) + '</span>' + (r.response ? '<div class="muted">' + esc(r.response) + '</div>' : '') + '</div>'; }).join('') : ''; }).catch(function () { });
+}
+/** Tab Privasi & Legal di Administrasi */
+function adminPrivacyHtml() {
+  var b = S.branding || {};
+  setTimeout(function () {
+    api('privacy.requests', {}, { silent: true }).then(function (l) {
+      var el = $('#dsrList'); if (!el) return;
+      el.innerHTML = l.length ? '<div class="tbl-wrap"><table class="t rsp"><thead><tr><th>Tanggal</th><th>Pemohon</th><th>Jenis</th><th>Penjelasan</th><th>Status</th><th></th></tr></thead><tbody>' + l.map(function (r) { var due = r.type === 'PENARIKAN' && r.status !== 'SELESAI' && (Date.now() - new Date(r.createdAt).getTime()) > 48 * 36e5; return '<tr><td data-l="Tanggal" class="small">' + fmtD(r.createdAt, true) + (due ? ' <span class="pill bad">mendekati 3×24 jam</span>' : '') + '</td><td data-l="Pemohon">' + esc(r.userName) + '</td><td data-l="Jenis">' + esc(r.type) + '</td><td data-l="Penjelasan" class="small">' + esc(r.detail) + (r.response ? '<div class="muted">↳ ' + esc(r.response) + ' — ' + esc(r.handledBy) + '</div>' : '') + '</td><td data-l="Status"><span class="pill ' + (r.status === 'SELESAI' ? 'ok' : r.status === 'DITOLAK' ? 'bad' : 'warn') + '">' + esc(r.status) + '</span></td><td class="act">' + (r.status === 'SELESAI' || r.status === 'DITOLAK' ? '' : '<button class="btn s p" data-act="dsrResolve" data-id="' + r.id + '">Tindak lanjut</button>') + '</td></tr>'; }).join('') + '</tbody></table></div>' : '<div class="empty">Belum ada permohonan.</div>';
+    }).catch(fail);
+  }, 0);
+  return '<div class="grid g2"><div class="card" id="privSet"><h3>Data pengendali & kontak privasi</h3><p class="small muted">Ditampilkan otomatis di Pemberitahuan Privasi dan Syarat & Ketentuan. Nama pengendali = nama perusahaan di Branding.</p><div class="grid"><label class="f">Alamat pengendali (kantor)<input class="i" name="controllerAddress" value="' + esc(b.controllerAddress || '') + '"></label><label class="f">Nama PPDP / DPO (bila ada)<input class="i" name="dpoName" value="' + esc(b.dpoName || '') + '"></label><label class="f">Email privasi<input class="i" type="email" name="privacyEmail" value="' + esc(b.privacyEmail || '') + '"></label><label class="f">Telepon/WA privasi<input class="i" name="privacyPhone" value="' + esc(b.privacyPhone || '') + '"></label><label class="f">Masa retensi data (tahun)<input class="i" type="number" min="1" max="30" name="retentionYears" value="' + esc(b.retentionYears || 5) + '"></label><button class="btn p" data-act="savePrivacySettings">Simpan</button></div></div>' +
+    '<div class="card"><h3>Dokumen</h3><p class="small">Versi ketentuan aktif: <b>' + esc(legalCtx().ver) + '</b>. Mengubah isi dokumen (di kode) dan menaikkan <span class="mono">LEGAL_VERSION</span> di Code.gs akan meminta semua pengguna menyetujui ulang.</p><div class="row"><button class="btn" data-act="legalTerms">📄 Syarat & Ketentuan</button><button class="btn" data-act="legalPrivacy">🔒 Pemberitahuan Privasi</button></div><div class="alert warn small" style="margin-top:10px">Dokumen ini adalah templat yang disusun mengikuti UU 27/2022 dan PP 33/2026. Mintalah legal/PPDP perusahaan untuk meninjau sebelum digunakan resmi.</div></div></div>' +
+    '<div class="card" style="margin-top:14px"><h3>Permohonan hak subjek data</h3><div id="dsrList"><span class="spin dk"></span></div></div>';
+}
+
+/* Tambahkan bagian privasi ke halaman Profil */
+(function () { var base = VIEWS.profile; VIEWS.profile = function () { base(); $('#main').insertAdjacentHTML('beforeend', profilePrivacyHtml()); loadMyRequests(); }; })();
 
 document.addEventListener('DOMContentLoaded', boot);
 </script>

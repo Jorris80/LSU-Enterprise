@@ -3,7 +3,7 @@
  * - Tile peta yang PERNAH dilihat: cache-first, dibatasi 3.000 tile (tanpa prefetch massal — patuh kebijakan tile OSM)
  * - Panggilan API (POST ke script.google.com) TIDAK di-cache; antrean offline ditangani aplikasi (IndexedDB)
  */
-var VERSION = 'lsu-v2.2.0';
+var VERSION = 'lsu-v2.3.0';
 var STATIC = VERSION + '-static';
 var TILES = 'lsu-tiles';
 var MAX_TILES = 3000;
