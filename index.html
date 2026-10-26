@@ -136,9 +136,10 @@ table.t tr.sel td{background:#f0fdf4}
 @keyframes bz{from{background-position:200% 0}to{background-position:-200% 0}}
 /* ---------- Peta ---------- */
 .map-wrap{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:#e2e8f0}
-#map{height:calc(100vh - 210px);min-height:420px}
+#map{height:calc(100vh - 210px);height:calc(100dvh - 210px);min-height:300px}
 .map-wrap.fs{position:fixed;inset:0;z-index:1500;border-radius:0}
-.map-wrap.fs #map{height:100vh}
+.map-wrap.fs #map{height:100vh;height:100dvh}
+.lg-h{font-weight:700;margin-bottom:4px;cursor:default}.lg-car{display:none}
 .map-tools{position:absolute;top:10px;left:54px;z-index:800;display:flex;gap:6px;flex-wrap:wrap;max-width:calc(100% - 120px)}
 .map-tools .btn{min-height:34px;padding:6px 10px;box-shadow:var(--sh)}
 .map-tools .btn.on{background:var(--pri);color:#fff;border-color:var(--pri)}
@@ -173,7 +174,7 @@ table.t tr.sel td{background:#f0fdf4}
   .bnav button span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
   header.top{padding:8px 10px;gap:8px}
   .top select{max-width:120px;font-size:12px}
-  #map{height:calc(100vh - 230px);min-height:360px}
+  #map{height:calc(100dvh - 250px);min-height:300px}
   .g2,.g3{grid-template-columns:1fr}
   .modal-bg{padding:0;align-items:flex-end}
   .modal{max-height:94vh;border-radius:16px 16px 0 0}
@@ -186,8 +187,18 @@ table.t tr.sel td{background:#f0fdf4}
   table.t.rsp td.act:before{content:none}
   .nut{grid-template-columns:34px 1fr 90px;}.nut .cls{grid-column:2/4}
   #toasts{left:16px;right:16px;bottom:calc(76px + var(--safe-b));max-width:none}
-  .map-tools{left:10px;top:auto;bottom:70px;max-width:calc(100% - 20px)}
-  .map-legend{bottom:auto;top:10px;right:50px;max-width:160px}
+  /* Peta di HP: tombol satu baris (geser), legenda bisa dilipat, atribusi kecil di dalam peta */
+  .map-tools{left:8px;right:8px;top:auto;bottom:40px;max-width:none;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+  .map-tools::-webkit-scrollbar{display:none}
+  .map-tools .btn{min-height:34px;padding:5px 9px;font-size:12px;flex:none}
+  .map-info{top:10px;left:52px;right:56px;bottom:auto;max-width:none;font-size:11px;padding:4px 8px}
+  .map-legend{bottom:86px;top:auto;right:8px;max-width:190px;padding:6px 9px;font-size:11px}
+  .map-legend .lg-h{cursor:pointer;margin:0}.map-legend .lg-car{display:inline}
+  .map-legend:not(.open) .lg-b{display:none}
+  .map-legend.open .lg-h{margin-bottom:4px}
+  .map-wrap .leaflet-control-attribution{font-size:8.5px;line-height:1.25;max-width:100%;white-space:normal}
+  .map-wrap .leaflet-bottom.leaflet-left .leaflet-control-scale{margin-bottom:84px}
+  .map-note{display:none}
 }
 @media (max-width:520px){.g4{grid-template-columns:repeat(2,minmax(0,1fr))}.brand .t2{display:none}.net .lbl{display:none}.kpi .v{font-size:20px}}
 
@@ -738,7 +749,8 @@ S.estateId = S.f.est || '';
 var SC_MEMO = { key: '', v: null };
 
 function companies() {
-  var m = {}; (D().estates || []).forEach(function (e) { var c = e.companyName || '(Tanpa PT)'; m[c] = (m[c] || 0) + 1; });
+  var m = {}; (D().companies || []).forEach(function (c) { if (c.isActive !== false) m[c.name] = 1; });
+  (D().estates || []).forEach(function (e) { var c = e.companyName || '(Tanpa PT)'; m[c] = (m[c] || 0) + 1; });
   return Object.keys(m).sort();
 }
 function fEstates() { return (D().estates || []).filter(function (e) { return (!S.f.pt || (e.companyName || '(Tanpa PT)') === S.f.pt) && (!S.f.est || e.id === S.f.est); }); }
@@ -949,11 +961,20 @@ function ageOf(b) { return curYear() - b.plantingYear; }
 function ageCls(b) { var p = (D().protocols || []).filter(function (x) { return x.isActive; })[0] || {}; return ageOf(b) >= (p.tmMinAgeYears || 4) ? 'TM' : 'TBM'; }
 VIEWS.master = function () {
   var sub = S.sub.master || 'block', d = D();
-  var tabs = [['estate', 'Estate'], ['division', 'Divisi / Afdeling'], ['block', 'Blok'], ['tree', 'Pohon Sampel']];
-  var h = '<h2 class="pg">Master Kebun & GIS</h2><p class="pg-sub">Hierarki estate → divisi → blok → pohon sampel baku.</p><div class="tabs">' + tabs.map(function (t) { return '<button data-sub="' + t[0] + '" class="' + (sub === t[0] ? 'on' : '') + '">' + t[1] + '</button>'; }).join('') + '</div>';
-  if (sub === 'estate') {
-    h += '<div class="row" style="margin-bottom:10px"><span class="sp muted small">' + d.estates.length + ' estate</span>' + (can() && role() === 'SUPER_ADMIN' ? '<button class="btn p" data-act="estateForm">+ Estate</button>' : '') + '</div>';
-    h += '<div class="tbl-wrap"><table class="t rsp"><thead><tr><th>Kode</th><th>Nama</th><th>Wilayah</th><th>Luas (ha)</th><th>Status</th><th></th></tr></thead><tbody>' + d.estates.map(function (e) { return '<tr><td data-l="Kode" class="mono">' + esc(e.code) + '</td><td data-l="Nama">' + esc(e.name) + '<div class="small muted">' + esc(e.companyName) + '</div></td><td data-l="Wilayah">' + esc(e.region) + '</td><td data-l="Luas">' + fmtN(e.totalAreaHa, 1) + '</td><td data-l="Status">' + (e.isActive ? pill('APPROVED') : pill('CANCELLED')) + '</td><td class="act">' + (role() === 'SUPER_ADMIN' ? '<button class="btn s" data-act="estateForm" data-id="' + e.id + '">Edit</button>' : '') + '</td></tr>'; }).join('') + '</tbody></table></div>';
+  var tabs = [['company', 'Perusahaan (PT)'], ['estate', 'Estate'], ['division', 'Divisi / Afdeling'], ['block', 'Blok'], ['tree', 'Pohon Sampel']];
+  var h = '<h2 class="pg">Master Kebun & GIS</h2><p class="pg-sub">Hierarki perusahaan (PT) → estate → divisi/AFD → blok → pohon sampel baku.</p><div class="tabs">' + tabs.map(function (t) { return '<button data-sub="' + t[0] + '" class="' + (sub === t[0] ? 'on' : '') + '">' + t[1] + '</button>'; }).join('') + '</div>';
+  if (sub === 'company') {
+    var cos = (d.companies || []).filter(function (c) { return !S.f.pt || c.name === S.f.pt; });
+    h += '<div class="row" style="margin-bottom:10px"><span class="sp muted small">' + cos.length + ' perusahaan · nama PT dipakai di filter, kop dokumen, dan cetak peta</span>' + (role() === 'SUPER_ADMIN' ? '<button class="btn p" data-act="companyForm">+ Perusahaan</button>' : '') + '</div>';
+    h += '<div class="tbl-wrap"><table class="t rsp"><thead><tr><th>Kode</th><th>Perusahaan</th><th>NPWP</th><th>Pimpinan</th><th>Estate</th><th>Blok / luas</th><th>Status</th><th></th></tr></thead><tbody>' + cos.map(function (c) {
+      var es = d.estates.filter(function (e) { return e.companyId === c.id; }), ids = es.map(function (e) { return e.id; });
+      var bl = d.blocks.filter(function (b) { return ids.indexOf(b.estateId) >= 0; });
+      return '<tr><td data-l="Kode" class="mono">' + esc(c.code) + '</td><td data-l="Perusahaan"><b>' + esc(c.name) + '</b>' + (c.legalName && c.legalName !== c.name ? '<div class="small muted">' + esc(c.legalName) + '</div>' : '') + (c.address ? '<div class="small muted">' + esc(c.address) + '</div>' : '') + '</td><td data-l="NPWP" class="small">' + esc(c.npwp || '-') + '</td><td data-l="Pimpinan">' + esc(c.director || '-') + '</td><td data-l="Estate">' + es.map(function (e) { return '<span class="pill">' + esc(e.code) + '</span>'; }).join(' ') + '</td><td data-l="Blok / luas">' + bl.length + ' blok · ' + fmtN(bl.reduce(function (a, b) { return a + (b.areaHa || 0); }, 0), 1) + ' ha</td><td data-l="Status">' + (c.isActive !== false ? pill('APPROVED').replace('Disetujui', 'Aktif') : pill('CANCELLED').replace('Batal', 'Nonaktif')) + '</td><td class="act"><div class="row" style="gap:4px;justify-content:flex-end"><button class="btn s" data-act="coFilter" data-name="' + esc(c.name) + '">🔎 Filter</button><button class="btn s" data-act="coJump" data-name="' + esc(c.name) + '">🎯 Peta</button>' + (role() === 'SUPER_ADMIN' ? '<button class="btn s" data-act="companyForm" data-id="' + c.id + '">Edit</button>' : '') + '</div></td></tr>';
+    }).join('') + '</tbody></table>' + (cos.length ? '' : '<div class="empty">Belum ada perusahaan.</div>') + '</div>';
+  } else if (sub === 'estate') {
+    var estList = d.estates.filter(function (e) { return !S.f.pt || (e.companyName || '(Tanpa PT)') === S.f.pt; });
+    h += '<div class="row" style="margin-bottom:10px"><span class="sp muted small">' + estList.length + ' estate</span>' + (can() && role() === 'SUPER_ADMIN' ? '<button class="btn p" data-act="estateForm">+ Estate</button>' : '') + '</div>';
+    h += '<div class="tbl-wrap"><table class="t rsp"><thead><tr><th>Kode</th><th>Nama</th><th>Perusahaan (PT)</th><th>Wilayah</th><th>Luas (ha)</th><th>Status</th><th></th></tr></thead><tbody>' + estList.map(function (e) { return '<tr><td data-l="Kode" class="mono">' + esc(e.code) + '</td><td data-l="Nama">' + esc(e.name) + '</td><td data-l="Perusahaan">' + esc(e.companyName || '-') + '</td><td data-l="Wilayah">' + esc(e.region) + '</td><td data-l="Luas">' + fmtN(e.totalAreaHa, 1) + '</td><td data-l="Status">' + (e.isActive ? pill('APPROVED') : pill('CANCELLED')) + '</td><td class="act">' + (role() === 'SUPER_ADMIN' ? '<button class="btn s" data-act="estateForm" data-id="' + e.id + '">Edit</button>' : '') + '</td></tr>'; }).join('') + '</tbody></table></div>';
   } else if (sub === 'division') {
     var divs = estOf(d.divisions);
     h += '<div class="row" style="margin-bottom:10px"><span class="sp muted small">' + divs.length + ' divisi</span>' + (can('ESTATE_MANAGER') ? '<button class="btn p" data-act="divForm">+ Divisi</button>' : '') + '</div>';
@@ -983,9 +1004,17 @@ document.addEventListener('click', function (e) { var s = e.target.closest('[dat
 function saveThen(action, payload, msg, close) { return api(action, payload).then(function (r) { toast(msg || 'Tersimpan.', 'ok'); if (close) close(); return loadData(true).then(function () { return r; }); }).catch(function (e) { fail(e); return new Promise(function () { }); }); }
 
 Object.assign(ACT, {
+  companyForm: function (el) {
+    var c = byId(D().companies, el.getAttribute('data-id')) || { isActive: true };
+    var f = [['code', 'Kode singkat (mis. SNU)'], ['name', 'Nama perusahaan (PT)'], ['legalName', 'Nama badan hukum lengkap'], ['npwp', 'NPWP'], ['director', 'Pimpinan / Direktur'], ['phone', 'Telepon'], ['email', 'Email']];
+    modal(c.id ? 'Edit Perusahaan' : 'Perusahaan Baru', '<div class="fg">' + f.map(function (x) { return '<label class="f">' + x[1] + '<input class="i" name="' + x[0] + '" value="' + esc(c[x[0]] || '') + '"></label>'; }).join('') + '<label class="f full">Alamat kantor<textarea class="i" name="address">' + esc(c.address || '') + '</textarea></label><label class="chk"><input type="checkbox" name="isActive"' + (c.isActive !== false ? ' checked' : '') + '> Aktif</label>' + (c.id ? '<div class="full small muted">Mengganti nama PT otomatis memperbarui semua estate miliknya.</div>' : '') + '</div>',
+      [{ label: 'Batal' }, { label: 'Simpan', cls: 'p', onClick: function (b, close) { var v = formVals(b); v.id = c.id; saveThen('company.save', v, 'Perusahaan tersimpan.', close); return false; } }]);
+  },
+  coFilter: function (el) { setFilter({ pt: el.getAttribute('data-name') }); toast('Filter PT: ' + el.getAttribute('data-name')); },
+  coJump: function (el) { jumpTo('pt', el.getAttribute('data-name')); },
   estateForm: function (el) {
     var e = byId(D().estates, el.getAttribute('data-id')) || { isActive: true, timezone: 'Asia/Jakarta' };
-    modal(e.id ? 'Edit Estate' : 'Estate Baru', '<div class="fg"><label class="f">Kode<input class="i" name="code" value="' + esc(e.code || '') + '"></label><label class="f">Nama estate<input class="i" name="name" value="' + esc(e.name || '') + '"></label><label class="f">Perusahaan<input class="i" name="companyName" value="' + esc(e.companyName || '') + '"></label><label class="f">Wilayah<input class="i" name="region" value="' + esc(e.region || '') + '"></label><label class="f">Zona waktu<select class="i" name="timezone">' + opts(['Asia/Jakarta', 'Asia/Makassar', 'Asia/Jayapura'], e.timezone) + '</select></label><label class="f">Luas total (ha)<input class="i" type="number" step="0.01" name="totalAreaHa" value="' + esc(e.totalAreaHa || '') + '"></label><label class="f">Lintang pusat<input class="i" type="number" step="0.000001" name="centerLat" value="' + esc(e.centerLat || '') + '"></label><label class="f">Bujur pusat<input class="i" type="number" step="0.000001" name="centerLng" value="' + esc(e.centerLng || '') + '"></label><label class="chk full"><input type="checkbox" name="isActive"' + (e.isActive ? ' checked' : '') + '> Aktif</label></div>',
+    modal(e.id ? 'Edit Estate' : 'Estate Baru', '<div class="fg"><label class="f">Kode<input class="i" name="code" value="' + esc(e.code || '') + '"></label><label class="f">Nama estate<input class="i" name="name" value="' + esc(e.name || '') + '"></label><label class="f">Perusahaan (PT)<select class="i" name="companyId">' + opts((D().companies || []).filter(function (c) { return c.isActive !== false || c.id === e.companyId; }), e.companyId || ((D().companies || []).filter(function (c) { return c.name === S.f.pt; })[0] || {}).id, function (c) { return c.code + ' · ' + c.name; }) + '</select></label><label class="f">Wilayah<input class="i" name="region" value="' + esc(e.region || '') + '"></label><label class="f">Zona waktu<select class="i" name="timezone">' + opts(['Asia/Jakarta', 'Asia/Makassar', 'Asia/Jayapura'], e.timezone) + '</select></label><label class="f">Luas total (ha)<input class="i" type="number" step="0.01" name="totalAreaHa" value="' + esc(e.totalAreaHa || '') + '"></label><label class="f">Lintang pusat<input class="i" type="number" step="0.000001" name="centerLat" value="' + esc(e.centerLat || '') + '"></label><label class="f">Bujur pusat<input class="i" type="number" step="0.000001" name="centerLng" value="' + esc(e.centerLng || '') + '"></label><label class="chk full"><input type="checkbox" name="isActive"' + (e.isActive ? ' checked' : '') + '> Aktif</label></div>',
       [{ label: 'Batal' }, { label: 'Simpan', cls: 'p', onClick: function (b, close) { var v = formVals(b); v.id = e.id; saveThen('estate.save', v, 'Estate tersimpan.', close); return false; } }]);
   },
   divForm: function (el) {
@@ -1656,7 +1685,7 @@ var MAPV = {
     else if (MAPV.lastView) m.setView(MAPV.lastView[0], MAPV.lastView[1]);
     else if (MAPV.layers.blocks.getLayers().length) m.fitBounds(MAPV.layers.blocks.getBounds().pad(0.05));
     else { var e = byId(D().estates, S.estateId) || (D().estates || [])[0]; m.setView(e && e.centerLat ? [e.centerLat, e.centerLng] : [-0.8, 113.9], e && e.centerLat ? 14 : 5); }
-    setTimeout(function () { m.invalidateSize(); }, 200);
+    MAPV.size(); setTimeout(MAPV.size, 250);
   },
   colorFor: function (b) {
     var t = MAPV.theme, d = D();
@@ -1668,13 +1697,13 @@ var MAPV = {
     return NUT_COL[bn.cls[t]] || '#94a3b8';
   },
   legend: function () {
-    var t = MAPV.theme, h = '<b>' + esc((THEMES.filter(function (x) { return x[0] === t; })[0] || [])[1]) + '</b><br>';
+    var t = MAPV.theme, h = '';
     if (t === 'division') h += estOf(D().divisions).map(function (v) { return '<i style="background:' + MAPV.colorFor({ divisionId: v.id }) + '"></i>' + esc(v.name); }).join('<br>');
     else if (t === 'age') h += '<i style="background:#16a34a"></i>TM (pelepah 17)<br><i style="background:#eab308"></i>TBM (pelepah 9)';
     else if (t === 'progress') h += '<i style="background:#16a34a"></i>Selesai<br><i style="background:#f59e0b"></i>Sebagian<br><i style="background:#ef4444"></i>Belum<br><i style="background:#94a3b8"></i>Tanpa pohon sampel';
     else if (t === 'status') h += '<i style="background:#16a34a"></i>Optimal<br><i style="background:#f59e0b"></i>Defisiensi sedang<br><i style="background:#b91c1c"></i>Defisiensi kritis<br><i style="background:#94a3b8"></i>Belum ada hasil';
     else h += ['ACUTE_DEFICIENT', 'DEFICIENT', 'OPTIMAL', 'HIGH', 'EXCESS'].map(function (k) { return '<i style="background:' + NUT_COL[k] + '"></i>' + lbl(k); }).join('<br>') + '<br><i style="background:#94a3b8"></i>Belum ada hasil';
-    $('#mapLegend').innerHTML = h;
+    $('#mapLegend').innerHTML = '<div class="lg-h" data-act="mapLegendToggle">' + esc((THEMES.filter(function (x) { return x[0] === t; })[0] || [])[1]) + ' <span class="lg-car">▾</span></div><div class="lg-b">' + h + '</div>';
   },
   drawData: function () {
     var d = D(), L1 = MAPV.layers; L1.blocks.clearLayers(); L1.labels.clearLayers(); L1.trees.clearLayers(); L1.obs.clearLayers(); L1.photos.clearLayers();
@@ -1735,6 +1764,16 @@ var MAPV = {
     var g = MAPV.blockLayers && MAPV.blockLayers[blockId]; if (!g) return;
     var n = 0; var iv = setInterval(function () { g.setStyle({ color: n % 2 ? '#fff' : '#facc15', weight: n % 2 ? 2 : 5 }); if (++n > 7) { clearInterval(iv); g.setStyle({ color: '#facc15', weight: 4 }); setTimeout(function () { try { g.setStyle({ color: '#fff', weight: 2 }); } catch (e) { } }, 4000); } }, 350);
     setTimeout(function () { try { g.openPopup(); } catch (e) { } }, 1000);
+  },
+  /** Tinggi peta dihitung dari ruang layar yang benar-benar tersisa (di HP: di atas nav bar bawah & bilah URL browser) */
+  size: function () {
+    var el = $('#map'), box = $('#mapBox'); if (!el || !MAPV.map) return;
+    if (box && box.classList.contains('fs')) { el.style.height = window.innerHeight + 'px'; MAPV.map.invalidateSize(); return; }
+    var bn = $('#bnav'), bh = bn && getComputedStyle(bn).display !== 'none' ? bn.getBoundingClientRect().height : 0;
+    var top = el.getBoundingClientRect().top + (window.scrollY || 0);
+    var h = Math.max(300, Math.round(window.innerHeight - top - bh - 12));
+    el.style.height = h + 'px';
+    MAPV.map.invalidateSize();
   },
   custom: [], local: [],
   addCustomLayers: function () {
@@ -1815,7 +1854,7 @@ VIEWS.map = function () {
   var canEdit = can('ESTATE_MANAGER', 'AGRONOMIST', 'HEAD_AGRONOMY');
   $('#main').innerHTML = '<div class="row" style="margin-bottom:10px"><h2 class="pg sp" style="margin:0">Peta GIS</h2><select class="i" style="max-width:230px" id="mapTheme">' + THEMES.map(function (t) { return '<option value="' + t[0] + '"' + (MAPV.theme === t[0] ? ' selected' : '') + '>Tema: ' + t[1] + '</option>'; }).join('') + '</select></div>' +
     '<div class="map-wrap" id="mapBox"><div id="map"></div><div class="map-tools"><button class="btn" data-act="jumpTo" title="Loncat ke PT/Estate/AFD/Blok">🎯 Loncat</button><button class="btn" data-act="mapGps" title="Lacak posisi GPS">📍 GPS</button><button class="btn" data-mode="dist" data-act="mapMeasureDist">📏 Jarak</button><button class="btn" data-mode="area" data-act="mapMeasureArea">⬛ Luas</button>' + (canEdit ? '<button class="btn" data-mode="draw" data-act="mapDrawPick">✏ Gambar batas</button>' : '') + '<button class="btn" data-act="mapPmLocal" title="Buka foto udara .pmtiles dari perangkat">🛩 Foto udara</button><button class="btn" data-act="mapLayers">☰ Layer</button><button class="btn" data-act="mapPrint" title="Cetak peta A4/A3 (layout ArcGIS)">🖨 Cetak</button><button class="btn" data-act="mapFs" title="Layar penuh">⛶</button></div><div class="map-info" id="mapInfo"><span id="mapCoord">Gerakkan kursor / geser peta</span> <span id="mapMeasure"></span></div><div class="map-legend" id="mapLegend"></div></div>' +
-    '<p class="small muted" style="margin-top:8px">Pohon: ⚪ belum · 🟢 tersampel ' + curYear() + ' · 🟠 ada deviasi SOP · 🔵 di antrean offline. Foto udara PMTiles: buka berkas dari perangkat (bisa disimpan untuk offline) atau daftarkan URL https di ☰ Layer.</p>';
+    '<p class="small muted map-note" style="margin-top:8px">Pohon: ⚪ belum · 🟢 tersampel ' + curYear() + ' · 🟠 ada deviasi SOP · 🔵 di antrean offline. Foto udara PMTiles: buka berkas dari perangkat (bisa disimpan untuk offline) atau daftarkan URL https di ☰ Layer.</p>';
   $('#mapTheme').onchange = function () { MAPV.theme = this.value; LS.set('mapTheme', MAPV.theme); MAPV.drawData(); };
   loadMapLibs().catch(function () { }).then(function () { var el = $('#map'); if (S.tab === 'map' && !MAPV.map && el && !el._leaflet_id) MAPV.init(); });
 };
@@ -1836,7 +1875,8 @@ Object.assign(ACT, {
   },
   mapZoomBlock: function (el) { var b = byId(D().blocks, el.getAttribute('data-id')); MAPV.map.fitBounds(L.geoJSON(b.boundaryGeoJson).getBounds(), { maxZoom: 19 }); },
 
-  mapFs: function () { var w = $('#mapBox'); w.classList.toggle('fs'); setTimeout(function () { MAPV.map.invalidateSize(); }, 150); },
+  mapFs: function () { var w = $('#mapBox'); w.classList.toggle('fs'); setTimeout(MAPV.size, 120); },
+  mapLegendToggle: function () { var l = $('#mapLegend'); if (l) l.classList.toggle('open'); },
   mapPmLocal: function () {
     modal('Buka Foto Udara (PMTiles)', '<p class="small">Pilih berkas <b>.pmtiles</b> raster (ortofoto drone / foto udara). Berkas dibaca langsung dari perangkat — <b>tidak perlu internet</b>, cocok untuk lapangan.</p><label class="f">Berkas .pmtiles<input class="i" type="file" id="pmFile" accept=".pmtiles"></label><label class="chk" style="margin-top:8px"><input type="checkbox" id="pmSave" checked> Simpan di perangkat agar tersedia offline berikutnya</label><p class="small muted">Membuat PMTiles: GeoTIFF → <span class="mono">gdal2tiles/gdal_translate -of MBTiles</span> → <span class="mono">pmtiles convert ortho.mbtiles ortho.pmtiles</span>. Lihat panduan.</p>',
       [{ label: 'Batal' }, { label: 'Buka', cls: 'p', onClick: function (b) { var f = $('#pmFile', b).files[0]; if (!f) { toast('Pilih berkas.', 'bad'); return false; } MAPV.addLocalPm(f, $('#pmSave', b).checked); } }]);
@@ -1854,6 +1894,9 @@ Object.assign(ACT, {
   delLayer: function (el) { confirmBox('Hapus layer ini dari server?', function () { saveThen('map.layer.delete', { id: el.getAttribute('data-id') }, 'Layer dihapus.').then(function () { $$('.modal-bg').forEach(function (m) { m.remove(); }); if (MAPV.map) MAPV.addCustomLayers(); }); }, { danger: true }); },
   delLocalPm: function (el) { IDB.del('kv', el.getAttribute('data-id')).then(function () { toast('Berkas lokal dihapus (muat ulang peta).', 'ok'); el.closest('.row').remove(); }); }
 });
+
+window.addEventListener('resize', function () { clearTimeout(MAPV._rs); MAPV._rs = setTimeout(MAPV.size, 150); });
+window.addEventListener('orientationchange', function () { setTimeout(MAPV.size, 300); });
 
 /* =================== Cetak Peta A4 / A3 — layout bergaya ArcGIS ===================
  * Elemen: bingkai peta (neatline) + graticule berlabel koordinat di tepi, judul, panah utara,
