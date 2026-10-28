@@ -334,6 +334,73 @@ button.agro-chip{cursor:pointer}button.agro-chip:hover{background:#f8fafc}
 @media (max-width:1024px){.agro-chips,.agro-sm{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:520px){.agro-chip b{font-size:16px}.agro-chip .ic{display:none}.agro-li{grid-template-columns:1fr auto}.agro-li .what{grid-column:1/-1;grid-row:2}.agro-badge{font-size:13px}}
 @media (max-width:520px){.ag-ct{flex-wrap:wrap;gap:2px 6px}.ag-v small{display:none}.ag-cell{padding:7px 8px 5px}}
+/* ===== Mode demo ===== */
+.demo-pick{border:1px dashed #059669;background:#ecfdf5;border-radius:12px;padding:10px;margin-bottom:14px}
+.dp-h{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-bottom:8px}
+.demo-tag{background:#d97706;color:#fff;font-weight:800;font-size:11px;letter-spacing:.06em;padding:3px 8px;border-radius:999px}
+.dp-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.dp-u{display:flex;gap:8px;align-items:center;text-align:left;background:#fff;border:1px solid #a7f3d0;border-radius:10px;padding:7px 9px;font:inherit;color:inherit;cursor:pointer;min-width:0}
+.dp-u:hover{border-color:#047857;background:#f0fdf4}.dp-u .ic{font-size:18px}.dp-u b{display:block;font-size:13px}.dp-u small{display:block;color:var(--mut);font-size:11px;line-height:1.25}
+.demo-pill{position:fixed;left:12px;bottom:12px;z-index:60;background:#d97706;color:#fff;border:0;border-radius:999px;padding:7px 12px;font:inherit;font-weight:800;font-size:12px;box-shadow:0 4px 14px rgba(0,0,0,.2);cursor:pointer}
+@media (max-width:860px){.demo-pill{left:10px;right:auto;bottom:calc(74px + var(--safe-b));padding:5px 10px;font-size:11px}}
+
+/* ===== v2.5 Laporan pekerjaan ===== */
+.tabs .nb{display:inline-block;min-width:18px;padding:0 5px;border-radius:9px;background:var(--bad);color:#fff;font-size:11px;font-weight:800;margin-left:4px}
+.rpt-ctl{margin-bottom:14px}.rpt-form{display:grid;grid-template-columns:2fr 1.3fr 1fr 1fr auto;gap:10px;align-items:end}
+.rpt-bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.rpt-paper{background:#e2e8e4;border-radius:14px;padding:22px;overflow:auto}.rpt-paper.in-modal{padding:12px;background:#eef2ef}
+.rpt{background:#fff;color:#0f172a;max-width:860px;margin:0 auto;padding:40px 46px;box-shadow:0 10px 30px -12px rgba(0,0,0,.25);font-size:13px;line-height:1.5;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.rpt-head{display:flex;justify-content:space-between;align-items:center;gap:16px;border-bottom:3px solid var(--pri);padding-bottom:12px}
+.rpt-brand{display:flex;gap:12px;align-items:center}.rpt-brand img,.rpt-logo{width:52px;height:52px;object-fit:contain;border-radius:10px}.rpt-logo{display:flex;align-items:center;justify-content:center;background:var(--pri);font-size:28px}
+.rpt-brand b{display:block;font-size:15px;color:var(--pri)}.rpt-brand span{font-size:11.5px;color:#475569}
+.rpt-no{text-align:right}.rpt-no span{display:block;font-size:10px;letter-spacing:.14em;color:#64748b;font-weight:700}.rpt-no b{display:block;font-size:14px;font-family:ui-monospace,Menlo,monospace}
+.rpt-stamp{display:inline-block;margin-top:4px;font-style:normal;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border:1.5px solid #94a3b8;color:#64748b;padding:2px 8px;border-radius:5px}
+.rpt-stamp.ok{border-color:#15803d;color:#15803d}.rpt-stamp.bad{border-color:#b91c1c;color:#b91c1c}.rpt-stamp.info{border-color:#1d4ed8;color:#1d4ed8}
+.rpt h1{font-size:21px;margin:18px 0 2px;color:#0f172a;letter-spacing:-.01em}.rpt-sub{margin:0 0 12px;color:#475569}
+.rpt-id{width:100%;border-collapse:collapse;margin-bottom:6px;font-size:12px}.rpt-id th{text-align:left;width:110px;color:#475569;font-weight:600;background:#f8fafc}.rpt-id th,.rpt-id td{border:1px solid #e2e8f0;padding:6px 8px}
+.rpt section{margin-top:18px;break-inside:auto}.rpt h2{font-size:14.5px;color:var(--pri);border-bottom:1px solid #cbd5e1;padding-bottom:4px;margin:0 0 8px;break-after:avoid}
+.rpt p{margin:0 0 8px}.rpt-note{font-size:11px;color:#64748b}
+.rpt-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:10px}
+.rpt-kpi{border:1px solid #e2e8f0;border-top:3px solid #94a3b8;border-radius:8px;padding:8px 10px;break-inside:avoid}.rpt-kpi span{display:block;font-size:10.5px;color:#64748b;font-weight:600}.rpt-kpi b{display:block;font-size:19px;margin:2px 0}.rpt-kpi small{font-size:10.5px;color:#64748b}
+.rpt-kpi.ok{border-top-color:#16a34a}.rpt-kpi.warn{border-top-color:#d97706}.rpt-kpi.bad{border-top-color:#dc2626}
+.rpt-hl{list-style:none;padding:0;margin:0;display:grid;gap:5px}.rpt-hl li{padding:7px 10px 7px 30px;border-radius:7px;position:relative;font-size:12.5px;break-inside:avoid}
+.rpt-hl li:before{position:absolute;left:9px;top:6px}.rpt-hl .ok{background:#f0fdf4}.rpt-hl .ok:before{content:'✓';color:#15803d;font-weight:800}.rpt-hl .warn{background:#fffbeb}.rpt-hl .warn:before{content:'!';color:#b45309;font-weight:800}
+.rpt-hl .bad{background:#fef2f2}.rpt-hl .bad:before{content:'✕';color:#b91c1c;font-weight:800}.rpt-hl .info{background:#eff6ff}.rpt-hl .info:before{content:'i';color:#1d4ed8;font-weight:800;font-style:italic}
+.rpt-t{width:100%;border-collapse:collapse;font-size:11.5px}.rpt-t th{background:var(--pri);color:#fff;text-align:left;padding:5px 7px;font-weight:600}.rpt-t td{border-bottom:1px solid #e2e8f0;padding:5px 7px;vertical-align:top}.rpt-t tr:nth-child(even) td{background:#f8fafc}
+.rpt-t tr{break-inside:avoid}.rpt-t .pill{font-size:10.5px;padding:1px 7px}.rpt-log td:first-child{white-space:nowrap;color:#475569}
+.rpt-bars>div{display:grid;grid-template-columns:150px 1fr 60px;gap:8px;align-items:center;margin:4px 0;font-size:12px}.rpt-bars i{height:10px;background:#f1f5f9;border-radius:5px;overflow:hidden;display:block}.rpt-bars em{display:block;height:100%;border-radius:5px;background:#16a34a}.rpt-bars em.warn{background:#d97706}.rpt-bars em.bad{background:#dc2626}.rpt-bars b{text-align:right}
+.rpt-sg{display:grid;grid-template-columns:1fr 1fr 1.1fr;gap:18px;align-items:end}.rpt-sg>div>span{display:block;font-size:11px;color:#64748b}
+.rpt-sg .ln{border-bottom:1px solid #0f172a;padding-top:46px;font-weight:700;min-height:66px}.rpt-sg small{font-size:11px;color:#475569}
+.rpt-ver{display:flex;gap:10px;align-items:center;border:1px dashed #94a3b8;border-radius:8px;padding:8px}.rpt-ver svg{width:76px;height:76px;flex:none}.rpt-ver span{display:block;font-size:10.5px;color:#64748b}.rpt-ver b{display:block;font-size:13px;letter-spacing:.06em}.rpt-ver small{font-size:10.5px;color:#475569}
+.rpt-foot{margin-top:22px;padding-top:8px;border-top:1px solid #e2e8f0;font-size:10px;color:#64748b;text-align:center}
+@media (max-width:860px){.rpt-form{grid-template-columns:1fr 1fr}.rpt-form .btn{grid-column:1/-1}.rpt-paper{padding:8px;margin:0 -6px}.rpt{padding:20px 16px}.rpt-kpis{grid-template-columns:1fr 1fr}.rpt-sg{grid-template-columns:1fr}.rpt-head{flex-direction:column;align-items:flex-start}.rpt-no{text-align:left}.rpt-bars>div{grid-template-columns:90px 1fr 48px}.rpt-t{font-size:11px}.rpt-paper .rpt-t{display:block;overflow-x:auto}}
+@media print{#printArea .rpt{box-shadow:none;padding:0;max-width:none;font-size:11.5px}#printArea .rpt-t th{background:#064e3b!important;color:#fff!important}
+ @page{@bottom-right{content:"Hal " counter(page) " / " counter(pages);font-size:9px;color:#64748b}}}
+/* ===== v2.5 Asisten LSU ===== */
+.ag-fab{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;align-items:center;gap:8px;background:var(--pri);color:#fff;border:0;border-radius:999px;padding:11px 18px 11px 14px;font:inherit;font-weight:700;box-shadow:0 10px 28px -6px rgba(6,78,59,.55);cursor:pointer}
+.ag-fab span{font-size:20px}.ag-fab:hover{background:var(--pri2)}body.ag-on .ag-fab{display:none}
+.ag-panel{position:fixed;right:18px;bottom:18px;z-index:960;width:410px;max-width:calc(100vw - 24px);height:min(680px,calc(100vh - 36px));background:#fff;border-radius:18px;box-shadow:0 24px 60px -12px rgba(0,0,0,.35),0 0 0 1px rgba(0,0,0,.05);display:flex;flex-direction:column;overflow:hidden}
+.ag-h{display:flex;align-items:center;gap:10px;padding:12px 12px 12px 14px;background:var(--pri);color:#fff}.ag-h .btn{background:#ffffff1f;color:#fff;border-color:transparent}.ag-h small{display:block;font-size:11px;opacity:.8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:230px}
+.ag-av{width:36px;height:36px;border-radius:50%;background:#ffffff26;display:flex;align-items:center;justify-content:center;font-size:20px}
+.ag-body{flex:1;overflow-y:auto;padding:14px;background:#f6f8f7;display:flex;flex-direction:column;gap:9px}
+.ag-hello{text-align:center;color:var(--mut);padding:20px 10px}.ag-hello b{color:var(--ink);font-size:16px}.ag-big{font-size:34px;margin-bottom:6px}
+.ag-m{display:flex}.ag-m>div{max-width:88%;padding:9px 12px;border-radius:14px;font-size:13.5px;line-height:1.45;overflow-wrap:anywhere}
+.ag-m.me{justify-content:flex-end}.ag-m.me>div{background:var(--pri);color:#fff;border-bottom-right-radius:4px;white-space:pre-wrap}
+.ag-m.bot>div{background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px}.ag-m.err>div{background:#fef2f2;border-color:#fecaca}
+.ag-m p{margin:0 0 6px}.ag-m p:last-child{margin:0}.ag-m ul,.ag-m ol{margin:4px 0 6px;padding-left:18px}.ag-m li{margin:2px 0}.ag-m code{background:#f1f5f9;padding:0 4px;border-radius:4px;font-size:12px}
+.ag-tw{overflow-x:auto;margin:6px 0}.ag-tw table{border-collapse:collapse;font-size:12px;min-width:100%}.ag-tw th{background:#ecfdf5;text-align:left;padding:4px 6px;white-space:nowrap}.ag-tw td{border-top:1px solid #e2e8f0;padding:4px 6px;vertical-align:top}
+.ag-tool{align-self:flex-start;font-size:11.5px;color:var(--mut);background:#e8efeb;border-radius:999px;padding:3px 10px}
+.ag-ui{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.ag-note{display:block;margin-top:6px;color:var(--mut);font-size:11px}
+.ag-dots{display:inline-flex;gap:4px}.ag-dots i{width:7px;height:7px;border-radius:50%;background:#94a3b8;animation:agd 1s infinite}.ag-dots i:nth-child(2){animation-delay:.15s}.ag-dots i:nth-child(3){animation-delay:.3s}
+@keyframes agd{0%,80%,100%{opacity:.3;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
+.ag-sug{display:flex;gap:6px;overflow-x:auto;padding:8px 12px 2px;background:#fff;scrollbar-width:none}.ag-sug::-webkit-scrollbar{display:none}
+.ag-chip{flex:none;border:1px solid #a7f3d0;background:#f0fdf4;color:var(--pri);border-radius:999px;padding:6px 11px;font:inherit;font-size:12.5px;cursor:pointer;white-space:nowrap}
+.ag-in{display:flex;gap:8px;padding:8px 12px;background:#fff;align-items:flex-end}.ag-in textarea{flex:1;resize:none;border:1px solid var(--line);border-radius:12px;padding:9px 11px;font:inherit;font-size:14px;max-height:110px;min-height:40px}
+.ag-in .btn{height:40px;width:44px;padding:0;font-size:17px}
+.ag-foot{font-size:10.5px;color:var(--mut);padding:0 12px 10px;background:#fff;line-height:1.35}
+@media (max-width:860px){.ag-fab{right:12px;bottom:calc(74px + var(--safe-b));padding:10px 14px 10px 12px}.ag-fab b{display:none}
+ .ag-panel{right:0;bottom:0;left:0;width:auto;max-width:none;height:calc(100dvh - 0px);border-radius:0}}
+@media print{.ag-fab,.ag-panel{display:none!important}}
 
 </style>
 </head>
@@ -350,7 +417,7 @@ button.agro-chip{cursor:pointer}button.agro-chip:hover{background:#f8fafc}
 <div id="printArea"></div>
 <script>
 /* ==== KONFIGURASI (GitHub Pages): isi URL Web App Apps Script Anda ==== */
-window.LSU_CONFIG = { apiUrl: 'https://script.google.com/macros/s/AKfycbxkNPO_FR8hO__HN6m_fiey7QZTv3ZAd08vmfX8rlF7nxlpx8cR-kACgYYxyZj-uCIs/exec' };
+window.LSU_CONFIG = { apiUrl: '' };
 </script>
 <script>
 /* =====================================================================
@@ -617,6 +684,7 @@ var NAV = [
   { id: 'samples', ico: '🧪', t: 'Sampel & CoC', roles: '*' },
   { id: 'lab', ico: '🔬', t: 'Laboratorium', roles: ['LAB_MANAGER', 'LAB_ANALYST', 'AGRONOMIST', 'HEAD_AGRONOMY', 'ESTATE_MANAGER'] },
   { id: 'reco', ico: '🌱', t: 'Rekomendasi Pupuk', roles: ['AGRONOMIST', 'HEAD_AGRONOMY', 'ESTATE_MANAGER', 'FIELD_SUPERVISOR'] },
+  { id: 'reports', ico: '📑', t: 'Laporan', roles: '*' },
   { sep: 1 },
   { id: 'master', ico: '🌴', t: 'Master Kebun', roles: '*' },
   { id: 'sop', ico: '📘', t: 'SOP & Ambang Hara', roles: '*' },
@@ -960,6 +1028,8 @@ function jumpTo(kind, id) {
 }
 
 /* =================== Ringkasan / Dashboard =================== */
+/** nama sapaan: lewati gelar di depan (Dr., Ir., Prof., H., Hj., drh.) */
+function greetName(n) { var w = String(n || '').split(/[ ,(]+/).filter(Boolean); while (w.length > 1 && /^(dr|drh|ir|prof|h|hj|drs|dra)\.?$/i.test(w[0])) w.shift(); return w[0] || ''; }
 function curYear() { return new Date().getFullYear(); }
 function hbars(rows, max) {
   max = max || Math.max.apply(null, rows.map(function (r) { return r[1]; }).concat([1]));
@@ -982,6 +1052,9 @@ function myTasks() {
     var dr = recs.filter(function (x) { return x.status === 'DRAFT'; }).length; add(dr, dr + ' draf rekomendasi perlu direview', 'reco');
   }
   if (can('HEAD_AGRONOMY')) { var rv = recs.filter(function (x) { return x.status === 'REVIEWED_BY_AGRONOMIST'; }).length; add(rv, rv + ' rekomendasi menunggu persetujuan VP', 'reco'); }
+  var ib = d.reportInbox || {};
+  add(ib.toReview, ib.toReview + ' laporan pekerjaan menunggu pemeriksaan Anda', 'reports');
+  add(ib.returned, ib.returned + ' laporan Anda dikembalikan atasan, periksa catatannya', 'reports');
   return t;
 }
 VIEWS.dash = function () {
@@ -1001,7 +1074,7 @@ VIEWS.dash = function () {
   var st = ['SAMPLED', 'PACKED', 'IN_TRANSIT', 'RECEIVED_LAB', 'IN_PREPARATION', 'ANALYZING', 'ANALYSIS_COMPLETED', 'REJECTED_LAB'];
   var nutCls = {};
   results.filter(function (r) { return r.status === 'APPROVED'; }).forEach(function (r) { (d.nutrients || []).forEach(function (n) { var v = r.values[n.f]; var c = v < n.acute ? 'ACUTE_DEFICIENT' : v < n.low ? 'DEFICIENT' : v <= n.optHi ? 'OPTIMAL' : v <= n.hiHi ? 'HIGH' : 'EXCESS'; nutCls[n.k] = nutCls[n.k] || {}; nutCls[n.k][c] = (nutCls[n.k][c] || 0) + 1; }); });
-  $('#main').innerHTML = '<h2 class="pg">Selamat datang, ' + esc((S.user.fullName || '').split(/[ ,(]/)[0]) + ' 👋</h2><p class="pg-sub">' + esc(filterLabel()) + ' · Tahun sampling ' + yr + '</p>' +
+  $('#main').innerHTML = '<h2 class="pg">Selamat datang, ' + esc(greetName(S.user.fullName)) + ' 👋</h2><p class="pg-sub">' + esc(filterLabel()) + ' · Tahun sampling ' + yr + '</p>' +
     (!lic.valid ? '<div class="alert bad" style="margin-bottom:12px">Lisensi tidak aktif: ' + esc(lic.reason || '') + ' Aplikasi dalam mode baca-saja.</div>' : (lic.daysLeft <= 14 ? '<div class="alert warn" style="margin-bottom:12px">Lisensi ' + esc(lic.tier) + ' berakhir dalam ' + lic.daysLeft + ' hari (' + esc(lic.expiresAt) + ').</div>' : '')) +
     (late.length ? '<div class="alert bad" style="margin-bottom:12px">⚠ ' + late.length + ' sampel dalam kiriman melebihi batas SOP ' + (proto.maxLeadTimeHoursToLab || 48) + ' jam: ' + late.map(function (s) { return esc(s.code); }).join(', ') + '</div>' : '') +
     '<div class="grid g4" style="margin-bottom:14px">' +
@@ -1630,7 +1703,7 @@ ACT.auditCsv = function () { downloadText('audit-trail.csv', toCsv([['waktu', 'a
 /* =================== Administrasi =================== */
 VIEWS.admin = function () {
   var d = D(), sub = S.sub.admin || 'users', b = S.branding, lic = d.license || {};
-  var h = '<h2 class="pg">Administrasi</h2><p class="pg-sub">Pengguna, branding, lisensi, dan pengaturan sistem.</p><div class="tabs">' + [['users', 'Pengguna'], ['brand', 'Branding'], ['license', 'Lisensi'], ['settings', 'Pengaturan & Backup'], ['privacy', 'Privasi & Legal']].map(function (t) { return '<button data-sub="' + t[0] + '" class="' + (sub === t[0] ? 'on' : '') + '">' + t[1] + '</button>'; }).join('') + '</div>';
+  var h = '<h2 class="pg">Administrasi</h2><p class="pg-sub">Pengguna, branding, lisensi, dan pengaturan sistem.</p><div class="tabs">' + [['users', 'Pengguna'], ['brand', 'Branding'], ['license', 'Lisensi'], ['settings', 'Pengaturan & Backup'], ['privacy', 'Privasi & Legal'], ['ai', 'Asisten AI']].map(function (t) { return '<button data-sub="' + t[0] + '" class="' + (sub === t[0] ? 'on' : '') + '">' + t[1] + '</button>'; }).join('') + '</div>';
   if (sub === 'users') {
     h += '<div class="row" style="margin-bottom:10px"><span class="sp small muted">' + d.users.filter(function (u) { return u.isActive; }).length + ' / ' + (lic.maxUsers || '-') + ' pengguna aktif (paket ' + esc(lic.tier) + ')</span><button class="btn p" data-act="userForm">+ Pengguna</button></div>';
     h += '<div class="tbl-wrap"><table class="t rsp"><thead><tr><th>Nama</th><th>Username</th><th>Peran</th><th>Scope estate</th><th>Login terakhir</th><th>Status</th><th></th></tr></thead><tbody>' + d.users.map(function (u) { return '<tr><td data-l="Nama">' + esc(u.fullName) + '</td><td data-l="Username" class="mono">' + esc(u.username) + '</td><td data-l="Peran">' + esc(u.roleLabel) + '</td><td data-l="Scope" class="small">' + ((u.estateIds || []).length ? u.estateIds.map(function (id) { return esc((byId(d.estates, id) || {}).code || id); }).join(', ') : '<i>Global</i>') + '</td><td data-l="Login" class="small">' + fmtD(u.lastLoginAt, true) + '</td><td data-l="Status">' + (u.isActive ? pill('APPROVED').replace('Disetujui', 'Aktif') : pill('CANCELLED').replace('Batal', 'Nonaktif')) + (u.lockedUntil && new Date(u.lockedUntil) > new Date() ? ' <span class="pill bad">Terkunci</span>' : '') + (u.mustChangePw ? ' <span class="pill warn">Wajib ganti pw</span>' : '') + '</td><td class="act"><div class="row" style="gap:4px;justify-content:flex-end"><button class="btn s" data-act="userForm" data-id="' + u.id + '">Edit</button><button class="btn s w" data-act="resetPw" data-id="' + u.id + '">Reset pw</button></div></td></tr>'; }).join('') + '</tbody></table></div>';
@@ -1642,9 +1715,11 @@ VIEWS.admin = function () {
       '<div class="card"><h3>Aktivasi kunci lisensi</h3><textarea class="i mono" id="licKey" style="min-height:140px" placeholder="Tempel kunci lisensi dari penyedia…"></textarea><button class="btn p" style="margin-top:10px" data-act="activateLic">Aktifkan</button><p class="small muted">Kunci ditandatangani secara kriptografis (RSA-2048) dan terikat ke ID spreadsheet ini.</p></div></div>';
   } else if (sub === 'privacy') {
     h += adminPrivacyHtml();
+  } else if (sub === 'ai') {
+    h += adminAiHtml();
   } else {
     h += '<div class="grid g2"><div class="card"><h3>Pengaturan</h3><div class="grid"><label class="f">Laboratorium default<input class="i" name="defaultLab" value="' + esc(b.defaultLab || '') + '" placeholder="Laboratorium Sentral Agronomi"></label><div class="alert info small">📷 Semua foto dikompres di perangkat lalu disimpan di Google Drive (folder <b>LSU Enterprise - Foto Dokumentasi</b>). Spreadsheet hanya menyimpan URL & ID file.</div><label class="chk"><input type="checkbox" name="waEnabled"' + (b.waEnabled ? ' checked' : '') + '> Notifikasi WhatsApp (Fonnte)</label><label class="f">Token Fonnte (disimpan di Script Properties)<input class="i" type="password" name="fonnteToken" placeholder="kosongkan bila tidak diubah"></label><button class="btn p" data-act="saveSettings">Simpan pengaturan</button></div></div>' +
-      '<div class="card"><h3>Backup & data</h3><p class="small muted">Unduh seluruh tabel (tanpa hash password & media) dalam format JSON.</p><button class="btn" data-act="backup">⬇ Unduh backup JSON</button>' + (!d.estates.length ? '<hr><p class="small">Database masih kosong.</p><button class="btn" data-act="seedDemo">Isi data demo</button>' : '') + '<hr><p class="small muted">Versi aplikasi 2.0.0 · Mode ' + (IS_GAS ? 'Apps Script' : 'PWA') + '</p></div></div>';
+      '<div class="card"><h3>Backup & data</h3><p class="small muted">Unduh seluruh tabel (tanpa hash password & media) dalam format JSON.</p><button class="btn" data-act="backup">⬇ Unduh backup JSON</button>' + (!d.estates.length ? '<hr><p class="small">Database masih kosong.</p><button class="btn" data-act="seedDemo">Isi data demo</button>' : '') + '<hr><p class="small muted">Versi aplikasi ' + FE_VERSION + ' · Mode ' + (IS_GAS ? 'Apps Script' : 'PWA') + '</p></div></div>';
   }
   $('#main').innerHTML = h;
 };
@@ -2667,13 +2742,571 @@ window.addEventListener('resize', function () {
 });
 window.addEventListener('scroll', tipHide, { passive: true });
 
+/* =================== Laporan Pekerjaan (v2.5) ===================
+ * Laporan disusun otomatis di server dari data operasional + audit trail. Halaman ini:
+ *   Buat laporan → pratinjau dokumen A4 → cetak/PDF, CSV, terbitkan (nomor resmi + kode verifikasi)
+ *   Arsip laporan → daftar sesuai hak akses, pemeriksaan atasan (DIPERIKSA / DIKEMBALIKAN)
+ *   Jadwal otomatis (Super Admin) → mingguan/bulanan via pemicu waktu Apps Script
+ */
+var RPT_REVIEWER = { SURVEYOR: ['FIELD_SUPERVISOR', 'ESTATE_MANAGER'], FIELD_SUPERVISOR: ['ESTATE_MANAGER'], ESTATE_MANAGER: ['AGRONOMIST', 'HEAD_AGRONOMY'], AGRONOMIST: ['HEAD_AGRONOMY'], LAB_ANALYST: ['LAB_MANAGER'], LAB_MANAGER: ['HEAD_AGRONOMY'], HEAD_AGRONOMY: ['SUPER_ADMIN'], SUPER_ADMIN: [] };
+var RPT_STATUS = { TERBIT: ['Terbit', 'info'], DIPERIKSA: ['Diperiksa', 'ok'], DIKEMBALIKAN: ['Dikembalikan', 'bad'] };
+var RPT_PRESETS = [['today', 'Hari ini'], ['week', 'Minggu ini'], ['lastweek', 'Minggu lalu'], ['month', 'Bulan ini'], ['lastmonth', 'Bulan lalu'], ['year', 'Tahun ini'], ['custom', 'Pilih tanggal…']];
+
+function ymdLocal(d) { return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
+function rptRange(preset) {
+  var t = new Date(); t.setHours(0, 0, 0, 0);
+  var dow = (t.getDay() + 6) % 7, mon = new Date(t.getTime() - dow * 864e5);
+  switch (preset) {
+    case 'today': return [ymdLocal(t), ymdLocal(t)];
+    case 'week': return [ymdLocal(mon), ymdLocal(t)];
+    case 'lastweek': return [ymdLocal(new Date(mon.getTime() - 7 * 864e5)), ymdLocal(new Date(mon.getTime() - 864e5))];
+    case 'lastmonth': return [ymdLocal(new Date(t.getFullYear(), t.getMonth() - 1, 1)), ymdLocal(new Date(t.getFullYear(), t.getMonth(), 0))];
+    case 'year': return [ymdLocal(new Date(t.getFullYear(), 0, 1)), ymdLocal(t)];
+    default: return [ymdLocal(new Date(t.getFullYear(), t.getMonth(), 1)), ymdLocal(t)];
+  }
+}
+/** Pengguna yang laporannya boleh dibuat/dilihat oleh pengguna aktif (cermin aturan server) */
+function rptSubjects() {
+  var me = S.user, r = me.role, mine = me.estateIds || [];
+  return (D().users || []).filter(function (u) {
+    if (!u.isActive && u.id !== me.id) return false;
+    if (u.id === me.id || r === 'SUPER_ADMIN' || r === 'HEAD_AGRONOMY') return true;
+    var ok = (RPT_REVIEWER[u.role] || []).indexOf(r) >= 0 || (r === 'AGRONOMIST' && ['ESTATE_MANAGER', 'FIELD_SUPERVISOR', 'SURVEYOR'].indexOf(u.role) >= 0);
+    if (!ok) return false;
+    if (!mine.length) return true;
+    return !(u.estateIds || []).length || u.estateIds.some(function (e) { return mine.indexOf(e) >= 0; });
+  }).sort(function (a, b) { return (a.id === me.id ? -1 : b.id === me.id ? 1 : 0) || String(a.fullName).localeCompare(String(b.fullName)); });
+}
+
+/* ---------- dokumen laporan (layar & cetak) ---------- */
+function rptCell(v) {
+  if (v && typeof v === 'object') {
+    if (v.sev) return '<span class="pill ' + ({ crit: 'bad', warn: 'warn', watch: 'info' })[v.sev] + '">' + ({ crit: 'Kritis', warn: 'Di luar optimum', watch: 'Waspada' })[v.sev] + '</span>';
+    if (v.status) return v.text ? '<span class="pill ' + (STATUS_CLS[v.status] || '') + '">' + esc(v.text) + '</span>' : pill(v.status);
+  }
+  if (typeof v === 'number') return fmtN(v, Math.abs(v) < 10 && v % 1 ? 3 : (v % 1 ? 1 : 0));
+  return esc(v === null || v === undefined || v === '' ? '-' : v);
+}
+function rptDocHtml(c, rec) {
+  var m = c.meta, b = S.branding, n = 1;
+  var no = rec ? rec.reportNo : '';
+  var st = rec ? RPT_STATUS[rec.status] || [rec.status, ''] : null;
+  var h = '<article class="rpt">';
+  h += '<header class="rpt-head"><div class="rpt-brand">' + (b.logo ? '<img src="' + b.logo + '" alt="">' : '<span class="rpt-logo">🌴</span>') + '<div><b>' + esc(m.company || b.companyName || '') + '</b><span>' + esc(m.appTitle || b.appTitle) + '</span></div></div>' +
+    '<div class="rpt-no"><span>LAPORAN PEKERJAAN</span><b>' + (no ? esc(no) : 'PRATINJAU') + '</b>' + (st ? '<em class="rpt-stamp ' + st[1] + '">' + esc(st[0]) + '</em>' : '<em class="rpt-stamp">Belum diterbitkan</em>') + '</div></header>';
+  h += '<h1>' + esc(m.title) + '</h1><p class="rpt-sub">Periode ' + esc(m.period.label) + ' · ' + m.period.days + ' hari</p>';
+  h += '<table class="rpt-id"><tr><th>Nama</th><td>' + esc(m.subject.name) + '</td><th>Peran</th><td>' + esc(m.roleLabel) + '</td></tr><tr><th>Wilayah kerja</th><td>' + esc((m.subject.estates || []).join(', ') || 'Semua estate') + '</td><th>Periode</th><td>' + esc(m.period.from) + ' s/d ' + esc(m.period.to) + '</td></tr>' +
+    '<tr><th>Disusun</th><td>' + fmtD(m.generatedAt, true) + ' · ' + (m.source === 'AUTO' ? 'otomatis terjadwal' : 'otomatis dari data') + '</td><th>Diterbitkan</th><td>' + (rec ? fmtD(rec.issuedAt, true) + ' oleh ' + esc(rec.issuedByName) : '-') + '</td></tr></table>';
+  h += '<section><h2>' + (n++) + '. Ringkasan Eksekutif</h2>' + (c.narrative || []).map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('') +
+    '<div class="rpt-kpis">' + (c.kpis || []).map(function (k) { return '<div class="rpt-kpi ' + (k.tone || '') + '"><span>' + esc(k.label) + '</span><b>' + esc(k.value) + '</b><small>' + esc(k.note || '') + '</small></div>'; }).join('') + '</div></section>';
+  if ((c.highlights || []).length) h += '<section><h2>' + (n++) + '. Catatan Penting</h2><ul class="rpt-hl">' + c.highlights.map(function (x) { return '<li class="' + x.tone + '">' + esc(x.text) + '</li>'; }).join('') + '</ul></section>';
+  (c.sections || []).forEach(function (s) {
+    h += '<section><h2>' + (n++) + '. ' + esc(s.title) + '</h2>';
+    if (s.kind === 'bars') {
+      var mx = Math.max.apply(null, s.items.map(function (i) { return i[1]; }).concat([s.unit === '%' ? 100 : 1]));
+      h += '<div class="rpt-bars">' + s.items.map(function (i) { return '<div><span>' + esc(i[0]) + '</span><i><em class="' + (i[2] || 'ok') + '" style="width:' + (i[1] / mx * 100) + '%"></em></i><b>' + fmtN(i[1], s.unit === '%' ? 1 : 0) + (s.unit || '') + '</b></div>'; }).join('') + '</div>';
+    } else h += '<table class="rpt-t"><thead><tr>' + s.columns.map(function (x) { return '<th>' + esc(x) + '</th>'; }).join('') + '</tr></thead><tbody>' + s.rows.map(function (r) { return '<tr>' + r.map(function (v) { return '<td>' + rptCell(v) + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table>';
+    h += '</section>';
+  });
+  h += '<section><h2>' + (n++) + '. Log Aktivitas Tercatat</h2>' + ((c.activity || []).length ? '<table class="rpt-t rpt-log"><thead><tr><th style="width:120px">Waktu</th><th>Aktivitas</th><th>Keterangan</th></tr></thead><tbody>' + c.activity.map(function (a) { return '<tr><td>' + fmtD(a.at, true) + '</td><td>' + esc(a.label) + '</td><td>' + esc(a.detail) + '</td></tr>'; }).join('') + '</tbody></table><p class="rpt-note">Menampilkan ' + c.activity.length + ' dari ' + c.activityTotal + ' aktivitas tercatat di audit trail pada periode ini.</p>' : '<p class="rpt-note">Tidak ada aktivitas yang tercatat atas nama pegawai ini pada periode laporan.</p>') + '</section>';
+  h += '<section class="rpt-sign"><h2>' + (n++) + '. Pengesahan</h2><div class="rpt-sg"><div><span>Dibuat oleh</span><div class="ln">' + esc(m.subject.name) + '</div><small>' + esc(m.roleLabel) + '</small></div>' +
+    '<div><span>Diperiksa oleh</span><div class="ln">' + (rec && rec.reviewedByName ? esc(rec.reviewedByName) + ' <em class="rpt-stamp ' + (rec.status === 'DIKEMBALIKAN' ? 'bad' : 'ok') + '">' + (rec.status === 'DIKEMBALIKAN' ? 'Dikembalikan' : 'Diperiksa') + '</em>' : '&nbsp;') + '</div><small>' + esc(m.reviewerRoleLabel || '-') + (rec && rec.reviewedAt ? ' · ' + fmtD(rec.reviewedAt, true) : '') + '</small>' + (rec && rec.reviewNote ? '<p class="rpt-note">Catatan: ' + esc(rec.reviewNote) + '</p>' : '') + '</div>' +
+    (rec ? '<div class="rpt-ver">' + (typeof qrSvg === 'function' && window.qrcode ? qrSvg('LSU-RPT|' + rec.reportNo + '|' + rec.verifyCode) : '') + '<div><span>Kode verifikasi</span><b class="mono">' + esc(rec.verifyCode) + '</b><small>SHA-256 isi laporan' + (rec.integrity === false ? ' · <b style="color:#b91c1c">TIDAK COCOK</b>' : rec.integrity ? ' · utuh ✓' : '') + '</small></div></div>' : '<div class="rpt-ver"><div><span>Kode verifikasi</span><small>Diberikan saat laporan diterbitkan.</small></div></div>') + '</div></section>';
+  h += '<footer class="rpt-foot">Dokumen ini disusun otomatis oleh ' + esc(m.appTitle) + ' v' + esc(m.appVersion) + ' dari data operasional dan audit trail, tanpa input manual. Laporan yang diterbitkan diarsipkan dan tidak dapat diubah.</footer>';
+  return h + '</article>';
+}
+function rptPrint(c, rec) {
+  var pa = $('#printArea'); pa.innerHTML = rptDocHtml(c, rec);
+  document.body.classList.add('rpt-printing');
+  setTimeout(function () { window.print(); setTimeout(function () { document.body.classList.remove('rpt-printing'); }, 500); }, 250);
+}
+function rptCsv(c, rec) {
+  var L = [], m = c.meta;
+  L.push([m.title]); L.push(['No. laporan', rec ? rec.reportNo : 'PRATINJAU']); L.push(['Nama', m.subject.name]); L.push(['Peran', m.roleLabel]); L.push(['Periode', m.period.from + ' s/d ' + m.period.to]); L.push([]);
+  L.push(['INDIKATOR', 'NILAI', 'KETERANGAN']); (c.kpis || []).forEach(function (k) { L.push([k.label, k.value, k.note || '']); }); L.push([]);
+  (c.sections || []).forEach(function (s) {
+    L.push([s.title.toUpperCase()]);
+    if (s.kind === 'bars') s.items.forEach(function (i) { L.push([i[0], i[1] + (s.unit || '')]); });
+    else { L.push(s.columns); s.rows.forEach(function (r) { L.push(r.map(function (v) { return v && typeof v === 'object' ? (v.text || lbl(v.status) || v.sev) : v; })); }); }
+    L.push([]);
+  });
+  L.push(['LOG AKTIVITAS']); L.push(['Waktu', 'Aktivitas', 'Keterangan']); (c.activity || []).forEach(function (a) { L.push([a.at, a.label, a.detail]); });
+  var csv = '﻿' + L.map(function (r) { return r.map(function (x) { x = x === null || x === undefined ? '' : String(x); return /[";\n]/.test(x) ? '"' + x.replace(/"/g, '""') + '"' : x; }).join(';'); }).join('\r\n');
+  downloadText((rec ? rec.reportNo.replace(/\//g, '-') : 'Pratinjau-' + m.subject.username + '-' + m.period.from) + '.csv', csv, 'text/csv;charset=utf-8');
+}
+
+/* ---------- halaman ---------- */
+VIEWS.reports = function () {
+  var sub = S.sub.reports || 'make', inbox = D().reportInbox || {};
+  var tabs = [['make', '📝 Buat laporan'], ['archive', '🗂️ Arsip laporan' + (inbox.toReview ? ' <span class="nb">' + inbox.toReview + '</span>' : '')]];
+  if (role() === 'SUPER_ADMIN') tabs.push(['auto', '⏱️ Jadwal otomatis']);
+  var h = '<h2 class="pg">Laporan Pekerjaan</h2><p class="pg-sub">Disusun otomatis dari data kerja dan audit trail setiap peran. Terbitkan untuk mendapat nomor resmi, lalu atasan memeriksa.</p><div class="tabs">' + tabs.map(function (t) { return '<button data-sub="' + t[0] + '" class="' + (sub === t[0] ? 'on' : '') + '">' + t[1] + '</button>'; }).join('') + '</div>';
+  if (sub === 'make') {
+    var R = S.rpt = S.rpt || { userId: S.user.id, preset: 'week' };
+    var rg = R.preset === 'custom' ? [R.from || rptRange('month')[0], R.to || rptRange('month')[1]] : rptRange(R.preset);
+    var subs = rptSubjects();
+    h += '<div class="card rpt-ctl"><div class="rpt-form"><label class="f">Pegawai<select class="i" id="rUser">' + subs.map(function (u) { return '<option value="' + u.id + '"' + (u.id === R.userId ? ' selected' : '') + '>' + esc(u.fullName) + ' — ' + esc(u.roleLabel || u.role) + (u.id === S.user.id ? ' (saya)' : '') + '</option>'; }).join('') + '</select></label>' +
+      '<label class="f">Periode<select class="i" id="rPreset">' + RPT_PRESETS.map(function (p) { return '<option value="' + p[0] + '"' + (p[0] === R.preset ? ' selected' : '') + '>' + p[1] + '</option>'; }).join('') + '</select></label>' +
+      '<label class="f">Dari<input class="i" type="date" id="rFrom" value="' + rg[0] + '"' + (R.preset === 'custom' ? '' : ' disabled') + '></label><label class="f">Sampai<input class="i" type="date" id="rTo" value="' + rg[1] + '"' + (R.preset === 'custom' ? '' : ' disabled') + '></label>' +
+      '<button class="btn p" data-act="rptPreview">⚡ Susun laporan</button></div>' +
+      '<p class="small muted" style="margin:8px 0 0">Isi laporan diambil otomatis: indikator kinerja peran, tabel kerja, catatan penting, dan log aktivitas audit. Tidak perlu mengetik apa pun.</p></div>';
+    h += '<div id="rptOut">' + (R.content ? rptToolbar(false) + '<div class="rpt-paper">' + rptDocHtml(R.content, null) + '</div>' : '<div class="empty">Pilih pegawai dan periode, lalu tekan <b>Susun laporan</b>.</div>') + '</div>';
+  } else if (sub === 'archive') {
+    var f = S.rptFilter || (inbox.toReview ? 'review' : 'all');
+    h += '<div class="row" style="margin-bottom:10px;flex-wrap:wrap;gap:6px">' + [['all', 'Semua'], ['review', 'Perlu saya periksa' + (inbox.toReview ? ' (' + inbox.toReview + ')' : '')], ['mine', 'Laporan saya'], ['returned', 'Dikembalikan']].map(function (x) { return '<button class="btn s' + (f === x[0] ? ' p' : '') + '" data-act="rptFilter" data-f="' + x[0] + '">' + x[1] + '</button>'; }).join('') + '</div><div id="rptList"><div class="empty"><span class="spin dk"></span> Memuat arsip…</div></div>';
+  } else {
+    h += '<div class="grid g2"><div class="card"><h3>⏱️ Laporan otomatis terjadwal</h3><div id="rptSched"><span class="spin dk"></span></div></div>' +
+      '<div class="card"><h3>Cara kerja</h3><ul class="small"><li><b>Mingguan:</b> setiap Senin pukul 06.00 WIB untuk periode Senin–Minggu sebelumnya.</li><li><b>Bulanan:</b> setiap tanggal 1 pukul 06.00 WIB untuk bulan sebelumnya.</li><li>Laporan dibuat untuk setiap pengguna aktif yang memiliki aktivitas kerja pada periode tersebut, langsung diterbitkan dengan nomor resmi, dan masuk antrean pemeriksaan atasan.</li><li>Pengguna yang menyetujui notifikasi WhatsApp mendapat pemberitahuan.</li><li>Pemicu waktu memakai kuota Apps Script pemilik (90 menit/hari akun Gmail, 6 jam/hari Workspace).</li></ul></div></div>';
+  }
+  $('#main').innerHTML = h;
+  if (sub === 'make') {
+    $('#rPreset').onchange = function () { S.rpt.preset = this.value; S.rpt.content = null; render(); };
+    $('#rUser').onchange = function () { S.rpt.userId = this.value; S.rpt.content = null; render(); };
+    ['rFrom', 'rTo'].forEach(function (id) { $('#' + id).onchange = function () { S.rpt[id === 'rFrom' ? 'from' : 'to'] = this.value; }; });
+  } else if (sub === 'archive') rptLoadList();
+  else rptLoadSched();
+};
+function rptToolbar(issued, rec) {
+  return '<div class="rpt-bar">' + (issued ? '<span class="small"><b class="mono">' + esc(rec.reportNo) + '</b> · ' + (RPT_STATUS[rec.status] || [rec.status])[0] + '</span>' : '<span class="small muted">Pratinjau. Belum bernomor.</span>') + '<span class="sp"></span>' +
+    '<button class="btn" data-act="rptPrint">🖨 Cetak / PDF</button><button class="btn" data-act="rptCsv">⬇ CSV (Excel)</button>' + (issued ? '' : '<button class="btn p" data-act="rptIssue">✅ Terbitkan & arsipkan</button>') + '</div>';
+}
+function rptLoadList() {
+  var f = S.rptFilter || ((D().reportInbox || {}).toReview ? 'review' : 'all');
+  var p = f === 'review' ? { toReview: true } : f === 'mine' ? { mine: true } : f === 'returned' ? { status: 'DIKEMBALIKAN' } : {};
+  api('report.list', p, { silent: true }).then(function (list) {
+    S.rptList = list; var el = $('#rptList'); if (!el) return;
+    el.innerHTML = list.length ? '<div class="tbl-wrap"><table class="t rsp"><thead><tr><th>No. laporan</th><th>Laporan</th><th>Periode</th><th>Sumber</th><th>Status</th><th>Pemeriksa</th><th></th></tr></thead><tbody>' + list.map(function (r) {
+      var st = RPT_STATUS[r.status] || [r.status, ''];
+      return '<tr><td data-l="No." class="mono small">' + esc(r.reportNo) + '</td><td data-l="Laporan"><b>' + esc(r.subjectName) + '</b><div class="small muted">' + esc(r.title) + '</div></td><td data-l="Periode" class="small">' + esc(r.periodFrom) + ' s/d ' + esc(r.periodTo) + '</td><td data-l="Sumber">' + (r.source === 'AUTO' ? '<span class="pill info">Otomatis</span>' : '<span class="pill">Manual</span>') + '</td><td data-l="Status"><span class="pill ' + st[1] + '">' + st[0] + '</span></td><td data-l="Pemeriksa" class="small">' + (r.reviewedByName ? esc(r.reviewedByName) + '<div class="muted">' + fmtD(r.reviewedAt) + '</div>' : '<span class="muted">' + esc(r.reviewerRoleLabel || '-') + '</span>') + '</td><td class="act"><div class="row" style="gap:4px;justify-content:flex-end"><button class="btn s' + (r.canReview ? ' p' : '') + '" data-act="rptOpen" data-id="' + r.id + '">' + (r.canReview ? 'Periksa' : 'Buka') + '</button></div></td></tr>';
+    }).join('') + '</tbody></table></div>' : '<div class="empty">Belum ada laporan pada kategori ini.</div>';
+  }).catch(function (e) { var el = $('#rptList'); if (el) el.innerHTML = '<div class="alert bad">' + esc(e.message || e) + '</div>'; });
+}
+function rptLoadSched() {
+  api('report.schedule', {}, { silent: true }).then(function (s) {
+    var el = $('#rptSched'); if (!el) return;
+    el.innerHTML = '<label class="f">Frekuensi<select class="i" id="rMode">' + [['OFF', 'Nonaktif'], ['WEEKLY', 'Mingguan (Senin 06.00)'], ['MONTHLY', 'Bulanan (tanggal 1, 06.00)']].map(function (o) { return '<option value="' + o[0] + '"' + (s.mode === o[0] ? ' selected' : '') + '>' + o[1] + '</option>'; }).join('') + '</select></label>' +
+      '<p class="small muted">Terakhir dijalankan: ' + (s.lastRun ? fmtD(s.lastRun, true) + ' · ' + s.lastCount + ' laporan dibuat' : 'belum pernah') + '</p><div class="row" style="gap:8px"><button class="btn p" data-act="rptSaveSched">Simpan jadwal</button><button class="btn" data-act="rptRunNow">▶ Jalankan sekarang (periode lalu)</button></div>';
+  }).catch(fail);
+}
+Object.assign(ACT, {
+  rptPreview: function () {
+    var R = S.rpt, rg = R.preset === 'custom' ? [$('#rFrom').value, $('#rTo').value] : rptRange(R.preset);
+    R.from = rg[0]; R.to = rg[1];
+    var out = $('#rptOut'); out.innerHTML = '<div class="empty"><span class="spin dk"></span> Menyusun laporan dari data & audit trail…</div>';
+    api('report.preview', { userId: R.userId, from: rg[0], to: rg[1] }).then(function (c) { R.content = c; out.innerHTML = rptToolbar(false) + '<div class="rpt-paper">' + rptDocHtml(c, null) + '</div>'; }).catch(function (e) { out.innerHTML = '<div class="alert bad">' + esc(e.message) + '</div>'; });
+  },
+  rptPrint: function () { if (S.rpt && S.rpt.content) rptPrint(S.rpt.content, null); },
+  rptCsv: function () { if (S.rpt && S.rpt.content) rptCsv(S.rpt.content, null); },
+  rptIssue: function () {
+    var R = S.rpt;
+    confirmBox('Terbitkan laporan ini? Laporan akan diberi nomor resmi, diarsipkan tanpa dapat diubah, dan masuk antrean pemeriksaan atasan.', function () {
+      api('report.issue', { userId: R.userId, from: R.from, to: R.to }).then(function (rec) { toast('Laporan ' + rec.reportNo + ' diterbitkan.', 'ok'); R.content = null; loadData(true); rptShow(rec); }).catch(function (e) {
+        if (e.code === 'DUPLICATE_REPORT') confirmBox(e.message + ' Terbitkan versi baru tetap?', function () { api('report.issue', { userId: R.userId, from: R.from, to: R.to, force: true }).then(function (rec) { toast('Laporan ' + rec.reportNo + ' diterbitkan.', 'ok'); R.content = null; loadData(true); rptShow(rec); }).catch(fail); });
+        else fail(e);
+      });
+    });
+  },
+  rptFilter: function (el) { S.rptFilter = el.getAttribute('data-f'); render(); },
+  rptOpen: function (el) { api('report.get', { id: el.getAttribute('data-id') }).then(rptShow).catch(fail); },
+  rptSaveSched: function () { api('report.setSchedule', { mode: $('#rMode').value }).then(function (s) { toast(s.trigger && !s.trigger.ok ? s.trigger.message : 'Jadwal laporan otomatis disimpan.', s.trigger && !s.trigger.ok ? 'bad' : 'ok'); rptLoadSched(); }).catch(fail); },
+  rptRunNow: function () { confirmBox('Buat laporan otomatis untuk periode lalu sekarang? Pengguna yang sudah punya laporan periode tersebut dilewati.', function () { api('report.autoRun', {}).then(function (r) { toast(r.created.length + ' laporan dibuat untuk ' + r.period.from + ' s/d ' + r.period.to + '.', 'ok'); loadData(true); rptLoadSched(); }).catch(fail); }); }
+});
+function rptShow(rec) {
+  var btns = [{ label: '🖨 Cetak / PDF', onClick: function () { rptPrint(rec.content, rec); return false; } }, { label: '⬇ CSV', onClick: function () { rptCsv(rec.content, rec); return false; } }];
+  if (rec.canReview && rec.status === 'TERBIT') {
+    btns.push({ label: '↩ Kembalikan', cls: 'w', onClick: function (b, close) { confirmBox('Kembalikan laporan ' + rec.reportNo + ' kepada ' + rec.subjectName + '?', function (note) { api('report.review', { id: rec.id, decision: 'return', note: note }).then(function () { toast('Laporan dikembalikan.', 'ok'); close(); loadData(true).then(function () { if (S.tab === 'reports') render(); }); }).catch(fail); }, { reason: 'Catatan untuk pembuat laporan', danger: true, yes: 'Kembalikan' }); return false; } });
+    btns.push({ label: '✓ Tandai diperiksa', cls: 'p', onClick: function (b, close) { api('report.review', { id: rec.id, decision: 'approve', note: '' }).then(function () { toast('Laporan ' + rec.reportNo + ' diperiksa.', 'ok'); close(); loadData(true).then(function () { if (S.tab === 'reports') render(); }); }).catch(fail); return false; } });
+  }
+  btns.push({ label: 'Tutup' });
+  modal(rec.reportNo, rptToolbarInfo(rec) + '<div class="rpt-paper in-modal">' + rptDocHtml(rec.content, rec) + '</div>', btns, { wide: true });
+}
+function rptToolbarInfo(rec) {
+  return rec.integrity === false ? '<div class="alert bad small" style="margin-bottom:10px">⚠ Isi arsip tidak cocok dengan kode verifikasi. Laporan mungkin telah diubah di luar aplikasi.</div>' : '';
+}
+
+/* =================== Asisten LSU (AI agent) — v2.5 ===================
+ * Dua mode, alat (tools) yang sama:
+ *  - Mode AI  : LLM (Gemini/Claude via proxy server ai.chat) memilih alat → alat dijalankan DI BROWSER
+ *  - Mode lokal: pengenal maksud (intent) bahasa Indonesia bawaan, tanpa layanan eksternal (juga saat offline/demo)
+ * Semua alat HANYA MEMBACA data yang memang dimuat untuk pengguna (RBAC server). Asisten tidak dapat mengubah data;
+ * untuk tindakan, asisten menampilkan tombol menuju halaman terkait.
+ */
+var AG = { open: false, msgs: [], conv: [], busy: false, cfg: null };
+var AG_PAGES = { ringkasan: 'dash', dashboard: 'dash', peta: 'map', survei: 'survey', perencanaan: 'plan', rencana: 'plan', sampel: 'samples', laboratorium: 'lab', lab: 'lab', rekomendasi: 'reco', pupuk: 'reco', laporan: 'reports', master: 'master', kebun: 'master', sop: 'sop', audit: 'audit', administrasi: 'admin', foto: 'docs', dokumentasi: 'docs', profil: 'profile', tentang: 'about' };
+var AG_PAGE_NAME = { dash: 'Ringkasan', map: 'Peta GIS', survey: 'Survei Lapangan', plan: 'Perencanaan LSU', samples: 'Sampel & CoC', lab: 'Laboratorium', reco: 'Rekomendasi Pupuk', reports: 'Laporan', master: 'Master Kebun', sop: 'SOP & Ambang Hara', audit: 'Audit Trail', admin: 'Administrasi', docs: 'Foto Dokumentasi', profile: 'Profil Saya', about: 'Tentang Aplikasi' };
+var AG_NUT = { n: 'N', nitrogen: 'N', p: 'P', fosfor: 'P', fosfat: 'P', k: 'K', kalium: 'K', potasium: 'K', mg: 'Mg', magnesium: 'Mg', ca: 'Ca', kalsium: 'Ca', b: 'B', boron: 'B', cu: 'Cu', tembaga: 'Cu', zn: 'Zn', seng: 'Zn' };
+
+/* ---------- Basis pengetahuan (panduan & SOP ringkas) ---------- */
+var AG_KB = [
+  { k: 'unit lsu buat unit blok homogen', t: 'Membuat unit LSU', a: 'Buka **Perencanaan LSU → tab Unit LSU → + Unit LSU**. Pilih 1–3 blok yang homogen (tahun tanam, jenis tanah, topografi sama; luas 30–100 ha). Sistem memberi peringatan bila kurang homogen.', nav: 'plan' },
+  { k: 'rencana sampling buat ajukan review setuju alur persetujuan', t: 'Rencana LSU & persetujuan', a: 'Alur: **Draf → Diajukan → Direview Estate Manager → Disetujui Agronomis → Ditugaskan → Berjalan → Selesai**. Buat di *Perencanaan LSU → Rencana & Persetujuan → + Rencana*, isi jendela sampling, lalu tekan **Ajukan**. Penolakan wajib disertai alasan.', nav: 'plan' },
+  { k: 'tugaskan penugasan surveyor assign', t: 'Menugaskan surveyor', a: 'Setelah rencana **Disetujui**, Estate Manager/Mandor membuka rencana lalu **Tugaskan** ke surveyor/mandor aktif di estate tersebut. Surveyor menerima tugas di menu *Survei Lapangan*.', nav: 'plan' },
+  { k: 'survei offline sinyal antrean sinkron catat pohon gps', t: 'Survei lapangan offline', a: 'Di *Survei Lapangan*: **Terima tugas → Mulai sampling**, ketuk pohon terdekat, isi nomor pelepah (TM 17, TBM 9), 4 anak daun, kondisi, lalu simpan. Tanpa sinyal data masuk **antrean** (ikon ⏳) dan terkirim otomatis saat online. Jangan hapus data browser sebelum antrean kosong.', nav: 'survey' },
+  { k: 'pohon pengganti mati ganoderma petir tergenang', t: 'Pohon pengganti', a: 'Bila pohon sampel mati, Ganoderma berat, tersambar petir, steril, atau tidak terjangkau, centang **Pohon pengganti**, pilih alasan, dan **wajib foto**. Ambil pohon terdekat dengan kondisi serupa.', nav: 'survey' },
+  { k: 'gps akurasi toleransi jarak lokasi', t: 'Akurasi GPS', a: 'Toleransi SOP jarak ke pohon **15 m**. Aktifkan lokasi akurasi tinggi, tunggu sampai indikator GPS ±15 m atau lebih baik, dan catat di area terbuka. Observasi di luar toleransi ditandai sebagai deviasi SOP.', nav: 'survey' },
+  { k: 'komposit sampel bentuk kemas label qr berat', t: 'Sampel komposit & label', a: 'Di *Sampel & CoC → + Bentuk komposit*: observasi tahun berjalan dikelompokkan 20–30 pohon per kantong (target 25). Lalu **Kemas** (isi berat, min. 100 g) dan cetak **label QR**.', nav: 'samples' },
+  { k: 'kirim lab pengiriman lead time surat pengantar kurir', t: 'Kirim ke lab & lead time', a: 'Pilih sampel berstatus *Dikemas* → **🚚 Kirim ke lab**, isi kurir & plat kendaraan; surat pengantar tercetak otomatis. Batas SOP **48 jam** dari pengambilan sampai diterima lab. Sampel yang melewati batas ditandai di Ringkasan.', nav: 'samples' },
+  { k: 'terima sampel lab order uji tolak', t: 'Penerimaan lab & order', a: 'Lab memindai/klik sampel *Dalam kiriman* → **Terima** (atau **Tolak** dengan alasan). Lab Manager membuat **order uji** di *Laboratorium → Penerimaan & Order*.', nav: 'lab' },
+  { k: 'input hasil uji qc crm blanko verifikasi duplikat', t: 'Hasil uji & QA/QC', a: 'Analis menginput hasil di *Laboratorium → Hasil Uji*. Verifikasi QC **wajib** memiliki data **CRM** (deviasi ≤ 5%) dan **blanko** (≤ batas deteksi) pada batch yang sama.', nav: 'lab' },
+  { k: 'setujui hasil revisi empat mata approve', t: 'Persetujuan & revisi hasil', a: 'Hasil lulus QC disetujui **Lab Manager yang berbeda dari penginput** (prinsip 4 mata). Hasil yang sudah disetujui hanya bisa diubah lewat **Revisi** (nilai lama, alasan, dan nama tercatat permanen).', nav: 'lab' },
+  { k: 'diagnosis rasio n/p k/mg anomali defisiensi faktor pembatas', t: 'Diagnosis hara', a: 'Tombol **Diagnosis** menampilkan kelas tiap unsur (sangat rendah s/d berlebih), rasio **N/P** (ideal 14–16,5), **K/Mg** (2,5–3,5), Ca/B, faktor pembatas, dan anomali (lonjakan ≥ 25% vs tahun lalu, deviasi antar unit, unit TBM).', nav: 'lab' },
+  { k: 'peringatan tren hara badge di luar optimum waspada kritis', t: 'Peringatan tren hara', a: 'Badge di *Laboratorium* menilai rata-rata hasil disetujui **per kelompok blok** (tahun terbaru vs sebelumnya): **Kritis** = sangat rendah/berlebih, **Di luar optimum** = rendah/tinggi, **Waspada** = masih optimum tetapi berubah ≥ 8% dan mendekati batas.', nav: 'lab' },
+  { k: 'rekomendasi pupuk susun dosis biaya vp rilis', t: 'Rekomendasi pupuk', a: 'Agronomis menyusun dari *Rekomendasi Pupuk → + Susun rekomendasi* (butuh hasil lab disetujui). Alur: **Draf → Review agronomis → Persetujuan VP (orang berbeda) → Dirilis ke estate**. Dosis bisa disesuaikan saat Draf.', nav: 'reco' },
+  { k: 'realisasi aplikasi pupuk catat', t: 'Realisasi pemupukan', a: 'Setelah rekomendasi **dirilis**, catat realisasi di *Rekomendasi Pupuk → Realisasi aplikasi* (blok, jenis pupuk, tanggal, kg). Realisasi muncul di laporan Estate Manager.', nav: 'reco' },
+  { k: 'peta tema pmtiles foto udara drone layer', t: 'Peta & foto udara', a: 'Di *Peta GIS* pilih **Tema** (AFD, umur, progres, status hara, tiap unsur). Tombol **Foto udara** memuat PMTiles raster dari berkas di perangkat (offline) atau URL server (Range/CORS).', nav: 'map' },
+  { k: 'cetak peta a4 a3 layout arcgis', t: 'Cetak peta', a: 'Di *Peta GIS* tekan **🖨 Cetak**, pilih A4/A3 dan orientasi, atur judul/skala, lalu cetak. Di dialog cetak gunakan ukuran kertas yang sama, margin default/none, skala 100%.', nav: 'map' },
+  { k: 'foto dokumentasi unggah drive galeri', t: 'Foto dokumentasi', a: 'Menu **📷 Foto Dokumentasi**: unggah dari kamera/galeri (maks. 20 sekaligus). Foto dikompres di HP dan disimpan ke Google Drive; spreadsheet hanya menyimpan URL.', nav: 'docs' },
+  { k: 'filter loncat pt estate afd blok', t: 'Filter & loncat', a: 'Bilah filter atas menyaring **PT → Estate → AFD** di semua modul. Tombol **🎯 Loncat ke…** membuka peta dan memperbesar ke PT/Estate/AFD/Blok.', nav: 'dash' },
+  { k: 'laporan kerja terbitkan periksa nomor verifikasi cetak pdf', t: 'Laporan pekerjaan', a: 'Menu **📑 Laporan → Buat laporan**: pilih pegawai & periode → **Susun laporan** (otomatis dari data & audit) → **Cetak/PDF**, **CSV**, atau **Terbitkan** (nomor resmi + kode verifikasi). Atasan memeriksa di tab *Arsip laporan* (Diperiksa/Dikembalikan).', nav: 'reports' },
+  { k: 'laporan otomatis mingguan bulanan jadwal pemicu', t: 'Laporan otomatis', a: 'Super Admin mengatur di *Laporan → Jadwal otomatis*: **Mingguan** (Senin 06.00) atau **Bulanan** (tanggal 1). Laporan dibuat untuk semua pengguna yang bekerja pada periode itu dan masuk antrean pemeriksaan.', nav: 'reports' },
+  { k: 'privasi unduh data whatsapp persetujuan hapus', t: 'Privasi & data pribadi', a: 'Di *Profil Saya*: atur persetujuan **WhatsApp**, **Unduh data saya** (JSON), atau ajukan permohonan akses/perbaikan/penghapusan/keberatan. Permohonan ditanggapi paling lambat 3×24 jam.', nav: 'profile' },
+  { k: 'password lupa terkunci login gagal ganti', t: 'Password & akun terkunci', a: 'Setelah 5 kali gagal masuk akun **terkunci 15 menit**. Minta admin menekan **Reset pw** di *Administrasi → Pengguna*. Ganti password dari menu avatar → *Profil saya*.', nav: 'profile' },
+  { k: 'lisensi baca saja trial habis', t: 'Mode baca-saja', a: 'Bila lisensi/trial berakhir, aplikasi masuk **mode baca-saja**: data tetap bisa dilihat & diekspor tetapi tidak bisa diubah. Hubungi penyedia untuk aktivasi kunci lisensi (*Administrasi → Lisensi*).', nav: 'admin' },
+  { k: 'kinerja agronomi grafik progres target jadwal', t: 'Kinerja Agronomi', a: 'Panel **📈 Kinerja Agronomi** di Ringkasan: progres sampling kumulatif vs target & rencana, jadwal sampling 180 hari (termasuk proyeksi siklus tahunan), dan tren 8 unsur hara per tahun.', nav: 'dash' }
+];
+
+/* ---------- utilitas ---------- */
+function agNorm(s) { return String(s || '').toLowerCase().replace(/[^\w\s\/\-.]/g, ' ').replace(/\s+/g, ' ').trim(); }
+function agAll(fn) { var sv = S.f; S.f = { pt: '', est: '', afd: '' }; try { return fn(); } finally { S.f = sv; } }
+function agFindEstate(q) {
+  if (!q) return null; q = agNorm(q);
+  return (D().estates || []).filter(function (e) { return agNorm(e.code) === q || agNorm(e.name).indexOf(q) >= 0 || q.indexOf(agNorm(e.code)) >= 0; })[0] || null;
+}
+function agScope(estQ, fn) { var e = agFindEstate(estQ), sv = S.f; S.f = { pt: '', est: e ? e.id : '', afd: '' }; try { return fn(e); } finally { S.f = sv; } }
+function agBlk(id) { return (byId(D().blocks, id) || {}).code || id; }
+function agEst(id) { var e = byId(D().estates, id) || {}; return e.code || e.name || ''; }
+function agR(n, d) { return n === null || n === undefined || isNaN(n) ? null : Math.round(n * Math.pow(10, d || 0)) / Math.pow(10, d || 0); }
+
+/* ---------- ALAT (tools) ---------- */
+var AG_TOOLS = [
+  { name: 'tugas_saya', description: 'Daftar tugas/pekerjaan tertunda milik pengguna saat ini sesuai perannya (rencana menunggu review, sampel perlu dikemas, hasil menunggu QC, laporan perlu diperiksa, dll).', parameters: { type: 'object', properties: {} },
+    run: function () { var t = myTasks(); return { jumlah: t.length, tugas: t.map(function (x) { return { tugas: x.txt, menu: AG_PAGE_NAME[x.tab] || x.tab, _tab: x.tab }; }) }; } },
+  { name: 'ringkasan', description: 'Ringkasan angka utama (KPI) aplikasi: blok, luas, progres pohon sampel tahun ini, sampel per status, hasil lab, rekomendasi & biaya, lisensi. Opsional per estate.', parameters: { type: 'object', properties: { estate: { type: 'string', description: 'Nama atau kode estate (opsional)' } } },
+    run: function (a) { return agScope(a.estate, function (e) {
+      var d = D(), yr = curYear(), blocks = estOf(d.blocks), trees = estOf(d.trees), smp = estOf(d.samples), res = estOf(d.labResults), recs = estOf(d.recommendations);
+      var st = {}; smp.forEach(function (s) { st[lbl(s.status)] = (st[lbl(s.status)] || 0) + 1; });
+      var rel = recs.filter(function (r) { return r.status === 'RELEASED_TO_ESTATE'; });
+      return { cakupan: e ? e.name : 'Semua estate yang dapat Anda akses', blok_aktif: blocks.length, luas_ha: agR(blocks.reduce(function (s, b) { return s + (b.areaHa || 0); }, 0), 1), pohon_sampel: trees.length, tersampel_tahun_ini: trees.filter(function (t) { return t.lastSampledYear === yr; }).length, tahun: yr, sampel_per_status: st, hasil_lab_disetujui: res.filter(function (r) { return r.status === 'APPROVED'; }).length, rekomendasi_dirilis: rel.length, biaya_pupuk_dirilis_rp: rel.reduce(function (s, r) { return s + (r.totalCostEstimatedIdr || 0); }, 0), lisensi: (d.license || {}).tier + ((d.license || {}).valid ? ' (aktif s/d ' + (d.license || {}).expiresAt + ')' : ' (tidak aktif)') };
+    }); } },
+  { name: 'cari_sampel', description: 'Cari sampel daun berdasarkan kode (mis. SMP-2026-STP-U01-C01, boleh sebagian): status, unit, jumlah pohon, berat, pengiriman, lead time, rantai kustodi, dan status hasil lab.', parameters: { type: 'object', properties: { kode: { type: 'string', description: 'Kode sampel atau bagiannya' } }, required: ['kode'] },
+    run: function (a) {
+      var d = D(), q = agNorm(a.kode).replace(/\s/g, '');
+      var hits = (d.samples || []).filter(function (s) { return agNorm(s.code).replace(/\s/g, '').indexOf(q) >= 0; });
+      if (!hits.length) return { ditemukan: 0, pesan: 'Sampel dengan kode itu tidak ditemukan (atau di luar hak akses Anda).' };
+      if (hits.length > 1 && !hits.some(function (s) { return agNorm(s.code) === agNorm(a.kode); })) return { ditemukan: hits.length, daftar: hits.slice(0, 12).map(function (s) { return { kode: s.code, status: lbl(s.status) }; }) };
+      var s = hits.filter(function (x) { return agNorm(x.code) === agNorm(a.kode); })[0] || hits[0], u = byId(d.units, s.lsuUnitId) || {};
+      var lr = (d.labResults || []).filter(function (r) { return r.sampleId === s.id; })[0];
+      var cls = {}; if (lr && lr.status === 'APPROVED') (d.nutrients || []).forEach(function (n) { cls[n.k] = lbl(nutClass(n, lr.values[n.f])); });
+      return { kode: s.code, status: lbl(s.status), unit_lsu: u.code, estate: agEst(s.estateId), pohon: s.totalConstituentTrees, pelepah: s.targetFrondNumber, berat_g: s.weightGrams, dikirim: s.dispatchedAt ? fmtD(s.dispatchedAt, true) : null, diterima_lab: s.receivedAtLabAt ? fmtD(s.receivedAtLabAt, true) : null, lead_time_jam: agR(s.leadTimeHours, 1), alasan_ditolak: s.rejectionReason || undefined,
+        kustodi: (d.custody || []).filter(function (c) { return c.sampleId === s.id; }).map(function (c) { return { tahap: c.stage.replace(/_/g, ' '), waktu: fmtD(c.timestamp, true), dari: c.senderActorName, ke: c.receiverActorName, kondisi: c.sampleIntegrityCondition }; }),
+        hasil_lab: lr ? { status: lbl(lr.status), batch: lr.batchNumber, kelas_hara: lr.status === 'APPROVED' ? cls : 'belum disetujui' } : 'belum ada', _id: s.id };
+    } },
+  { name: 'cari_blok', description: 'Informasi satu blok kebun berdasarkan kode blok (mis. A01): estate, AFD, tahun tanam, kelas umur, luas, pohon sampel, sampling terakhir, status hara terbaru unit yang memuat blok, dan rencana/rekomendasi terkait.', parameters: { type: 'object', properties: { kode: { type: 'string', description: 'Kode blok, mis. A01' }, estate: { type: 'string', description: 'Nama/kode estate bila kode blok ada di beberapa estate' } }, required: ['kode'] },
+    run: function (a) {
+      var d = D(), e = agFindEstate(a.estate), q = agNorm(a.kode).toUpperCase();
+      var bs = (d.blocks || []).filter(function (b) { return String(b.code).toUpperCase() === q && (!e || b.estateId === e.id); });
+      if (!bs.length) return { ditemukan: 0, pesan: 'Blok ' + a.kode + ' tidak ditemukan dalam data yang dapat Anda akses.' };
+      return { ditemukan: bs.length, blok: bs.slice(0, 3).map(function (b) {
+        var units = (d.units || []).filter(function (u) { return u.blockIds.indexOf(b.id) >= 0; }).sort(function (x, y) { return y.targetYear - x.targetYear; });
+        var lastObs = (d.observations || []).filter(function (o) { return o.blockId === b.id; }).map(function (o) { return o.sampledAt; }).sort().pop();
+        var hara = null;
+        for (var i = 0; i < units.length && !hara; i++) { var sids = (d.samples || []).filter(function (s) { return s.lsuUnitId === units[i].id; }).map(function (s) { return s.id; }); var rs = (d.labResults || []).filter(function (r) { return sids.indexOf(r.sampleId) >= 0 && r.status === 'APPROVED'; }); if (rs.length) { hara = { tahun: units[i].targetYear, unit: units[i].code }; (d.nutrients || []).forEach(function (n) { var v = rs.reduce(function (s, r) { return s + Number(r.values[n.f]); }, 0) / rs.length; hara[n.k] = agR(v, n.unit === 'ppm' ? 1 : 3) + ' ' + n.unit + ' (' + lbl(nutClass(n, v)) + ')'; }); } }
+        var plans = (d.plans || []).filter(function (p) { return units.some(function (u) { return u.id === p.lsuUnitId; }) && p.status !== 'CANCELLED' && p.targetYear >= curYear(); });
+        return { kode: b.code, estate: agEst(b.estateId), afd: (byId(d.divisions, b.divisionId) || {}).code, tahun_tanam: b.plantingYear, umur_tahun: curYear() - b.plantingYear, kelas: ageCls(b), luas_ha: agR(b.areaHa, 2), tanah: b.soilType, pohon_sampel: (d.trees || []).filter(function (t) { return t.blockId === b.id; }).length, sampling_terakhir: lastObs ? fmtD(lastObs) : 'belum pernah', status_hara_terbaru: hara || 'belum ada hasil lab disetujui', rencana_aktif: plans.map(function (p) { return p.code + ' (' + lbl(p.status) + ', ' + p.samplingWindowStart + ' s/d ' + p.samplingWindowEnd + ')'; }), _id: b.id };
+      }) };
+    } },
+  { name: 'status_hara', description: 'Tren status hara daun (rata-rata hasil lab disetujui per tahun) untuk 8 unsur N, P, K, Mg, Ca, B, Cu, Zn: nilai terbaru, kelas, rentang optimum, perubahan vs tahun lalu. Opsional per estate atau satu unsur.', parameters: { type: 'object', properties: { estate: { type: 'string' }, unsur: { type: 'string', description: 'Simbol/nama unsur, mis. K atau kalium' } } },
+    run: function (a) { var u = AG_NUT[agNorm(a.unsur)] || a.unsur; return agScope(a.estate, function (e) {
+      var tr = agroTrends().filter(function (t) { return !u || t.n.k.toLowerCase() === String(u).toLowerCase(); });
+      if (!tr.length || !tr[0].pts.length) return { cakupan: e ? e.name : 'semua estate', pesan: 'Belum ada hasil lab disetujui.' };
+      return { cakupan: e ? e.name : 'semua estate', unsur: tr.map(function (t) { var dec = t.n.unit === 'ppm' ? 1 : 3; return { unsur: t.n.k, nama: NUT_NAME[t.n.k], terbaru: agR(t.last.v, dec) + ' ' + t.n.unit + ' (' + t.last.y + ')', kelas: lbl(t.last.cls), optimum: t.n.low + '–' + t.n.optHi + ' ' + t.n.unit, perubahan_vs_tahun_lalu: t.delta === null ? null : agR(t.delta, 1) + '%', riwayat: t.pts.map(function (p) { return p.y + ': ' + agR(p.v, dec); }).join(', ') }; }) };
+    }); } },
+  { name: 'peringatan_hara', description: 'Daftar peringatan tren hara di luar ambang optimum per kelompok blok (kritis / di luar optimum / waspada), termasuk perubahan vs tahun lalu. Opsional saring per unsur, tingkat, atau estate.', parameters: { type: 'object', properties: { unsur: { type: 'string' }, tingkat: { type: 'string', enum: ['kritis', 'di_luar_optimum', 'waspada', 'semua'] }, estate: { type: 'string' } } },
+    run: function (a) { var u = AG_NUT[agNorm(a.unsur)] || a.unsur, tk = { kritis: 'crit', di_luar_optimum: 'warn', waspada: 'watch' }[a.tingkat]; return agScope(a.estate, function (e) {
+      var al = agroAlerts().filter(function (x) { return (!u || x.n.k.toLowerCase() === String(u).toLowerCase()) && (!tk || x.sev === tk); });
+      return { cakupan: e ? e.name : 'semua estate', jumlah: al.length, kritis: al.filter(function (x) { return x.sev === 'crit'; }).length, peringatan: al.slice(0, 15).map(function (x) { var dec = x.n.unit === 'ppm' ? 1 : 3; return { tingkat: SEV[x.sev].t, unsur: x.n.k, estate: x.estCode, blok: x.blocks.join(', '), unit: x.unitCode, nilai: agR(x.v, dec) + ' ' + x.n.unit + ' (' + x.y + ')', optimum: x.n.low + '–' + x.n.optHi, kelas: lbl(x.cls), alasan: x.why, perubahan: x.delta === null ? null : agR(x.delta, 1) + '% vs ' + x.py + (x.worse ? ' (memburuk)' : ' (membaik)'), _blk: x.blockIds[0], _sid: x.sampleId }; }) };
+    }); } },
+  { name: 'jadwal_sampling', description: 'Jadwal sampling blok mendatang: rencana LSU aktif (jendela & status) dan proyeksi siklus tahunan per blok (sampling terakhir + 12 bulan), termasuk yang terlambat dan blok yang belum pernah disampling.', parameters: { type: 'object', properties: { hari: { type: 'number', description: 'Rentang hari ke depan (default 60, maks 180)' }, estate: { type: 'string' } } },
+    run: function (a) { var hari = Math.min(180, Math.max(1, Number(a.hari) || 60)); return agScope(a.estate, function (e) {
+      var sc = agroSchedule(), lim = new Date(sc.today.getTime() + hari * 864e5);
+      var rows = sc.rows.filter(function (r) { return r.start <= lim; });
+      return { cakupan: e ? e.name : 'semua estate', rentang_hari: hari, jadwal: rows.slice(0, 20).map(function (r) { return r.kind === 'plan' ? { jenis: 'Rencana LSU', unit: r.title, estate: r.est, blok: r.blocks.join(', '), jendela: fmtDs(r.start) + ' – ' + fmtDs(r.end), status: lbl(r.status), terlambat: r.late } : { jenis: 'Proyeksi siklus tahunan', estate: r.est, blok: r.blocks.join(', '), perkiraan: fmtDs(r.dueDate), sampling_terakhir: fmtDs(r.last), terlambat: r.late, _blk: r.id }; }), belum_pernah_disampling: sc.never.map(function (b) { return b.code + ' (' + agEst(b.estateId) + ')'; }) };
+    }); } },
+  { name: 'progres_sampling', description: 'Progres sampling pohon untuk satu tahun: jumlah pohon tersampel vs target, vs rencana sampai hari ini, dan per rencana/unit.', parameters: { type: 'object', properties: { tahun: { type: 'number' }, estate: { type: 'string' } } },
+    run: function (a) { var Y = Number(a.tahun) || curYear(); return agScope(a.estate, function (e) {
+      var p = agroProgress(Y), d = D();
+      var plans = estOf(d.plans).filter(function (x) { return x.targetYear === Y && x.status !== 'CANCELLED'; }).map(function (x) {
+        var u = byId(d.units, x.lsuUnitId) || {}, tr = (d.trees || []).filter(function (t) { return (u.blockIds || []).indexOf(t.blockId) >= 0; });
+        var done = {}; (d.observations || []).forEach(function (o) { if ((u.blockIds || []).indexOf(o.blockId) >= 0 && new Date(o.sampledAt).getFullYear() === Y) done[o.treeId] = 1; });
+        return { rencana: x.code, unit: u.code, status: lbl(x.status), pohon: Object.keys(done).length + ' / ' + tr.length, jendela: x.samplingWindowStart + ' s/d ' + x.samplingWindowEnd };
+      });
+      return { cakupan: e ? e.name : 'semua estate', tahun: Y, tersampel: p.count, target: p.target, persen: p.target ? agR(p.count / p.target * 100, 1) : 0, rencana_total_pohon: p.plannedTotal, rencana_sampai_hari_ini: p.planToDate, per_rencana: plans };
+    }); } },
+  { name: 'rekomendasi_pupuk', description: 'Daftar rekomendasi pupuk beserta status, diagnosis utama, dan estimasi biaya; total biaya per status. Opsional saring status atau tahun.', parameters: { type: 'object', properties: { tahun: { type: 'number' }, status: { type: 'string', enum: ['draf', 'review', 'disetujui_vp', 'dirilis', 'ditolak', 'semua'] } } },
+    run: function (a) {
+      var map = { draf: 'DRAFT', review: 'REVIEWED_BY_AGRONOMIST', disetujui_vp: 'APPROVED_BY_VP', dirilis: 'RELEASED_TO_ESTATE', ditolak: 'REJECTED' }, d = D();
+      var rs = (d.recommendations || []).filter(function (r) { return (!a.tahun || r.targetYear === Number(a.tahun)) && (!map[a.status] || r.status === map[a.status]); });
+      var tot = {}; rs.forEach(function (r) { var k = lbl(r.status); tot[k] = (tot[k] || 0) + (r.totalCostEstimatedIdr || 0); });
+      return { jumlah: rs.length, total_biaya_per_status_rp: tot, daftar: rs.slice(-15).reverse().map(function (r) { return { kode: r.recCode, unit: (byId(d.units, r.lsuUnitId) || {}).code, tahun: r.targetYear, status: lbl(r.status), diagnosis: (r.diagnosis || {}).primaryLimitingFactor, pokok: r.totalTrees, biaya_rp: r.totalCostEstimatedIdr }; }) };
+    } },
+  { name: 'ambang_hara', description: 'Ambang hara daun RULE-AGRO-2026.01 (sangat rendah, rendah, optimum, tinggi) dan parameter SOP sampling aktif (pelepah, anak daun, pohon per komposit, lead time, toleransi GPS).', parameters: { type: 'object', properties: { unsur: { type: 'string' } } },
+    run: function (a) { var u = AG_NUT[agNorm(a.unsur)] || a.unsur, p = (D().protocols || []).filter(function (x) { return x.isActive; })[0] || {};
+      return { aturan: 'RULE-AGRO-2026.01 (pelepah 17, TM)', ambang: (D().nutrients || []).filter(function (n) { return !u || n.k.toLowerCase() === String(u).toLowerCase(); }).map(function (n) { return { unsur: n.k, satuan: n.unit, sangat_rendah: '< ' + n.acute, rendah: n.acute + '–' + n.low, optimum: n.low + '–' + n.optHi, tinggi: n.optHi + '–' + n.hiHi, berlebih: '> ' + n.hiHi }; }),
+        sop: { versi: p.versionCode, pelepah_TM: p.targetFrondNumberTM, pelepah_TBM: p.targetFrondNumberTBM, umur_TM_min_tahun: p.tmMinAgeYears, anak_daun_per_pohon: p.leafletsPerTree, pohon_per_komposit: (p.minTreesPerComposite || 20) + '–' + (p.maxTreesPerComposite || 30) + ' (target ' + (p.treesPerCompositeSample || 25) + ')', maks_lead_time_jam: p.maxLeadTimeHoursToLab, toleransi_gps_m: p.gpsToleranceMeters, berat_min_g: p.minSampleWeightGrams } }; } },
+  { name: 'laporan_saya', description: 'Menyusun ringkasan laporan pekerjaan otomatis milik pengguna untuk suatu periode (indikator, ringkasan, catatan penting). Gunakan saat pengguna meminta laporan/rekap kerjanya.', parameters: { type: 'object', properties: { periode: { type: 'string', enum: ['hari_ini', 'minggu_ini', 'minggu_lalu', 'bulan_ini', 'bulan_lalu', 'tahun_ini'] } } },
+    run: function (a) { var pm = { hari_ini: 'today', minggu_ini: 'week', minggu_lalu: 'lastweek', bulan_ini: 'month', bulan_lalu: 'lastmonth', tahun_ini: 'year' }, pr = pm[a.periode] || 'week', rg = rptRange(pr);
+      return api('report.preview', { from: rg[0], to: rg[1] }, { silent: true }).then(function (c) { return { judul: c.meta.title, periode: c.meta.period.label, indikator: c.kpis.map(function (k) { return k.label + ': ' + k.value + (k.note ? ' (' + k.note + ')' : ''); }), ringkasan: c.narrative, catatan_penting: c.highlights.map(function (h) { return h.text; }), jumlah_aktivitas: c.activityTotal, _report: pr }; }); } },
+  { name: 'panduan', description: 'Cari panduan cara memakai aplikasi / SOP (mis. cara membuat rencana, survei offline, QC lab, rekomendasi, laporan, password terkunci).', parameters: { type: 'object', properties: { topik: { type: 'string' } }, required: ['topik'] },
+    run: function (a) { var r = agKb(a.topik); return r.length ? { hasil: r.slice(0, 3).map(function (x) { return { judul: x.t, isi: x.a.replace(/\*\*/g, ''), menu: AG_PAGE_NAME[x.nav], _tab: x.nav }; }) } : { hasil: [], pesan: 'Topik tidak ditemukan di panduan.' }; } },
+  { name: 'buka_halaman', description: 'Tampilkan tombol untuk membuka halaman aplikasi (dan opsional memperbesar peta ke blok). Gunakan untuk mengarahkan pengguna ke menu tempat melakukan tindakan.', parameters: { type: 'object', properties: { halaman: { type: 'string', enum: Object.keys(AG_PAGE_NAME).map(function (k) { return AG_PAGE_NAME[k]; }) }, blok: { type: 'string', description: 'Kode blok untuk dibuka di peta (opsional)' } }, required: ['halaman'] },
+    run: function (a) { var tab = Object.keys(AG_PAGE_NAME).filter(function (k) { return AG_PAGE_NAME[k] === a.halaman; })[0] || AG_PAGES[agNorm(a.halaman).split(' ')[0]] || 'dash';
+      var allowed = NAV.filter(navAllowed).some(function (n) { return n.id === tab; });
+      if (!allowed) return { ok: false, pesan: 'Halaman ' + (AG_PAGE_NAME[tab] || a.halaman) + ' tidak tersedia untuk peran Anda.' };
+      var b = a.blok ? (D().blocks || []).filter(function (x) { return String(x.code).toUpperCase() === String(a.blok).toUpperCase(); })[0] : null;
+      return { ok: true, tombol: AG_PAGE_NAME[tab] + (b ? ' (blok ' + b.code + ')' : ''), _tab: b ? null : tab, _blk: b ? b.id : null }; } }
+];
+function agKb(q) {
+  var w = agNorm(q).split(' ').filter(function (x) { return x.length > 2 && ['yang', 'cara', 'bagaimana', 'gimana', 'untuk', 'dengan', 'saya', 'apa', 'ini', 'itu', 'dan', 'atau', 'kalau', 'bisa', 'tidak', 'mau', 'ingin'].indexOf(x) < 0; });
+  return AG_KB.map(function (e) { var hay = agNorm(e.k + ' ' + e.t); var sc = w.reduce(function (s, x) { return s + (hay.indexOf(x) >= 0 ? (x.length > 4 ? 2 : 1) : 0); }, 0); return { e: e, sc: sc }; })
+    .filter(function (x) { return x.sc > 0; }).sort(function (a, b) { return b.sc - a.sc; }).map(function (x) { return x.e; });
+}
+function agToolByName(n) { return AG_TOOLS.filter(function (t) { return t.name === n; })[0]; }
+function agRunTool(name, args) {
+  var t = agToolByName(name); if (!t) return Promise.resolve({ error: 'Alat tidak dikenal: ' + name });
+  try { return Promise.resolve(t.run(args || {})).catch(function (e) { return { error: e.message || String(e) }; }); } catch (e) { return Promise.resolve({ error: e.message || String(e) }); }
+}
+/** Ambil tombol aksi (_tab/_blk/_id/_sid/_report) lalu buang kunci privat sebelum dikirim ke LLM */
+function agStrip(o, ui) {
+  if (Array.isArray(o)) return o.map(function (x) { return agStrip(x, ui); });
+  if (o && typeof o === 'object') {
+    var r = {};
+    Object.keys(o).forEach(function (k) {
+      if (k === '_tab' && o[k]) ui.push({ t: 'tab', v: o[k] });
+      else if (k === '_blk' && o[k]) ui.push({ t: 'blk', v: o[k] });
+      else if ((k === '_id' || k === '_sid') && o[k] && /^smp/.test(o[k])) ui.push({ t: 'smp', v: o[k] });
+      else if (k === '_report') ui.push({ t: 'rpt', v: o[k] });
+      else if (k.charAt(0) !== '_') r[k] = agStrip(o[k], ui);
+    });
+    return r;
+  }
+  return o;
+}
+
+/* ---------- MODE LOKAL: pengenal maksud + format jawaban ---------- */
+function agLocal(text) {
+  var q = agNorm(text), raw = String(text);
+  var code = raw.match(/SMP-[\w-]+/i), blk = raw.match(/\bblok\s+([a-z]\d{2})\b/i) || raw.match(/\b([A-Z]\d{2})\b/);
+  var ctx = /hara|unsur|defisien|kurang|kekurangan|rendah|tinggi|optimum|ambang|tren|status|kadar|nilai|peringatan|berlebih/.test(q), nut = null;
+  q.split(' ').forEach(function (t) { if (AG_NUT[t] && (t.length > 2 || ctx)) nut = nut || AG_NUT[t]; });
+  var per = /minggu lalu/.test(q) ? 'minggu_lalu' : /bulan lalu/.test(q) ? 'bulan_lalu' : /bulan ini/.test(q) ? 'bulan_ini' : /hari ini/.test(q) ? 'hari_ini' : /tahun ini/.test(q) ? 'tahun_ini' : 'minggu_ini';
+  var est = (D().estates || []).filter(function (e) { return q.indexOf(agNorm(e.code)) >= 0 && agNorm(e.code).length >= 3 || q.indexOf(agNorm(e.name)) >= 0; })[0];
+  var hari = (q.match(/(\d+)\s*hari/) || [])[1];
+  if (/^(halo|hai|hi|hello|selamat|pagi|siang|sore|malam|assalamu)/.test(q) && q.length < 40) return { say: 'Halo ' + greetName(S.user.fullName) + '! 👋 Saya **Asisten LSU**. Saya bisa membaca data aplikasi sesuai hak akses Anda: tugas tertunda, status sampel, tren & peringatan hara, jadwal sampling, progres, rekomendasi pupuk, laporan kerja, dan panduan pemakaian. Pilih salah satu saran di bawah atau ketik pertanyaan Anda.' };
+  if (code) return { tool: 'cari_sampel', args: { kode: code[0] } };
+  if (/terima kasih|makasih|thanks/.test(q)) return { say: 'Sama-sama! Ada lagi yang bisa saya bantu? 🌴' };
+  if (/^(cara|bagaimana|gimana|langkah|kenapa|mengapa|apa itu|tidak bisa|gak bisa|gagal|error|lupa)/.test(q) || /\b(cara|caranya|langkah)\b/.test(q)) return { tool: 'panduan', args: { topik: text } };
+  if (/(laporan|report|rekap) (saya|kerja|pekerjaan|mingguan|bulanan|harian)|buat(kan)? laporan|laporan (minggu|bulan|hari)/.test(q)) return { tool: 'laporan_saya', args: { periode: per } };
+  if (/(tugas|pekerjaan|kerjaan|to ?do|yang harus|tertunda|menunggu saya|apa yang perlu)/.test(q)) return { tool: 'tugas_saya', args: {} };
+  if (/(jadwal|kapan|jatuh tempo|terlambat sampling|sampling berikut|sampling selanjutnya|siklus)/.test(q)) return { tool: 'jadwal_sampling', args: { hari: hari || 60, estate: est && est.code } };
+  if (/(progres|progress|capaian|pencapaian|persen|target)/.test(q) && !/hara/.test(q)) return { tool: 'progres_sampling', args: { tahun: (q.match(/20\d\d/) || [])[0], estate: est && est.code } };
+  if (/(ambang|standar|batas|kisaran|range|nilai optimum|sop)/.test(q)) return { tool: 'ambang_hara', args: { unsur: nut } };
+  if (/(peringatan|alert|defisien|kekurangan|kurang|rendah|di luar|berlebih|kritis|bermasalah|waspada)/.test(q)) return { tool: 'peringatan_hara', args: { unsur: nut, tingkat: /kritis/.test(q) ? 'kritis' : /waspada/.test(q) ? 'waspada' : 'semua', estate: est && est.code } };
+  if (/(hara|nutrisi|unsur|tren|status daun|analisis daun)/.test(q) || nut) return { tool: 'status_hara', args: { unsur: nut, estate: est && est.code } };
+  if (blk && /blok|block/.test(q)) return { tool: 'cari_blok', args: { kode: blk[1], estate: est && est.code } };
+  if (/(rekomendasi|pupuk|dosis|biaya pupuk)/.test(q)) return { tool: 'rekomendasi_pupuk', args: { tahun: (q.match(/20\d\d/) || [])[0], status: /dirilis|rilis/.test(q) ? 'dirilis' : /draf|draft/.test(q) ? 'draf' : 'semua' } };
+  var pg = Object.keys(AG_PAGES).filter(function (k) { return new RegExp('\\b' + k + '\\b').test(q); })[0];
+  if (pg && /(buka|pergi|ke halaman|ke menu|tampilkan|lihat|menu)/.test(q)) return { tool: 'buka_halaman', args: { halaman: AG_PAGE_NAME[AG_PAGES[pg]], blok: blk && blk[1] } };
+  if (/(ringkas|ringkasan|dashboard|kpi|statistik|berapa|jumlah|total|gambaran|overview)/.test(q)) return { tool: 'ringkasan', args: { estate: est && est.code } };
+  if (blk) return { tool: 'cari_blok', args: { kode: blk[1], estate: est && est.code } };
+  if (agKb(text).length) return { tool: 'panduan', args: { topik: text } };
+  return { say: 'Maaf, saya belum memahami pertanyaan itu. Coba tanyakan misalnya: *"tugas saya"*, *"status sampel SMP-…"*, *"blok mana yang kekurangan kalium?"*, *"jadwal sampling 30 hari"*, *"laporan minggu ini"*, atau *"cara membuat rencana LSU"*.' };
+}
+function agTable(rows, cols) { if (!rows.length) return ''; return '\n| ' + cols.map(function (c) { return c[1]; }).join(' | ') + ' |\n' + rows.map(function (r) { return '| ' + cols.map(function (c) { var v = r[c[0]]; return v === null || v === undefined ? '-' : String(v).replace(/\|/g, '/'); }).join(' | ') + ' |'; }).join('\n') + '\n'; }
+function agFormat(tool, r) {
+  if (r.error) return '⚠️ ' + r.error;
+  switch (tool) {
+    case 'tugas_saya': return r.jumlah ? '**Anda punya ' + r.jumlah + ' tugas tertunda:**\n' + r.tugas.map(function (t) { return '- ' + t.tugas + ' → menu *' + t.menu + '*'; }).join('\n') : 'Tidak ada tugas tertunda untuk Anda saat ini. ✅';
+    case 'ringkasan': return '**Ringkasan · ' + r.cakupan + '**\n- Blok aktif: **' + fmtN(r.blok_aktif) + '** (' + fmtN(r.luas_ha, 1) + ' ha)\n- Pohon sampel tersampel ' + r.tahun + ': **' + fmtN(r.tersampel_tahun_ini) + ' / ' + fmtN(r.pohon_sampel) + '**\n- Sampel per status: ' + (Object.keys(r.sampel_per_status).map(function (k) { return k + ' ' + r.sampel_per_status[k]; }).join(', ') || '-') + '\n- Hasil lab disetujui: **' + r.hasil_lab_disetujui + '**\n- Rekomendasi dirilis: **' + r.rekomendasi_dirilis + '** (' + fmtRp(r.biaya_pupuk_dirilis_rp) + ')\n- Lisensi: ' + r.lisensi;
+    case 'cari_sampel':
+      if (!r.kode) return r.daftar ? 'Ditemukan ' + r.ditemukan + ' sampel yang cocok:\n' + r.daftar.map(function (x) { return '- **' + x.kode + '** · ' + x.status; }).join('\n') + '\nSebutkan kode lengkapnya.' : r.pesan;
+      return '**Sampel ' + r.kode + '** · status **' + r.status + '**\n- Unit ' + r.unit_lsu + ' · ' + r.estate + ' · ' + r.pohon + ' pohon · pelepah ' + r.pelepah + (r.berat_g ? ' · ' + r.berat_g + ' g' : '') + '\n- Dikirim: ' + (r.dikirim || '-') + ' · diterima lab: ' + (r.diterima_lab || '-') + (r.lead_time_jam ? ' · lead time **' + fmtN(r.lead_time_jam, 1) + ' jam**' : '') + (r.alasan_ditolak ? '\n- Ditolak lab: ' + r.alasan_ditolak : '') + '\n- Hasil lab: ' + (typeof r.hasil_lab === 'string' ? r.hasil_lab : r.hasil_lab.status + (typeof r.hasil_lab.kelas_hara === 'object' ? ' — ' + Object.keys(r.hasil_lab.kelas_hara).map(function (k) { return k + ' ' + r.hasil_lab.kelas_hara[k]; }).join(', ') : '')) + (r.kustodi.length ? '\n\n**Rantai kustodi:**\n' + r.kustodi.map(function (c) { return '- ' + c.waktu + ' · ' + c.tahap + ' (' + c.dari + ' → ' + c.ke + ', ' + c.kondisi + ')'; }).join('\n') : '');
+    case 'cari_blok': if (!r.blok) return r.pesan; return r.blok.map(function (b) { var h = b.status_hara_terbaru; return '**Blok ' + b.kode + '** · ' + b.estate + ' / ' + b.afd + '\n- Tanam ' + b.tahun_tanam + ' (' + b.umur_tahun + ' th, ' + b.kelas + ') · ' + fmtN(b.luas_ha, 2) + ' ha · ' + b.pohon_sampel + ' pohon sampel · tanah ' + String(b.tanah || '-').replace(/_/g, ' ') + '\n- Sampling terakhir: ' + b.sampling_terakhir + '\n- Status hara terbaru: ' + (typeof h === 'string' ? h : h.unit + ' (' + h.tahun + '): ' + ['N', 'P', 'K', 'Mg', 'Ca', 'B', 'Cu', 'Zn'].map(function (k) { return k + ' ' + h[k]; }).join(', ')) + (b.rencana_aktif.length ? '\n- Rencana aktif: ' + b.rencana_aktif.join('; ') : ''); }).join('\n\n');
+    case 'status_hara': if (!r.unsur) return r.pesan; return '**Tren status hara · ' + r.cakupan + '**' + agTable(r.unsur, [['unsur', 'Unsur'], ['terbaru', 'Terbaru'], ['kelas', 'Kelas'], ['optimum', 'Optimum'], ['perubahan_vs_tahun_lalu', 'Δ vs thn lalu']]) + '_Rata-rata hasil lab disetujui per tahun._';
+    case 'peringatan_hara': return r.jumlah ? '**' + r.jumlah + ' peringatan tren hara** (' + r.kritis + ' kritis) · ' + r.cakupan + '\n' + r.peringatan.map(function (x) { return '- ' + (x.tingkat === 'Kritis' ? '🔴' : x.tingkat === 'Waspada tren' ? '🔵' : '🟠') + ' **' + x.unsur + '** · ' + x.estate + ' blok ' + x.blok + ': **' + x.nilai + '** — ' + x.kelas + ', optimum ' + x.optimum + (x.perubahan ? '; ' + x.perubahan : ''); }).join('\n') + '\n\nBuka *Laboratorium* untuk diagnosis rinci per kartu peringatan.' : 'Tidak ada tren hara di luar ambang optimum untuk kriteria tersebut. ✅';
+    case 'jadwal_sampling': return (r.jadwal.length ? '**Jadwal sampling ' + r.rentang_hari + ' hari ke depan · ' + r.cakupan + '**\n' + r.jadwal.map(function (j) { return '- ' + (j.terlambat ? '🔴 ' : '') + (j.jenis === 'Rencana LSU' ? '**' + j.jendela + '** · ' + j.unit + ' · blok ' + j.blok + ' · ' + j.status : '**' + j.perkiraan + '** (perkiraan) · ' + j.estate + ' blok ' + j.blok + ' · terakhir ' + j.sampling_terakhir); }).join('\n') : 'Tidak ada sampling terjadwal dalam ' + r.rentang_hari + ' hari.') + (r.belum_pernah_disampling.length ? '\n\nBelum pernah disampling: ' + r.belum_pernah_disampling.join(', ') : '');
+    case 'progres_sampling': return '**Progres sampling ' + r.tahun + ' · ' + r.cakupan + '**: **' + fmtN(r.tersampel) + ' / ' + fmtN(r.target) + ' pohon (' + fmtN(r.persen, 1) + '%)**' + (r.rencana_total_pohon ? '\nRencana s/d hari ini: ' + fmtN(r.rencana_sampai_hari_ini) + ' dari ' + fmtN(r.rencana_total_pohon) + ' pohon direncanakan.' : '\nBelum ada rencana LSU untuk tahun ini.') + agTable(r.per_rencana, [['rencana', 'Rencana'], ['unit', 'Unit'], ['pohon', 'Pohon'], ['status', 'Status']]);
+    case 'rekomendasi_pupuk': return r.jumlah ? '**' + r.jumlah + ' rekomendasi pupuk**' + agTable(r.daftar, [['kode', 'Kode'], ['unit', 'Unit'], ['status', 'Status'], ['diagnosis', 'Diagnosis'], ['biaya_rp', 'Biaya (Rp)']]).replace(/\| (\d{5,}) \|/g, function (m, n) { return '| ' + fmtN(Number(n)) + ' |'; }) + 'Total per status: ' + Object.keys(r.total_biaya_per_status_rp).map(function (k) { return k + ' ' + fmtRp(r.total_biaya_per_status_rp[k]); }).join(' · ') : 'Belum ada rekomendasi pupuk untuk kriteria tersebut.';
+    case 'ambang_hara': return '**Ambang hara daun (' + r.aturan + ')**' + agTable(r.ambang.map(function (a) { return { u: a.unsur + ' (' + a.satuan + ')', r: a.sangat_rendah.replace('< ', '') + '–' + a.optimum.split('–')[0], o: a.optimum, t: a.tinggi }; }), [['u', 'Unsur'], ['r', 'Rendah'], ['o', 'Optimum'], ['t', 'Tinggi']]) + '_Di bawah batas "Rendah" = sangat rendah; di atas "Tinggi" = berlebih._\n' + '**SOP ' + (r.sop.versi || '') + ':** pelepah TM ' + r.sop.pelepah_TM + ' / TBM ' + r.sop.pelepah_TBM + ', ' + r.sop.anak_daun_per_pohon + ' anak daun/pohon, ' + r.sop.pohon_per_komposit + ' pohon/komposit, lead time maks ' + r.sop.maks_lead_time_jam + ' jam, toleransi GPS ' + r.sop.toleransi_gps_m + ' m.';
+    case 'laporan_saya': return '**' + r.judul + '** · ' + r.periode + '\n' + r.indikator.map(function (x) { return '- ' + x; }).join('\n') + '\n\n' + r.ringkasan.join(' ') + (r.catatan_penting.length ? '\n\n**Catatan penting:**\n' + r.catatan_penting.map(function (x) { return '- ' + x; }).join('\n') : '') + '\n\nBuka laporan lengkap untuk mencetak atau menerbitkannya.';
+    case 'panduan': return r.hasil.length ? r.hasil.map(function (h, i) { return (i ? '\n' : '') + '**' + h.judul + '**\n' + AG_KB.filter(function (e) { return e.t === h.judul; })[0].a; }).join('\n') : r.pesan;
+    case 'buka_halaman': return r.ok ? 'Silakan tekan tombol di bawah untuk membuka **' + r.tombol + '**.' : r.pesan;
+  }
+  return '```' + JSON.stringify(r).substring(0, 800) + '```';
+}
+
+/* ---------- tampilan ---------- */
+function agMd(s) {
+  var lines = esc(s).split('\n'), out = [], tbl = null, list = null;
+  function inl(t) { return t.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/(^|[\s(])\*(?!\s)(.+?)\*(?=[\s).,;:!?]|$)/g, '$1<i>$2</i>').replace(/(^|\s)_(.+?)_(?=\s|$|[.,])/g, '$1<i>$2</i>').replace(/`([^`]+)`/g, '<code>$1</code>'); }
+  function flush() { if (tbl) { out.push('<div class="ag-tw"><table>' + tbl.map(function (r, i) { return '<tr>' + r.map(function (c) { return i ? '<td>' + inl(c) + '</td>' : '<th>' + inl(c) + '</th>'; }).join('') + '</tr>'; }).join('') + '</table></div>'); tbl = null; } if (list) { out.push('<' + list.t + '>' + list.i.map(function (x) { return '<li>' + inl(x) + '</li>'; }).join('') + '</' + list.t + '>'); list = null; } }
+  lines.forEach(function (l) {
+    var t = l.trim();
+    if (/^\|.*\|$/.test(t)) { if (/^\|[\s:|-]+\|$/.test(t)) return; if (list) flush(); tbl = tbl || []; tbl.push(t.slice(1, -1).split('|').map(function (c) { return c.trim(); })); return; }
+    var m = t.match(/^[-*•]\s+(.*)/) || null, n = t.match(/^\d+[.)]\s+(.*)/);
+    if (m || n) { if (tbl) flush(); var tp = m ? 'ul' : 'ol'; if (list && list.t !== tp) flush(); list = list || { t: tp, i: [] }; list.i.push((m || n)[1]); return; }
+    flush();
+    if (/^#{1,4}\s/.test(t)) out.push('<p><b>' + inl(t.replace(/^#+\s/, '')) + '</b></p>');
+    else if (t) out.push('<p>' + inl(t) + '</p>');
+  });
+  flush();
+  return out.join('');
+}
+var AG_SUGGEST = {
+  SURVEYOR: ['Tugas saya hari ini', 'Jadwal sampling 30 hari', 'Cara mencatat pohon pengganti', 'Laporan kerja minggu ini'],
+  FIELD_SUPERVISOR: ['Tugas saya', 'Sampel yang terlambat ke lab', 'Progres sampling tahun ini', 'Laporan minggu ini'],
+  ESTATE_MANAGER: ['Tugas saya', 'Progres sampling tahun ini', 'Jadwal sampling 60 hari', 'Rekomendasi pupuk yang dirilis'],
+  AGRONOMIST: ['Blok mana yang kekurangan kalium?', 'Peringatan hara kritis', 'Tren status hara', 'Jadwal sampling 60 hari'],
+  HEAD_AGRONOMY: ['Ringkasan semua estate', 'Peringatan hara kritis', 'Rekomendasi menunggu persetujuan', 'Laporan bulan ini'],
+  LAB_MANAGER: ['Tugas saya', 'Ambang optimum hara', 'Cara verifikasi QC', 'Laporan minggu ini'],
+  LAB_ANALYST: ['Tugas saya', 'Cara input hasil uji & QC', 'Ambang optimum hara', 'Laporan minggu ini'],
+  SUPER_ADMIN: ['Ringkasan aplikasi', 'Tugas saya', 'Cara mengatur laporan otomatis', 'Laporan bulan ini']
+};
+function agEnsure() {
+  if ($('#agFab')) return;
+  var fab = document.createElement('button'); fab.id = 'agFab'; fab.className = 'ag-fab'; fab.setAttribute('data-act', 'agToggle'); fab.setAttribute('aria-label', 'Buka Asisten LSU'); fab.innerHTML = '<span>🤖</span><b>Asisten</b>';
+  var pn = document.createElement('aside'); pn.id = 'agPanel'; pn.className = 'ag-panel hide'; pn.setAttribute('aria-label', 'Asisten LSU');
+  pn.innerHTML = '<div class="ag-h"><span class="ag-av">🤖</span><div class="sp"><b>Asisten LSU</b><small id="agMode">memuat…</small></div><button class="btn s" data-act="agReset" title="Percakapan baru">⟲</button><button class="btn s" data-act="agToggle" aria-label="Tutup">✕</button></div>' +
+    '<div class="ag-body" id="agBody"></div><div class="ag-sug" id="agSug"></div>' +
+    '<form class="ag-in" id="agForm"><textarea id="agText" rows="1" placeholder="Tanya apa saja…" maxlength="1500"></textarea><button class="btn p" type="submit" id="agSend" aria-label="Kirim">➤</button></form>' +
+    '<div class="ag-foot">Asisten hanya membaca data sesuai hak akses Anda dan tidak dapat mengubah data. Jawaban dapat keliru; periksa kembali sebelum memutuskan.</div>';
+  document.body.appendChild(fab); document.body.appendChild(pn);
+  $('#agForm').onsubmit = function (e) { e.preventDefault(); var t = $('#agText').value.trim(); if (t && !AG.busy) { $('#agText').value = ''; agSend(t); } };
+  $('#agText').onkeydown = function (e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); $('#agForm').requestSubmit ? $('#agForm').requestSubmit() : $('#agForm').onsubmit(e); } };
+  $('#agBody').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-agui]'); if (!b) return;
+    var t = b.getAttribute('data-agui'), v = b.getAttribute('data-v');
+    if (t === 'tab') go(v); else if (t === 'blk') jumpTo('blk', v); else if (t === 'smp') ACT.sampleDetail(b, byId(D().samples, v));
+    else if (t === 'rpt') { S.rpt = { userId: S.user.id, preset: v }; S.sub.reports = 'make'; go('reports'); setTimeout(function () { ACT.rptPreview(); }, 50); }
+    if (matchMedia('(max-width:860px)').matches) agClose();
+  });
+}
+function agModeLabel() { var c = AG.cfg; if (!c) return 'Mode lokal'; return c.mode === 'llm' ? 'AI: ' + c.providerLabel + ' · ' + c.model : 'Mode lokal (tanpa layanan eksternal)'; }
+function agRender() {
+  var b = $('#agBody'); if (!b) return;
+  if (!AG.msgs.length) b.innerHTML = '<div class="ag-hello"><div class="ag-big">🌴🤖</div><b>Halo, ' + esc(greetName(S.user.fullName)) + '!</b><p>Saya membantu mencari data, merangkum status hara & jadwal, menyusun laporan kerja, dan menjelaskan cara memakai aplikasi.</p></div>';
+  else b.innerHTML = AG.msgs.map(function (m) {
+    if (m.who === 'me') return '<div class="ag-m me"><div>' + esc(m.text) + '</div></div>';
+    if (m.who === 'tool') return '<div class="ag-tool">🔎 ' + esc(m.text) + '</div>';
+    return '<div class="ag-m bot' + (m.err ? ' err' : '') + '"><div>' + agMd(m.text) + (m.ui && m.ui.length ? '<div class="ag-ui">' + agUiBtns(m.ui) + '</div>' : '') + (m.note ? '<small class="ag-note">' + esc(m.note) + '</small>' : '') + '</div></div>';
+  }).join('') + (AG.busy ? '<div class="ag-m bot"><div><span class="ag-dots"><i></i><i></i><i></i></span></div></div>' : '');
+  b.scrollTop = b.scrollHeight;
+  $('#agSug').innerHTML = (AG_SUGGEST[role()] || AG_SUGGEST.SUPER_ADMIN).map(function (s) { return '<button class="ag-chip" data-act="agAsk" data-q="' + esc(s) + '">' + esc(s) + '</button>'; }).join('');
+  $('#agSend').disabled = AG.busy; $('#agMode').textContent = agModeLabel();
+}
+function agUiBtns(ui) {
+  var seen = {}, out = [];
+  ui.forEach(function (u) {
+    var k = u.t + u.v; if (seen[k] || out.length >= 4) return; seen[k] = 1;
+    if (u.t === 'tab') out.push('<button class="btn s" data-agui="tab" data-v="' + esc(u.v) + '">↗ ' + esc(AG_PAGE_NAME[u.v] || u.v) + '</button>');
+    else if (u.t === 'blk') out.push('<button class="btn s" data-agui="blk" data-v="' + esc(u.v) + '">📍 Peta blok ' + esc(agBlk(u.v)) + '</button>');
+    else if (u.t === 'smp') out.push('<button class="btn s" data-agui="smp" data-v="' + esc(u.v) + '">🧪 Detail ' + esc((byId(D().samples, u.v) || {}).code || 'sampel') + '</button>');
+    else if (u.t === 'rpt') out.push('<button class="btn s p" data-agui="rpt" data-v="' + esc(u.v) + '">📑 Buka laporan lengkap</button>');
+  });
+  return out.join('');
+}
+function agOpen() {
+  agEnsure(); AG.open = true; $('#agPanel').classList.remove('hide'); document.body.classList.add('ag-on'); agRender();
+  if (!AG.cfg && navigator.onLine) api('ai.config', {}, { silent: true }).then(function (c) { AG.cfg = c; agRender(); }).catch(function () { AG.cfg = { mode: 'lokal' }; agRender(); });
+  setTimeout(function () { var t = $('#agText'); if (t && !matchMedia('(max-width:860px)').matches) t.focus(); }, 50);
+}
+function agClose() { AG.open = false; var p = $('#agPanel'); if (p) p.classList.add('hide'); document.body.classList.remove('ag-on'); }
+Object.assign(ACT, {
+  agToggle: function () { if (AG.open) agClose(); else agOpen(); },
+  agReset: function () { AG.msgs = []; AG.conv = []; agRender(); },
+  agAsk: function (el) { if (!AG.busy) agSend(el.getAttribute('data-q')); }
+});
+var AG_TOOL_LABEL = { tugas_saya: 'Memeriksa tugas Anda', ringkasan: 'Menghitung ringkasan', cari_sampel: 'Mencari sampel', cari_blok: 'Membaca data blok', status_hara: 'Membaca tren hara', peringatan_hara: 'Memeriksa peringatan hara', jadwal_sampling: 'Menyusun jadwal sampling', progres_sampling: 'Menghitung progres sampling', rekomendasi_pupuk: 'Membaca rekomendasi pupuk', ambang_hara: 'Membaca ambang hara & SOP', laporan_saya: 'Menyusun laporan kerja', panduan: 'Mencari panduan', buka_halaman: 'Menyiapkan tautan halaman' };
+
+function agSend(text) {
+  AG.msgs.push({ who: 'me', text: text }); AG.busy = true; agRender();
+  var useLlm = AG.cfg && AG.cfg.mode === 'llm' && navigator.onLine;
+  (useLlm ? agLlm(text) : agLocalRun(text)).catch(function (e) {
+    AG.msgs.push({ who: 'bot', text: '⚠️ ' + ((e && e.message) || String(e)), err: true });
+  }).then(function () { AG.busy = false; agRender(); });
+}
+function agLocalRun(text, note) {
+  var it = agLocal(text);
+  if (it.say) { AG.msgs.push({ who: 'bot', text: it.say, note: note }); return Promise.resolve(); }
+  AG.msgs.push({ who: 'tool', text: AG_TOOL_LABEL[it.tool] || it.tool }); agRender();
+  return agRunTool(it.tool, it.args).then(function (r) { var ui = []; var clean = agStrip(r, ui); AG.msgs.push({ who: 'bot', text: agFormat(it.tool, clean), ui: ui, note: note }); });
+}
+function agTrimConv() {
+  // jaga ±30 entri terakhir, potong hanya di batas pesan pengguna (pasangan pemanggilan alat tidak terpisah)
+  while (AG.conv.length > 30) { var i = 1; while (i < AG.conv.length && AG.conv[i].role !== 'user') i++; if (i >= AG.conv.length) break; AG.conv = AG.conv.slice(i); }
+}
+function agLlm(text) {
+  agTrimConv(); var mark = AG.conv.length;
+  AG.conv.push({ role: 'user', text: text });
+  var decl = AG_TOOLS.map(function (t) { return { name: t.name, description: t.description, parameters: t.parameters }; }), ui = [], steps = 0;
+  function step() {
+    steps++;
+    return api('ai.chat', { messages: AG.conv, tools: decl }, { silent: true }).then(function (r) {
+      AG.conv.push({ role: 'assistant', text: r.text || '', calls: r.calls || [], raw: r.raw });
+      if (AG.cfg) AG.cfg.used = r.used;
+      if (!(r.calls || []).length || steps >= 6) { AG.msgs.push({ who: 'bot', text: r.text || '(tidak ada jawaban)', ui: ui }); return; }
+      r.calls.forEach(function (c) { AG.msgs.push({ who: 'tool', text: AG_TOOL_LABEL[c.name] || c.name }); }); agRender();
+      return Promise.all(r.calls.map(function (c) { return agRunTool(c.name, c.args).then(function (res) { var s = JSON.stringify(agStrip(res, ui)); return { id: c.id, name: c.name, result: s.length > 12000 ? { dipotong: true, data: s.substring(0, 12000) } : agStrip(res, []) }; }); }))
+        .then(function (results) { AG.conv.push({ role: 'tool', results: results }); return step(); });
+    });
+  }
+  return step().catch(function (e) {
+    // gagal ke penyedia AI → jawab dengan mode lokal agar pengguna tetap terbantu
+    AG.conv = AG.conv.slice(0, mark);
+    if (e && (e.code === 'AI_UNAVAILABLE' || e.code === 'LICENSE_FEATURE')) { AG.cfg = Object.assign({}, AG.cfg, { mode: 'lokal' }); }
+    return agLocalRun(text, 'Mode lokal dipakai: ' + String((e && e.message) || 'layanan AI tidak tersedia').replace(/\.+$/, '') + '.');
+  });
+}
+/* tombol mengambang muncul setelah masuk, hilang saat keluar */
+(function () {
+  var sa = startApp; startApp = function () { sa.apply(this, arguments); agEnsure(); };
+  var lo = logoutLocal; logoutLocal = function () { AG.msgs = []; AG.conv = []; AG.cfg = null; agClose(); ['agFab', 'agPanel'].forEach(function (id) { var x = $('#' + id); if (x) x.remove(); }); lo.apply(this, arguments); };
+})();
+
+/* ---------- Administrasi → Asisten AI ---------- */
+function adminAiHtml() { setTimeout(agAdminLoad, 0); return '<div id="aiAdmin"><div class="empty"><span class="spin dk"></span> Memuat pengaturan AI…</div></div>'; }
+function agAdminLoad() {
+  api('ai.config', {}, { silent: true }).then(function (c) {
+    var el = $('#aiAdmin'); if (!el) return; var a = c.admin || {};
+    el.innerHTML = '<div class="grid g2"><div class="card"><h3>🤖 Asisten AI (LLM)</h3>' +
+      '<div class="alert ' + (c.mode === 'llm' ? 'ok' : 'info') + ' small" style="margin-bottom:10px">Status: <b>' + (c.mode === 'llm' ? 'Mode AI aktif (' + esc(c.providerLabel) + ' · ' + esc(c.model) + ')' : 'Mode lokal') + '</b>' + (c.reason ? '<br>' + esc(c.reason) : '') + '</div>' +
+      '<div class="grid"><label class="f row" style="gap:8px;align-items:center"><input type="checkbox" id="aiEn"' + (a.enabled ? ' checked' : '') + '> Aktifkan mode AI (LLM)</label>' +
+      '<label class="f">Penyedia<select class="i" id="aiProv">' + Object.keys(a.providers || {}).map(function (k) { return '<option value="' + k + '"' + (a.provider === k ? ' selected' : '') + '>' + esc(a.providers[k].label) + '</option>'; }).join('') + '</select></label>' +
+      '<label class="f">Model <small class="muted">(kosong = bawaan: <span id="aiDef">' + esc(((a.providers || {})[a.provider] || {}).defaultModel || '') + '</span>)</small><input class="i mono" id="aiModel" value="' + esc(a.model || '') + '" placeholder="' + esc(((a.providers || {})[a.provider] || {}).defaultModel || '') + '"></label>' +
+      '<label class="f">Kunci API ' + (a.keySet ? '<small class="muted">(tersimpan: ' + esc(a.keyMasked) + ')</small>' : '<small class="muted">(belum diisi)</small>') + '<input class="i mono" id="aiKey" type="password" autocomplete="off" placeholder="' + (a.keySet ? 'Biarkan kosong untuk tetap memakai kunci tersimpan' : 'Tempel kunci API') + '"></label>' +
+      '<label class="f">Batas pesan per pengguna per hari<input class="i" id="aiLim" type="number" min="5" max="2000" value="' + (a.dailyLimit || 60) + '"></label></div>' +
+      '<div class="row" style="gap:8px;margin-top:12px;flex-wrap:wrap"><button class="btn p" data-act="aiSave">Simpan</button><button class="btn" data-act="aiSave" data-test="1">Simpan & tes koneksi</button>' + (a.keySet ? '<button class="btn w" data-act="aiClearKey">Hapus kunci</button>' : '') + '</div>' +
+      (a.featureLicensed ? '' : '<p class="small" style="color:var(--bad);margin-top:10px">Fitur <b>ai</b> tidak termasuk lisensi saat ini, sehingga asisten tetap memakai mode lokal.</p>') + '</div>' +
+      '<div class="card"><h3>Cara kerja & privasi</h3><ul class="small"><li><b>Mode lokal</b> (bawaan): asisten mengenali pertanyaan umum dan membaca data di perangkat. Tidak ada data yang dikirim ke luar.</li><li><b>Mode AI</b>: pertanyaan dan ringkasan data yang relevan dikirim ke penyedia terpilih. Kunci API disimpan di <i>Script Properties</i>, tidak pernah dikirim ke browser atau ikut backup.</li><li>Alat asisten hanya <b>membaca</b> data sesuai hak akses pengguna dan tidak dapat mengubah data.</li><li>Kunci API: Gemini dari Google AI Studio, Claude dari Anthropic Console. Gunakan paket berbayar/enterprise yang tidak memakai data untuk pelatihan model.</li><li>Mengaktifkan mode AI mengubah penerima data di Pemberitahuan Privasi. Pastikan sudah ditinjau PPDP.</li></ul></div></div>';
+    $('#aiProv').onchange = function () { var d = ((a.providers || {})[this.value] || {}).defaultModel || ''; $('#aiDef').textContent = d; $('#aiModel').placeholder = d; };
+  }).catch(function (e) { var el = $('#aiAdmin'); if (el) el.innerHTML = '<div class="alert bad">' + esc(e.message) + '</div>'; });
+}
+Object.assign(ACT, {
+  aiSave: function (el) {
+    var p = { enabled: $('#aiEn').checked, provider: $('#aiProv').value, model: $('#aiModel').value.trim(), dailyLimit: Number($('#aiLim').value), test: !!el.getAttribute('data-test') };
+    var k = $('#aiKey').value.trim(); if (k) p.apiKey = k;
+    api('ai.settings', p).then(function (c) { AG.cfg = null; if (c.test) toast(c.test.ok ? 'Koneksi AI berhasil: ' + c.test.reply : 'Tes gagal: ' + c.test.reply, c.test.ok ? 'ok' : 'bad'); else toast('Pengaturan AI disimpan.', 'ok'); fetchLegal(); agAdminLoad(); }).catch(fail);
+  },
+  aiClearKey: function () { confirmBox('Hapus kunci API AI? Asisten akan kembali ke mode lokal.', function () { api('ai.settings', { clearKey: true, enabled: false }).then(function () { AG.cfg = null; toast('Kunci API dihapus.', 'ok'); fetchLegal(); agAdminLoad(); }).catch(fail); }); }
+});
+
 /* =================== Versi aplikasi, Syarat & Ketentuan, Pemberitahuan Privasi ===================
  * Mengacu UU No. 27 Tahun 2022 tentang Pelindungan Data Pribadi (UU PDP) & PP No. 33 Tahun 2026.
  * Pengendali data = perusahaan pengguna (pemilik spreadsheet). Teks diisi otomatis dari Administrasi → Privasi & Legal.
  */
-var FE_VERSION = '2.4.0';
-var FE_BUILD = '2026-10-26';
+var FE_VERSION = '2.5.0';
+var FE_BUILD = '2026-10-28';
 var RELEASE_NOTES = [
+  ['2.5.0', '28 Okt 2026', ['Laporan pekerjaan otomatis per peran: dokumen A4 profesional, nomor resmi, kode verifikasi SHA-256, arsip & pemeriksaan atasan', 'Laporan otomatis terjadwal mingguan/bulanan', 'Asisten LSU (AI agent): mode lokal tanpa layanan eksternal + mode AI Gemini/Claude dengan 13 alat baca data', 'Pembaruan S&K dan Pemberitahuan Privasi (laporan kerja & asisten AI)']],
   ['2.4.0', '26 Okt 2026', ['Panel Kinerja Agronomi (D3) di Ringkasan: progres sampling kumulatif vs target, tren status hara, jadwal sampling blok', 'Badge peringatan tren hara di luar ambang optimum di Laboratorium', 'Data demo kini berisi riwayat 2 tahun']],
   ['2.3.0', '26 Okt 2026', ['Informasi versi aplikasi (menu Tentang Aplikasi)', 'Syarat & Ketentuan dan Pemberitahuan Privasi (UU PDP) dengan bukti persetujuan per versi', 'Persetujuan WhatsApp terpisah & dapat ditarik', 'Unduh data pribadi & permohonan hak subjek data']],
   ['2.2.0', '26 Okt 2026', ['Tab Perusahaan (PT) di Master Kebun', 'Peta di HP tidak lagi tertutup nav bar bawah']],
@@ -2688,7 +3321,7 @@ function legalCtx() {
   return {
     app: li.appTitle || b.appTitle || 'LSU Enterprise Platform', ctrl: li.controllerName || b.companyName || 'Perusahaan pengguna',
     addr: li.controllerAddress || '', email: li.privacyEmail || '', phone: li.privacyPhone || '', dpo: li.dpoName || '',
-    ret: li.retentionYears || 5, ver: li.legalVersion || '2026.10', eff: li.legalEffective || '2026-10-26', prov: li.providerName || 'Penyedia perangkat lunak',
+    ret: li.retentionYears || 5, ver: li.legalVersion || '2026.10.2', eff: li.legalEffective || '2026-10-28', ai: !!li.aiEnabled, aiProvider: li.aiProvider || '', prov: li.providerName || 'Penyedia perangkat lunak',
     appVer: li.appVersion || FE_VERSION, wa: !!li.waAvailable, types: li.requestTypes || {}
   };
 }
@@ -2712,14 +3345,16 @@ function termsHtml() {
     '<h3>6. Mode offline & perangkat</h3><ul><li>Data survei dan foto yang dibuat tanpa sinyal disimpan sementara di perangkat (antrean) sampai berhasil tersinkron.</li><li>Jangan menghapus data browser/aplikasi atau keluar dari akun sebelum antrean (ikon ⏳) kosong, karena data yang belum terkirim dapat hilang.</li><li>Gunakan kunci layar pada perangkat yang dipakai untuk aplikasi ini.</li></ul>' +
     '<h3>7. Foto & dokumentasi</h3><p>Foto disimpan di Google Drive Perusahaan dan dapat dilihat oleh pengguna lain yang berwenang. Ambil foto yang relevan dengan pekerjaan. Sedapat mungkin hindari wajah orang, pelat kendaraan, atau dokumen pribadi. Foto bukti observasi SOP tidak dapat dihapus karena menjadi bagian dari rantai bukti.</p>' +
     '<h3>8. Keputusan agronomi</h3><p>Diagnosis hara, deteksi anomali, dan rekomendasi pupuk adalah <b>alat bantu keputusan</b>. Keputusan final ditetapkan oleh agronomis dan pejabat berwenang melalui alur persetujuan bertingkat. Pengguna tidak boleh menyajikan draf rekomendasi sebagai keputusan final.</p>' +
-    '<h3>9. Ketersediaan layanan</h3><p>Aplikasi berjalan di atas layanan Google (Apps Script, Sheets, Drive) dan jaringan seluler/internet. Layanan dapat terganggu karena gangguan pihak ketiga, kuota harian Google, pemeliharaan, atau masa lisensi yang berakhir. Saat lisensi berakhir, aplikasi masuk mode baca-saja.</p>' +
-    '<h3>10. Kekayaan intelektual</h3><p>Perangkat lunak, desain, dan dokumentasi adalah milik Penyedia dan dilisensikan kepada Perusahaan. Data yang dimasukkan adalah milik Perusahaan. Komponen sumber terbuka tunduk pada lisensinya masing-masing (lihat menu Tentang Aplikasi).</p>' +
-    '<h3>11. Layanan pihak ketiga</h3><p>Aplikasi menggunakan Google, penyedia peta (OpenStreetMap, Esri, OpenTopoMap), CDN jsDelivr, GitHub Pages, dan bila diaktifkan Fonnte (WhatsApp). Penggunaannya tunduk pada ketentuan masing-masing pihak tersebut.</p>' +
-    '<h3>12. Penangguhan akun</h3><p>Administrator dapat menonaktifkan, mengunci, atau mencabut akses Pengguna yang melanggar ketentuan ini, kebijakan Perusahaan, atau peraturan perundang-undangan, tanpa mengurangi sanksi lain sesuai peraturan perusahaan.</p>' +
-    '<h3>13. Batasan tanggung jawab</h3><p>Sepanjang diizinkan hukum, Penyedia tidak bertanggung jawab atas kerugian akibat kesalahan input, keputusan agronomi, gangguan layanan pihak ketiga, atau penggunaan yang melanggar ketentuan ini. Tanggung jawab Penyedia kepada Perusahaan diatur dalam EULA.</p>' +
-    '<h3>14. Perubahan ketentuan</h3><p>Ketentuan ini dapat diperbarui. Setiap versi baru akan ditampilkan saat Anda masuk dan memerlukan persetujuan ulang. Riwayat persetujuan Anda (versi & waktu) tercatat.</p>' +
-    '<h3>15. Hukum yang berlaku</h3><p>Ketentuan ini tunduk pada hukum Negara Republik Indonesia. Perselisihan diselesaikan secara musyawarah. Jika tidak tercapai kesepakatan, perselisihan diselesaikan sesuai peraturan perusahaan dan ketentuan hukum yang berlaku.</p>' +
-    '<h3>16. Kontak</h3><p>' + contactHtml(c) + '</p></div>';
+    '<h3>9. Laporan kerja otomatis</h3><p>Aplikasi menyusun <b>laporan pekerjaan</b> setiap pengguna secara otomatis dari data yang Anda masukkan dan jejak audit (misalnya jumlah pohon dicatat, kepatuhan SOP, sampel yang diproses). Laporan yang diterbitkan diberi nomor, kode verifikasi, dan diarsipkan tanpa dapat diubah, lalu dapat diperiksa oleh atasan sesuai struktur peran. Laporan merupakan alat bantu dokumentasi dan evaluasi pekerjaan; penilaian kinerja tetap dilakukan oleh manusia sesuai peraturan perusahaan.</p>' +
+    '<h3>10. Asisten AI</h3><ul><li>Asisten AI membantu menjawab pertanyaan, merangkum data, dan menunjukkan menu. Asisten <b>tidak dapat mengubah data</b> dan hanya membaca data yang memang boleh Anda lihat.</li><li>Jawaban asisten dapat keliru. Periksa kembali angka penting di halaman terkait sebelum mengambil keputusan, terutama untuk keputusan agronomi dan pemupukan.</li><li>Bila Perusahaan mengaktifkan layanan AI pihak ketiga' + (c.ai ? ' (saat ini: <b>' + esc(c.aiProvider) + '</b>)' : '') + ', pertanyaan Anda dan ringkasan data yang relevan dikirim ke penyedia tersebut. Jangan menuliskan password, data pribadi orang lain, atau informasi rahasia yang tidak diperlukan di kolom percakapan.</li><li>Tanpa layanan AI pihak ketiga, asisten berjalan dalam <i>mode lokal</i> di perangkat Anda tanpa mengirim data ke luar.</li></ul>' +
+    '<h3>11. Ketersediaan layanan</h3><p>Aplikasi berjalan di atas layanan Google (Apps Script, Sheets, Drive) dan jaringan seluler/internet. Layanan dapat terganggu karena gangguan pihak ketiga, kuota harian Google, pemeliharaan, atau masa lisensi yang berakhir. Saat lisensi berakhir, aplikasi masuk mode baca-saja.</p>' +
+    '<h3>12. Kekayaan intelektual</h3><p>Perangkat lunak, desain, dan dokumentasi adalah milik Penyedia dan dilisensikan kepada Perusahaan. Data yang dimasukkan adalah milik Perusahaan. Komponen sumber terbuka tunduk pada lisensinya masing-masing (lihat menu Tentang Aplikasi).</p>' +
+    '<h3>13. Layanan pihak ketiga</h3><p>Aplikasi menggunakan Google, penyedia peta (OpenStreetMap, Esri, OpenTopoMap), CDN jsDelivr, GitHub Pages, dan bila diaktifkan Fonnte (WhatsApp) serta penyedia AI (Google Gemini atau Anthropic Claude). Penggunaannya tunduk pada ketentuan masing-masing pihak tersebut.</p>' +
+    '<h3>14. Penangguhan akun</h3><p>Administrator dapat menonaktifkan, mengunci, atau mencabut akses Pengguna yang melanggar ketentuan ini, kebijakan Perusahaan, atau peraturan perundang-undangan, tanpa mengurangi sanksi lain sesuai peraturan perusahaan.</p>' +
+    '<h3>15. Batasan tanggung jawab</h3><p>Sepanjang diizinkan hukum, Penyedia tidak bertanggung jawab atas kerugian akibat kesalahan input, keputusan agronomi, gangguan layanan pihak ketiga, atau penggunaan yang melanggar ketentuan ini. Tanggung jawab Penyedia kepada Perusahaan diatur dalam EULA.</p>' +
+    '<h3>16. Perubahan ketentuan</h3><p>Ketentuan ini dapat diperbarui. Setiap versi baru akan ditampilkan saat Anda masuk dan memerlukan persetujuan ulang. Riwayat persetujuan Anda (versi & waktu) tercatat.</p>' +
+    '<h3>17. Hukum yang berlaku</h3><p>Ketentuan ini tunduk pada hukum Negara Republik Indonesia. Perselisihan diselesaikan secara musyawarah. Jika tidak tercapai kesepakatan, perselisihan diselesaikan sesuai peraturan perusahaan dan ketentuan hukum yang berlaku.</p>' +
+    '<h3>18. Kontak</h3><p>' + contactHtml(c) + '</p></div>';
 }
 
 function privacyHtml() {
@@ -2736,6 +3371,8 @@ function privacyHtml() {
     tr(['Foto', 'Foto bukti pohon sampel, dokumentasi lapangan/lab, foto profil', 'Anda']) +
     tr(['Data pekerjaan', 'Observasi, sampel, rantai kustodi (nama pengirim/penerima & token tanda tangan), hasil lab, persetujuan, rekomendasi', 'Anda & rekan kerja']) +
     tr(['Bukti persetujuan', 'Versi & waktu persetujuan ketentuan ini, persetujuan WhatsApp', 'Anda']) +
+    tr(['Laporan kerja', 'Ringkasan kegiatan & indikator pekerjaan per periode (disusun otomatis dari data pekerjaan dan audit), catatan pemeriksaan atasan', 'Sistem & atasan']) +
+    tr(['Percakapan asisten AI', 'Pertanyaan Anda dan ringkasan data yang dibaca asisten. Percakapan <b>tidak disimpan</b> di server aplikasi; hanya jumlah pemakaian harian yang dicatat.', 'Anda']) +
     tr(['Data di perangkat', 'Cache data (IndexedDB), antrean offline, pengaturan tampilan (localStorage), cache tile peta & foto', 'Perangkat Anda']) + '</table>' +
     '<p>Aplikasi tidak dirancang untuk memproses data pribadi yang bersifat spesifik (kesehatan, biometrik, genetika, keuangan pribadi, catatan kejahatan, data anak).</p>' +
     '<h3>3. Tujuan & dasar pemrosesan</h3><table class="lg-t"><tr><th>Tujuan</th><th>Dasar pemrosesan</th></tr>' +
@@ -2743,10 +3380,12 @@ function privacyHtml() {
     tr(['Keamanan akun, pencegahan penyalahgunaan, audit trail, ketertelusuran mutu & rantai bukti sampel', 'Kepentingan sah Perusahaan dan pemenuhan kewajiban hukum/standar mutu']) +
     tr(['Validasi lokasi observasi terhadap pohon sampel (deviasi SOP)', 'Pemenuhan kewajiban perjanjian & kepentingan sah (mutu data agronomi)']) +
     tr(['Notifikasi WhatsApp (penugasan, persetujuan, status sampel)', '<b>Persetujuan</b> Anda yang terpisah. Bersifat opsional dan dapat ditarik kapan saja tanpa mengurangi layanan aplikasi.']) +
-    tr(['Foto profil', 'Pilihan Anda sendiri; dapat dihapus kapan saja di menu Profil']) + '</table>' +
+    tr(['Foto profil', 'Pilihan Anda sendiri; dapat dihapus kapan saja di menu Profil']) +
+    tr(['Laporan kerja otomatis, arsip, dan pemeriksaan oleh atasan', 'Pemenuhan kewajiban perjanjian (hubungan kerja) & kepentingan sah Perusahaan atas dokumentasi pekerjaan']) +
+    tr(['Asisten AI (menjawab pertanyaan & merangkum data)', 'Kepentingan sah Perusahaan dalam efisiensi kerja. Bila memakai penyedia AI pihak ketiga, hanya data yang relevan dengan pertanyaan yang dikirim (minimisasi data).']) + '</table>' +
     '<p>Data tidak dijual, tidak dipakai untuk iklan, dan tidak dipakai untuk pengambilan keputusan otomatis yang berdampak hukum terhadap Anda. Deteksi deviasi SOP hanya menjadi penanda untuk ditinjau oleh manusia.</p>' +
-    '<h3>4. Penerima data & pihak ketiga</h3><ul><li><b>Pengguna berwenang di Perusahaan</b> sesuai peran dan wilayah kerja.</li><li><b>Google LLC</b> (Apps Script, Sheets, Drive) sebagai penyedia infrastruktur penyimpanan dan komputasi.</li><li><b>Fonnte</b>, hanya bila notifikasi WhatsApp diaktifkan Perusahaan <i>dan</i> Anda memberikan persetujuan. Pihak ini menerima nomor WhatsApp dan isi pesan.</li><li><b>Penyedia peta</b> (OpenStreetMap, Esri, OpenTopoMap), <b>CDN jsDelivr</b>, dan <b>GitHub Pages</b> menerima alamat IP serta permintaan teknis (misalnya area peta yang dilihat), tanpa identitas akun Anda.</li><li>Instansi berwenang, bila diwajibkan oleh peraturan perundang-undangan.</li></ul>' +
-    '<h3>5. Transfer ke luar wilayah Indonesia</h3><p>Server Google, CDN, dan penyedia peta dapat berlokasi di luar Indonesia. Perusahaan menilai tingkat pelindungan negara/penerima tujuan dan memastikan adanya pelindungan yang memadai dan mengikat sebagaimana diatur dalam UU PDP dan PP 33/2026.</p>' +
+    '<h3>4. Penerima data & pihak ketiga</h3><ul><li><b>Pengguna berwenang di Perusahaan</b> sesuai peran dan wilayah kerja. Laporan kerja Anda dapat dibuka oleh atasan sesuai struktur peran.</li><li><b>Penyedia AI</b> (Google Gemini atau Anthropic Claude), <b>hanya bila</b> Perusahaan mengaktifkan asisten AI' + (c.ai ? ' (saat ini <b>aktif: ' + esc(c.aiProvider) + '</b>)' : ' (saat ini <b>tidak aktif</b>; asisten berjalan dalam mode lokal)') + '. Penyedia menerima pertanyaan Anda dan ringkasan data yang relevan, tanpa password, token, nomor telepon, atau email. Perusahaan wajib memakai paket layanan yang tidak menggunakan data tersebut untuk melatih model.</li><li><b>Google LLC</b> (Apps Script, Sheets, Drive) sebagai penyedia infrastruktur penyimpanan dan komputasi.</li><li><b>Fonnte</b>, hanya bila notifikasi WhatsApp diaktifkan Perusahaan <i>dan</i> Anda memberikan persetujuan. Pihak ini menerima nomor WhatsApp dan isi pesan.</li><li><b>Penyedia peta</b> (OpenStreetMap, Esri, OpenTopoMap), <b>CDN jsDelivr</b>, dan <b>GitHub Pages</b> menerima alamat IP serta permintaan teknis (misalnya area peta yang dilihat), tanpa identitas akun Anda.</li><li>Instansi berwenang, bila diwajibkan oleh peraturan perundang-undangan.</li></ul>' +
+    '<h3>5. Transfer ke luar wilayah Indonesia</h3><p>Server Google, CDN, penyedia peta, dan penyedia AI (bila diaktifkan) dapat berlokasi di luar Indonesia. Perusahaan menilai tingkat pelindungan negara/penerima tujuan dan memastikan adanya pelindungan yang memadai dan mengikat sebagaimana diatur dalam UU PDP dan PP 33/2026.</p>' +
     '<h3>6. Lama penyimpanan (retensi)</h3><ul><li>Data pekerjaan, foto, dan audit trail disimpan paling lama <b>' + esc(c.ret) + ' tahun</b> setelah tahun sampling terkait, atau lebih lama bila diwajibkan peraturan atau sedang ada sengketa/audit.</li><li>Akun yang dinonaktifkan disimpan secukupnya untuk keperluan audit, lalu dihapus atau dianonimkan.</li><li>Sesi masuk kedaluwarsa dalam 12 jam dan dibersihkan otomatis.</li><li>Data di perangkat tersimpan sampai Anda menekan <i>Bersihkan cache lokal</i>, menghapus data browser, atau mencopot aplikasi.</li></ul>' +
     '<h3>7. Keamanan</h3><p>Langkah pengamanan meliputi: password ber-<i>hash</i>, token sesi acak, penguncian akun, pembatasan akses berbasis peran & wilayah (<i>default-deny</i>), audit trail yang tidak dapat diubah, koneksi HTTPS, lisensi bertanda tangan digital, dan foto di Drive yang dibagikan melalui tautan acak yang sulit ditebak. Perusahaan dapat mewajibkan foto hanya dibuka oleh akun internal melalui kebijakan Google Workspace; aplikasi akan otomatis memuat foto melalui server.</p>' +
     '<h3>8. Hak Anda sebagai subjek data</h3><ul><li><b>Informasi & akses</b>: mendapatkan salinan data pribadi Anda. Gunakan <i>Profil Saya → Unduh data saya</i> (format JSON).</li><li><b>Perbaikan</b>: memperbarui nama, email, dan nomor di menu Profil, atau mengajukan perbaikan data lain.</li><li><b>Penghapusan / pemusnahan</b> data yang tidak lagi diperlukan.</li><li><b>Penarikan persetujuan</b> (misalnya WhatsApp). Pemrosesan dihentikan paling lambat 3×24 jam setelah permohonan terverifikasi; persetujuan WhatsApp yang dicabut dari menu Profil langsung berlaku.</li><li><b>Keberatan / pembatasan</b> pemrosesan, serta pengajuan ganti rugi dan pengaduan kepada lembaga penyelenggara pelindungan data pribadi.</li></ul><p>Permohonan diajukan melalui <i>Profil Saya → Privasi & persetujuan → Ajukan permohonan</i> dan tercatat. Sebagian data dapat tetap disimpan bila diperlukan untuk kewajiban hukum, audit mutu, atau rantai bukti (misalnya foto bukti SOP dan audit trail).</p>' +
@@ -2796,7 +3435,7 @@ VIEWS.about = function () {
     '<div class="grid g2"><div class="card"><div class="row" style="gap:14px">' + logoHtml('ab-logo') + '<div><h3 style="margin:0">' + esc(c.app) + '</h3><div class="muted small">' + esc(S.branding.appSubtitle || '') + '</div></div></div>' +
     '<table class="t" style="margin-top:12px"><tr><td>Versi aplikasi</td><td><b>v' + FE_VERSION + '</b> <span class="small muted">(build ' + esc(FE_BUILD) + ')</span></td></tr><tr><td>Versi server</td><td>v' + esc(srv) + (d.appBuild ? ' <span class="small muted">(build ' + esc(d.appBuild) + ')</span>' : '') + '</td></tr>' +
     '<tr><td>Versi ketentuan & privasi</td><td>' + esc(c.ver) + ' (berlaku ' + fmtD(c.eff) + ')</td></tr><tr><td>Persetujuan Anda</td><td>' + (u.termsAcceptedAt ? '✅ ' + fmtD(u.termsAcceptedAt, true) + ' (v' + esc(u.termsVersion) + ')' : '-') + '</td></tr>' +
-    '<tr><td>Mode</td><td>' + (IS_GAS ? 'Apps Script Web App' : (matchMedia('(display-mode: standalone)').matches ? 'PWA terpasang' : 'PWA (browser)')) + '</td></tr><tr><td>Lisensi</td><td>' + esc(lic.tier || '-') + (lic.expiresAt ? ' · s/d ' + esc(lic.expiresAt) : '') + (lic.client ? ' · ' + esc(lic.client) : '') + '</td></tr>' +
+    '<tr><td>Mode</td><td>' + (window.LSU_DEMO ? 'Demo (server GAS berjalan di browser)' : IS_GAS ? 'Apps Script Web App' : (matchMedia('(display-mode: standalone)').matches ? 'PWA terpasang' : 'PWA (browser)')) + '</td></tr><tr><td>Lisensi</td><td>' + esc(lic.tier || '-') + (lic.expiresAt ? ' · s/d ' + esc(lic.expiresAt) : '') + (lic.client ? ' · ' + esc(lic.client) : '') + '</td></tr>' +
     '<tr><td>Pengendali data</td><td>' + esc(c.ctrl) + '</td></tr><tr><td>Penyedia perangkat lunak</td><td>' + esc(c.prov) + '</td></tr><tr><td>Penyimpanan perangkat</td><td id="abStore">…</td></tr></table>' +
     '<div class="row" style="margin-top:12px"><button class="btn" data-act="legalTerms">📄 Syarat & Ketentuan</button><button class="btn" data-act="legalPrivacy">🔒 Pemberitahuan Privasi</button>' + (IS_GAS ? '' : '<button class="btn" data-act="appUpdate">⟳ Periksa pembaruan</button>') + '</div></div>' +
     '<div class="card"><h3>Catatan rilis</h3>' + RELEASE_NOTES.map(function (r) { return '<div style="margin-bottom:10px"><b>v' + r[0] + '</b> <span class="small muted">' + r[1] + '</span><ul class="small" style="margin:4px 0;padding-left:18px">' + r[2].map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>'; }).join('') + '</div>' +
